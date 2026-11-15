@@ -1,0 +1,39 @@
+﻿Кэш-бандлы: /bitrix/cache/js/s1/new/kernel_main/kernel_main_v1.js?1778827256158483 ; /bitrix/cache/js/s1/new/template_e1ddada1d9708b8f77b004115a1b9976/template_e1ddada1d9708b8f77b004115a1b9976_v1.js?17914473601244570 ; /bitrix/cache/js/s1/new/page_b28e2a63d093aea04223ccd512891f70/page_b28e2a63d093aea04223ccd512891f70_v1.js?178357874062034
+
+===== /bitrix/cache/js/s1/new/kernel_main/kernel_main_v1.js?1778827256158483 (len=158483) =====
+  url:"/bitrix/tools/public_session.php?k="
+  PHP: /bitrix/tools/public_session.php
+  PHP: /bitrix/tools/clock_selector.php
+===== /bitrix/cache/js/s1/new/template_e1ddada1d9708b8f77b004115a1b9976/template_e1ddada1d9708b8f77b004115a1b9976_v1.js?17914473601244570 (len=1241757) =====
+  url:"This value should be a valid url."
+  url: '/search/'
+  url: "/local/ajax/getOrganList.php"
+  url: "api/Control.ashx"
+  url: '/document/'
+  url: './'
+  url: "/local/ajax/get_media_link.php"
+  url: "/local/ajax/get_snipets.php?regnum="
+  url: "/local/ajax/getControlLinks.php?regnum="
+  url: "/local/ajax/check_user_activity_v24.php"
+  PHP: /sharer/sharer.php
+  PHP: /local/ajax/get_media_link.php
+  PHP: /local/ajax/get_snipets.php
+  PHP: /local/ajax/check_user_activity_v24.php
+  PHP: /local/ajax/subscription_expiration.php
+  PHP: /auth/reload_captcha.php
+  PHP: /bitrix/tools/captcha.php
+  LINK: href = '/search/?search_str=&force=1'
+  ORGAN:  var select_organ = document.getElementById('organ');
+  ORGAN:  initItemList( "organ" );
+  ORGAN:  add_item(event, select_organEl.getValue(), "organ");
+  ORGAN:  choiceInp = $('input.choices__input', $('#organ').parents('.choices'));
+  ORGAN:  $("#search_str, #search_str_mob, #akt_kind, #organ, #country").keyup(function (e) {
+  ORGAN:  if ( name == 'organ' ) {
+  ORGAN:  $('input[name="organ[]"]').attr('value', -1);
+  ORGAN:  var organ = $(".custom-combobox-input", ".organ").val() || '';
+  ORGAN:  else if (organ != '')
+  ORGAN:  check_input("organ", "'Орган принятия (издания)'");
+  ORGAN:  var organ = get_sprav("organ");
+  ORGAN:  if (organ != "" || organ_num_dates) {
+  ORGAN:  result += "<organ " + get_mode("organ") + ">" + organ + organ_num_dates + "</organ>";
+===== /bitrix/cache/js/s1/new/page_b28e2a63d093aea04223ccd512891f70/page_b28e2a63d093aea04223ccd512891f70_v1.js?178357874062034 (len=61805) =====

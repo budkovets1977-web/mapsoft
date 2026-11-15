@@ -1,0 +1,52 @@
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+
+# Render / temp folders
+_render/
+_render_notes/
+
+# Logs & sessions
+*.log
+server_log.txt
+session.txt
+webcaps.txt
+
+# Config / credentials
+config_all.txt
+confignames.txt
+opencode-config-export.zip
+router-config-backup.bin
+router-*.bin
+
+# Camera / media snapshots
+camera_snapshot.jpg
+*.m3u
+
+# Node / JS modules
+node_modules/
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Belarus medical / personal docs (keep private)
+cisz-appeal.docx
+cisz-*.txt

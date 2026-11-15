@@ -1,0 +1,16 @@
+﻿===== /local/templates/new/js/common.js?v=04032026 (len=42422) =====
+  var table = $('.l-main > div:not(.document-wrap) table');
+  var dateArr = selectedDates.map(function(date){return fp.formatDate(date,'d.m.Y');});
+  var dateArr = selectedDates.map(function(date){return fp.formatDate(date,'d.m.Y');});
+  var dateArr = selectedDates.map(function(date){return fp.formatDate(date,'d.m.Y');});
+  fp.setDate([$(input_start).val(), formatDate(new Date(), 'dd.mm.yyyy') ], false);
+  $( co_input_def_val ).val( formatDate(new Date(), 'dd.mm.yyyy') );
+  function formatDate(date, format) {
+  return format.replace(/mm|dd|yy|yyy/gi, function (matched) {
+===== /local/templates/new/js/new_custom.js?v=20112024 (len=15911) =====
+  document.documentElement.scrollTop = 0;
+  let iframeDoc = fr.contentWindow.document;
+===== /local/templates/new/js/navigate.js (len=14913) =====
+  ;(function(f){"use strict";"function"===typeof define&&define.amd?define(["jquery"],f):"undefined"!==typeof module&&module.exports?module.exports=f(require("jquery")):f(jQuery)})(function($){"use strict";function n(a){return!a.nodeName||-1!==$.inArray(a.nodeNa
+  significantElements = removeElementsIsNotContent( $(".document-wrap") );
+===== /local/templates/new/js/favorites.js (len=17855) =====
