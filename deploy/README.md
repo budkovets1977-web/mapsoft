@@ -1,32 +1,9 @@
-# deploy — установочные пакеты MapWebServer 6.00.60
+﻿# deploy/
 
-## r7 (15.11.2026)
+Deployment packages for MapWebServer 6.00.60 (MinskLine).
 
-Файлы пакета разбиты на тома по 90 МБ, чтобы GitHub/GitLab позволяли push.
-
-| Файл | Размер | Описание |
-|---|---|---|
-| `mapsoft-full-6.00.60-db10.01.26-theme2026-r7.7z.001` | 90 МБ | Том 1 |
-| `mapsoft-full-6.00.60-db10.01.26-theme2026-r7.7z.002` | ~48 МБ | Том 2 |
-| `extract-r7.cmd` | — | Скрипт склейки/распаковки (Windows, требуется 7-Zip) |
-
-### Собрать исходный zip
-
-С Windows + 7-Zip:
-```
-extract-r7.cmd
-```
-
-Или вручную: откройте `*.7z.001` в 7-Zip → «Извлечь здесь». Получится
-`mapsoft-full-6.00.60-db10.01.26-theme2026-r7.zip` (171,7 МБ).
-
-### Что внутри r7
-
-Полный установочный пакет MapWebServer 6.00.60 + БД 10.01.26 + наши правки ЦИСЗ
-(кнопка «Отправить в ЦИСЗ за день», MedLogSend, bundle split, ВН/TDCaseClosing).
-Подробнее: `README-r7.md` внутри архива.
-
-### Размеры
-
-- Исходный zip: 171,7 МБ
-- Тома 7z: 137,8 МБ (90 + 48)
+- mapsoft-full-6.00.60-db10.01.26-theme2026-r7.7z.001/.002 + extract-r7.cmd
+  - full server deployment package r7 (unpack 7z volumes, then extract-r7.cmd).
+- workstation-fixes-v2026-11-16/
+  - 02-WORKSTATION-fixes-v2026-11-16.zip - client-side fixes (UI themes x3, CertOkWatcher v2 with CertName preselect, ResetCiszCert/Restart-CiszAgent/Diag-CiszCert utilities).
+  - hashes-WORKSTATION.txt - SHA256 checksums of all files inside the zip.
