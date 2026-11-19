@@ -7,3 +7,6 @@ Deployment packages for MapWebServer 6.00.60 (MinskLine).
 - workstation-fixes-v2026-11-16/
   - 02-WORKSTATION-fixes-v2026-11-16.zip - client-side fixes (UI themes x3, CertOkWatcher v2 with CertName preselect, ResetCiszCert/Restart-CiszAgent/Diag-CiszCert utilities).
   - hashes-WORKSTATION.txt - SHA256 checksums of all files inside the zip.
+- server-fixes-v2026-11-19/
+  - 01-SERVER-fixes-v2026-11-19.zip - server-side CISZ fixes, including the Encounter.actualPeriod FHIR per-1 fix.
+  - hashes-SERVER.txt - SHA256 checksums of all files inside the zip.
