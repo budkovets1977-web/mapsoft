@@ -1,0 +1,2 @@
+<?php
+enum med_cisz_ciszDocExtra_documentType: int { case Unknown = 0; case ServiceRequestRadiotherapy = 1; case ServiceRequestRadioisotope = 2; case ServiceRequestPhysiotherapy = 3; case ServiceRequestHospitalisation = 4; }

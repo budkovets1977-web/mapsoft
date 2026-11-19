@@ -1,0 +1,37 @@
+{
+  "name": "Infobox",
+  "description": "Приложение инфокиоска",
+  "manifest_version": 2,
+  "version": "5.3.3",
+  "author": {
+    "name": "MAPSOFT",
+    "email": "info@mapsoft.by"
+  },
+  "kiosk_enabled": true,
+  "offline_enabled": true,
+  "icons": {
+    "16": "img/icon_16.png",
+    "128": "img/icon_128.png"
+  },
+  "app": {
+    "background": {
+      "scripts": ["js/main.js"],
+      "persistent": false
+    }
+  },
+  "sockets":{
+    "tcpServer": {
+      "listen": "*"
+    }
+  },
+  "permissions": [
+    "system.display",
+    "system.network",
+    "power",
+    "webview",
+    "alwaysOnTopWindows",
+    "storage",
+    {"fileSystem": ["directory"]}
+  ],
+  "optional_permissions": [ "audioCapture", "videoCapture" ]
+}

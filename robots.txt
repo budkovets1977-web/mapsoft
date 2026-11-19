@@ -1,9 +1,0 @@
-User-agent: Googlebot
-Disallow: /nogooglebot/
-
-User-agent: *
-Allow: /
-# Служебная навигация: открывается только по ссылке с секретом.
-Disallow: /nav/
-
-Sitemap: https://www.minskline.by/sitemap.xml

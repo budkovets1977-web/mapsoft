@@ -1,0 +1,1530 @@
+{
+  "ReportGuid": "de4052a0ffb6b532e738e18cb809cb2c",
+  "ReportName": "Report",
+  "ReportAlias": "Report",
+  "ReportFile": "raschet_cen_na_materialy.mrt",
+  "ReportCreated": "/Date(0+0300)/",
+  "ReportChanged": "/Date(1601285437000+0300)/",
+  "EngineVersion": "EngineV2",
+  "CalculationMode": "Interpretation",
+  "ReportUnit": "Centimeters",
+  "PreviewSettings": 268435455,
+  "Dictionary": {
+    "Variables": {
+      "0": {
+        "Name": "На_дату",
+        "DialogInfo": {
+          "DateTimeType": "DateAndTime"
+        },
+        "Alias": "На_дату",
+        "Type": "System.DateTime",
+        "RequestFromUser": true,
+        "Key": "94db5f8f9c76455ebd44f984a4b53c7e",
+        "AllowUseAsSqlParameter": true,
+        "SelectionMode": "Nothing"
+      },
+      "1": {
+        "Name": "Организация",
+        "Alias": "Организация",
+        "Type": "System.Int32",
+        "RequestFromUser": true,
+        "Key": "d05b06e2b9504fadae1a214ca8b0940f",
+        "AllowUseAsSqlParameter": true,
+        "SelectionMode": "Nothing"
+      },
+      "2": {
+        "Name": "Подразделение",
+        "Alias": "Подразделение",
+        "Type": "System.Int32",
+        "RequestFromUser": true,
+        "Key": "2b2948c105084d10873ee70157e670ff",
+        "AllowUseAsSqlParameter": true,
+        "SelectionMode": "Nothing"
+      },
+      "3": {
+        "Name": "Прейскурант",
+        "Alias": "Прейскурант",
+        "Type": "System.Int32",
+        "RequestFromUser": true,
+        "Key": "ef6cc5ef820244188bebb730f8c96b14",
+        "AllowUseAsSqlParameter": true,
+        "SelectionMode": "Nothing"
+      },
+      "4": {
+        "Name": "Руководитель",
+        "Alias": "Руководитель",
+        "Type": "System.Int32",
+        "RequestFromUser": true,
+        "Key": "97f987d41dad43989f46baec16f3b150",
+        "AllowUseAsSqlParameter": true,
+        "SelectionMode": "Nothing"
+      },
+      "5": {
+        "Name": "Исполнитель",
+        "Alias": "Исполнитель",
+        "Type": "System.Int32",
+        "RequestFromUser": true,
+        "AllowUseAsSqlParameter": true,
+        "SelectionMode": "Nothing"
+      }
+    },
+    "DataSources": {
+      "0": {
+        "Ident": "StiPostgreSQLSource",
+        "Name": "Прейскурант список",
+        "Alias": "Прейскурант список",
+        "Key": "79fe05ee4e724ddfa9152b393aac9d78",
+        "Columns": {
+          "0": {
+            "Name": "Дата_отчета",
+            "Index": -1,
+            "NameInSource": "field17",
+            "Alias": "Дата_отчета",
+            "Type": "System.String"
+          },
+          "1": {
+            "Name": "Дата_накладной",
+            "Index": -1,
+            "NameInSource": "field4",
+            "Alias": "Дата_накладной",
+            "Type": "System.String"
+          },
+          "2": {
+            "Name": "Имя_МЦ",
+            "Index": -1,
+            "NameInSource": "field2",
+            "Alias": "Имя_МЦ",
+            "Type": "System.Int32"
+          },
+          "3": {
+            "Name": "Имя_Организации",
+            "Index": -1,
+            "NameInSource": "field1",
+            "Alias": "Имя_Организации",
+            "Type": "System.String"
+          },
+          "4": {
+            "Name": "КоэффициентРозницы",
+            "Index": -1,
+            "NameInSource": "field12",
+            "Alias": "КоэффициентРозницы",
+            "Type": "System.Decimal"
+          },
+          "5": {
+            "Name": "НДС",
+            "Index": -1,
+            "NameInSource": "field14",
+            "Alias": "НДС",
+            "Type": "System.Decimal"
+          },
+          "6": {
+            "Name": "Номер_накладной",
+            "Index": -1,
+            "NameInSource": "field3",
+            "Alias": "Номер_накладной",
+            "Type": "System.String"
+          },
+          "7": {
+            "Name": "ПроцентОптовойНадбавки",
+            "Index": -1,
+            "NameInSource": "field6",
+            "Alias": "ПроцентОптовойНадбавки",
+            "Type": "System.Decimal"
+          },
+          "8": {
+            "Name": "ПроцентТорговойНадбавки",
+            "Index": -1,
+            "NameInSource": "field8",
+            "Alias": "ПроцентТорговойНадбавки",
+            "Type": "System.Decimal"
+          },
+          "9": {
+            "Name": "Розничная_стоимость",
+            "Index": -1,
+            "NameInSource": "field13",
+            "Alias": "Розничная_стоимость",
+            "Type": "System.Decimal"
+          },
+          "10": {
+            "Name": "СтавкаНДС",
+            "Index": -1,
+            "NameInSource": "field10",
+            "Alias": "СтавкаНДС",
+            "Type": "System.Decimal"
+          },
+          "11": {
+            "Name": "ТорговаяНадбавка",
+            "Index": -1,
+            "NameInSource": "field15",
+            "Alias": "ТорговаяНадбавка",
+            "Type": "System.Decimal"
+          },
+          "12": {
+            "Name": "Цена_по_накладной",
+            "Index": -1,
+            "NameInSource": "field5",
+            "Alias": "Цена_по_накладной",
+            "Type": "System.Decimal"
+          },
+          "13": {
+            "Name": "Цена_с_НДС",
+            "Index": -1,
+            "NameInSource": "field11",
+            "Alias": "Цена_с_НДС",
+            "Type": "System.Decimal"
+          },
+          "14": {
+            "Name": "Цена_с_ТорговойНадбавкой",
+            "Index": -1,
+            "NameInSource": "field9",
+            "Alias": "Цена_с_ТорговойНадбавкой",
+            "Type": "System.Decimal"
+          },
+          "15": {
+            "Name": "ЦенаПроизводителя",
+            "Index": -1,
+            "NameInSource": "field7",
+            "Alias": "ЦенаПроизводителя",
+            "Type": "System.Decimal"
+          },
+          "16": {
+            "Name": "Цены_прошлые",
+            "Index": -1,
+            "NameInSource": "field16",
+            "Alias": "Цены_прошлые",
+            "Type": "System.Decimal"
+          }
+        },
+        "NameInSource": "PricePgSQL",
+        "SqlCommand": "SELECT\r\n  CASE COALESCE(Enterprise1.FullName, E'' )= E'' WHEN true THEN Enterprise1.Name WHEN false THEN Enterprise1.FullName END as Field1,\r\n fn_pmsMatWealthName( pmsWealthPrice1.MatWealthCode ) as Field2,\r\n pmsWealthPrice1.DocumentNumber as Field3,\r\n DATEFORMAT(pmsWealthPrice1.DocumentDate, 'dd.mm.yyyy') as Field4,\r\n pmsWealthPrice1.InvoicePrice as Field5,\r\n pmsWealthPrice1.WholesalePercent as Field6,\r\n pmsWealthPrice1.ProducerPrice as Field7,\r\n pmsWealthPrice1.TradingPercent as Field8,\r\n pmsWealthPrice1.TradingPrice as Field9,\r\n pmsWealthPrice1.VATrate as Field10,\r\n pmsWealthPrice1.PriceWithVAT as Field11,\r\n pmsWealthPrice1.RetailRatio as Field12,\r\n pmsWealthPrice1.Price as Field13,\r\n pmsWealthPrice1.VAT as Field14,\r\n pmsWealthPrice1.TradingCost as Field15,\r\n COALESCE(pmsWealthPrice2.Price, 0) as Field16,\r\n DATEFORMAT(@На_дату, 'dd.mm.yyyy') as Field17\r\nFROM\r\n Enterprise as Enterprise1\r\nJOIN pmsWealthPrice as pmsWealthPrice1 ON pmsWealthPrice1.EnterpriseCode = Enterprise1.EnterpriseCode AND pmsWealthPrice1.EnterpriseStructureCode = @Подразделение AND ((@Только_изменения = 1 AND pmsWealthPrice1.OnDate = @На_дату) OR (@Только_изменения = 0 AND pmsWealthPrice1.OnDate = (Select MAX(OnDate) from pmswealthprice Where enterprisecode = @Организация AND enterprisestructurecode = @Подразделение AND matWealthCode = pmsWealthPrice1.MatWealthCode AND OnDate <= @На_дату)))\r\n LEFT OUTER JOIN MatWealth as MatWealth1 ON MatWealth1.MatWealthCode = pmsWealthPrice1.MatWealthCode\r\nLEFT OUTER JOIN pmsWealthPrice AS pmsWealthPrice2 ON pmsWealthPrice2.EnterpriseCode = Enterprise1.EnterpriseCode AND pmsWealthPrice2.EnterpriseStructureCode = @Подразделение AND pmsWealthPrice2.pmsWealthPriceCode = (SELECT pwp.pmswealthpriceCode FROM pmswealthprice AS pwp where pwp.OnDate = (SELECT MAX(pwp1.OnDate) FROM pmswealthprice AS pwp1 WHERE COALESCE( pwp1.EnterpriseStructureCode, 0) = @Подразделение AND pwp1.OnDate < pmsWealthPrice1.OnDate AND pwp1.matwealthcode = pmsWealthPrice1.MatWealthCode) AND COALESCE( pwp.EnterpriseStructureCode, 0) = @Подразделение AND pwp.matwealthcode = pmsWealthPrice1.MatWealthCode  LIMIT 1 )\r\nWHERE\r\n Enterprise1.EnterpriseCode = @Организация\r\n AND COALESCE( pmsWealthPrice1.Active,0) = 1\r\nGROUP BY\r\n Field1, Field2, Field4, Field5, Field6, Field7, Field8, Field3, Field9, Field10, Field11, Field12, Field13, Field14, Field15, Field16, Field17\r\nORDER BY\r\n 1 ASC, 2 ASC"
+      },
+      "1": {
+        "Ident": "StiPostgreSQLSource",
+        "Name": "Подписи",
+        "Alias": "Подписи",
+        "Key": "2f9933a2d90c49f3b07919a3706a6d9e",
+        "Columns": {
+          "0": {
+            "Name": "Имя_исполнителя",
+            "Index": -1,
+            "NameInSource": "field1",
+            "Alias": "Имя_исполнителя",
+            "Type": "System.String"
+          },
+          "1": {
+            "Name": "Должность_исполнителя",
+            "Index": -1,
+            "NameInSource": "field2",
+            "Alias": "Должность_исполнителя",
+            "Type": "System.String"
+          },
+          "2": {
+            "Name": "Имя_руководителя",
+            "Index": -1,
+            "NameInSource": "field3",
+            "Alias": "Имя_руководителя",
+            "Type": "System.String"
+          },
+          "3": {
+            "Name": "Должность_руководителя",
+            "Index": -1,
+            "NameInSource": "field4",
+            "Alias": "Должность_руководителя",
+            "Type": "System.String"
+          }
+        },
+        "NameInSource": "PricePgSQL",
+        "SqlCommand": "SELECT\r\n\tfn_cmFIO( WorkerInfo1.ManCode, 2 ) as Field1,\r\n\tWorkerInfo1.PostName as Field2,\r\n\tfn_cmFIO( WorkerInfo2.ManCode, 2) as Field3,\r\n\tWorkerInfo2.PostName as Field4\r\n\tFROM\r\n\tEnterprise AS Enterprise1 LEFT OUTER JOIN Worker AS Worker1 ON Worker1.EnterpriseCode = Enterprise1.EnterpriseCode AND Worker1.WorkerCode = @Исполнитель\r\n LEFT OUTER JOIN WorkerInfo AS WorkerInfo1 ON WorkerInfo1.WorkerCode = Worker1.WorkerCode\r\n LEFT OUTER JOIN Worker AS Worker2 ON Worker2.EnterpriseCode = Enterprise1.EnterpriseCode AND Worker2.WorkerCode = @Руководитель\r\n LEFT OUTER JOIN WorkerInfo AS WorkerInfo2 ON WorkerInfo2.WorkerCode = Worker2.WorkerCode\r\nWHERE\r\n Enterprise1.EnterpriseCode = @Организация\r\nORDER BY\r\n 1 ;\r\n"
+      }
+    },
+    "Databases": {
+      "0": {
+        "Ident": "StiPostgreSQLDatabase",
+        "Name": "PricePgSQL",
+        "Alias": "PricePgSQL",
+        "Key": "93c609ceec724173aa3869b1ecfc89d5",
+        "ConnectionStringEncrypted": "41LZCe9ZAelieKXJxFj0XotaeUNJWQG8RVihlOsN9GP5cGXreVnT8MBJ1b3oJSUXhWjXg0YIUfDCGei9ypzgu9R4B6HJCVqB4RGlzGMp"
+      }
+    }
+  },
+  "Pages": {
+    "0": {
+      "Ident": "StiPage",
+      "Name": "Page1",
+      "Guid": "e9e5df8ef00a49a88f8cd26b096e1006",
+      "Interaction": {
+        "Ident": "StiInteraction"
+      },
+      "Border": ";;2;;;;;solid:Black",
+      "Brush": "solid:",
+      "Components": {
+        "0": {
+          "Ident": "StiPageHeaderBand",
+          "Name": "PageHeaderBand1",
+          "PrintOn": "ExceptFirstPage",
+          "ClientRectangle": "0,0.4,27.7,1.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text10",
+              "Guid": "333ff39dc15b27c35e672d0f89bc9b7a",
+              "ClientRectangle": "0,0,2,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Номер\r\nнакладной"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text11",
+              "Guid": "fc871d71395f690ca58f4f617f354f9c",
+              "ClientRectangle": "2,0,1.6,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Дата\r\nнакладной"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text12",
+              "Guid": "52ca5e5ffe5e6945f8b7498c33545f56",
+              "ClientRectangle": "3.6,0,1.8,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Цена по\r\nнакладной,\r\nруб."
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "3": {
+              "Ident": "StiText",
+              "Name": "Text13",
+              "Guid": "ee45ee82d8149b7cdad37620ab9dee23",
+              "ClientRectangle": "5.4,0,2,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Оптовая\r\nнадбавка, %"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "4": {
+              "Ident": "StiText",
+              "Name": "Text14",
+              "Guid": "b7cb358620abd7aab86ba313c784632a",
+              "ClientRectangle": "7.4,0,2,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Цена\r\nпроизв-ля,\r\nруб"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "5": {
+              "Ident": "StiText",
+              "Name": "Text15",
+              "Guid": "3d9a836d392995c7027622ad0a37a7ae",
+              "ClientRectangle": "9.4,0,1.6,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Торговая\r\nнадбав-\r\nка, %"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "6": {
+              "Ident": "StiText",
+              "Name": "Text33",
+              "Guid": "7e957647d3504d4ea491fcf30fa9387b",
+              "ClientRectangle": "11,0,2.4,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Цена с\r\nторговой\r\nнадбавкой, руб"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "7": {
+              "Ident": "StiText",
+              "Name": "Text34",
+              "Guid": "64ff8080593e541a53e423799eb56023",
+              "ClientRectangle": "13.4,0,1,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "НДС,\r\n%"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "8": {
+              "Ident": "StiText",
+              "Name": "Text35",
+              "Guid": "09a396b907c6648737b3f642078257a3",
+              "ClientRectangle": "14.4,0,2,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Цена\r\nс НДС,\r\nруб"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "9": {
+              "Ident": "StiText",
+              "Name": "Text36",
+              "Guid": "9bd2abc4180aa118b6d853b41e237b38",
+              "ClientRectangle": "16.4,0,1.8,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Коэфф.\r\nрозничной\r\nеденицы\r\nизмер-я"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "10": {
+              "Ident": "StiText",
+              "Name": "Text37",
+              "Guid": "733d0b45f0b87fd0bcf2cdad95e832d2",
+              "ClientRectangle": "18.2,0,2,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Розничная\r\nстоимость,\r\nруб"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "11": {
+              "Ident": "StiText",
+              "Name": "Text38",
+              "Guid": "5ca730257e1c36208d0e4e0dfb676a4e",
+              "ClientRectangle": "20.2,0,1.6,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "В т.ч.\r\nНДС,\r\nруб"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "12": {
+              "Ident": "StiText",
+              "Name": "Text39",
+              "Guid": "30a97fc76b5b5af5376dd5687ac99759",
+              "ClientRectangle": "21.8,0,1.8,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "В т.ч.\r\nнадбав-\r\nка, руб"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "13": {
+              "Ident": "StiText",
+              "Name": "Text40",
+              "Guid": "77cd8b11b9617f1bcb6bc3d9de5cc2be",
+              "ClientRectangle": "23.6,0,2,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Пред.\r\nрозничная\r\nстоимость,\r\nруб"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "14": {
+              "Ident": "StiText",
+              "Name": "Text41",
+              "Guid": "1c860cc445582f06e88df83f6950fa97",
+              "ClientRectangle": "25.6,0,2,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Изменения\r\nрозничной\r\nстоимости,\r\n%"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            }
+          },
+          "CanGrow": false
+        },
+        "1": {
+          "Ident": "StiPageFooterBand",
+          "Name": "PageFooterBand1",
+          "PrintOn": "ExceptLastPage",
+          "ClientRectangle": "0,18.4,27.7,0.6",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:0,0,0",
+          "Brush": "solid:255,255,255",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text22",
+              "Guid": "5a598f5686f1693c724dd66c0f66ebe7",
+              "ClientRectangle": "25.2,0.1,2.4,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "лист {PageNumber}"
+              },
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            }
+          },
+          "CanGrow": false
+        },
+        "2": {
+          "Ident": "StiReportTitleBand",
+          "Name": "ReportTitleBand1",
+          "ClientRectangle": "0,2.4,27.7,3.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text1",
+              "Guid": "0eb959cf0b1d419280c2722a6a2ccebd",
+              "ClientRectangle": "18,0,9.6,1.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Утверждаю:\r\n{Подписи.Должность_руководителя}\r\n______________ {Подписи.Имя_руководителя}"
+              },
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "LineSpacing": 1.5,
+              "Type": "Expression"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text32",
+              "Guid": "a47313d228bb4604961d1d8e8a9c5b31",
+              "ClientRectangle": "18,1.4,9.6,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{Прейскурант_список.Дата_отчета}"
+              },
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextFormat": {
+                "Ident": "StiDateFormatService"
+              },
+              "Type": "DataColumn"
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text2",
+              "Guid": "60b39afd5d3b44d9b6db1621a9a2e5a7",
+              "ClientRectangle": "0,2,27.6,0.8",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Расчёт розничной стоимости расходных материалов, лекарственных средств и изделий мед.назначения"
+              },
+              "HorAlignment": "Center",
+              "Font": ";10;Bold;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "3": {
+              "Ident": "StiText",
+              "Name": "Text3",
+              "Guid": "4f2ad872f2884c07a7d1d974cfdc8d5a",
+              "ClientRectangle": "0,2.8,27.6,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "от {Прейскурант_список.Дата_отчета}"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": ";10;;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            }
+          },
+          "CanGrow": false
+        },
+        "3": {
+          "Ident": "StiHeaderBand",
+          "Name": "HeaderBand1",
+          "ClientRectangle": "0,6.4,27.7,1.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text4",
+              "Guid": "4a02abef425c4ea8b5eb6ff94b768610",
+              "ClientRectangle": "0,0,2,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Номер\r\nнакладной"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text5",
+              "Guid": "6d79f8d7ac1545fda0004523ae71d8bf",
+              "ClientRectangle": "2,0,1.6,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Дата\r\nнакладной"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text6",
+              "Guid": "7bb45c3984a04657aa7d083d4e924795",
+              "ClientRectangle": "3.6,0,1.8,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Цена по\r\nнакладной,\r\nруб."
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "3": {
+              "Ident": "StiText",
+              "Name": "Text7",
+              "Guid": "4ab1183d73b9485881c272e9cddbc96a",
+              "ClientRectangle": "5.4,0,2,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Оптовая\r\nнадбавка, %"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "4": {
+              "Ident": "StiText",
+              "Name": "Text8",
+              "Guid": "f85f848559124ab8a9d71cc1678de5da",
+              "ClientRectangle": "7.4,0,2,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Цена\r\nпроизв-ля,\r\nруб"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "5": {
+              "Ident": "StiText",
+              "Name": "Text9",
+              "Guid": "306c95994fe946599ed4783934d0d17d",
+              "ClientRectangle": "9.4,0,1.6,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Торговая\r\nнадбав-\r\nка, %"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "6": {
+              "Ident": "StiText",
+              "Name": "Text42",
+              "Guid": "8aafc247746c4ccfb6dab72b5b633102",
+              "ClientRectangle": "11,0,2.4,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Цена с\r\nторговой\r\nнадбавкой, руб"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "7": {
+              "Ident": "StiText",
+              "Name": "Text43",
+              "Guid": "ecb8db4c2a2edd0d07044d22a3fe860b",
+              "ClientRectangle": "13.4,0,1,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "НДС,\r\n%"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "8": {
+              "Ident": "StiText",
+              "Name": "Text44",
+              "Guid": "76b6ab10a2e80da8f7e8b1d5f82c76e0",
+              "ClientRectangle": "14.4,0,2,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Цена\r\nс НДС,\r\nруб"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "9": {
+              "Ident": "StiText",
+              "Name": "Text45",
+              "Guid": "b51aceb7ff9a013e2c820fde80d8bcc8",
+              "ClientRectangle": "16.4,0,1.8,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Коэфф.\r\nрозничной\r\nеденицы\r\nизмер-я"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "10": {
+              "Ident": "StiText",
+              "Name": "Text46",
+              "Guid": "16919a5384a22456b2ba66f2480c77e2",
+              "ClientRectangle": "18.2,0,2,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Розничная\r\nстоимость,\r\nруб"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "11": {
+              "Ident": "StiText",
+              "Name": "Text47",
+              "Guid": "8eb533d5bde13f111e398088b91c486a",
+              "ClientRectangle": "20.2,0,1.6,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "В т.ч.\r\nНДС,\r\nруб"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "12": {
+              "Ident": "StiText",
+              "Name": "Text48",
+              "Guid": "9970245abba73a649b89ee89b9e2aae2",
+              "ClientRectangle": "21.8,0,1.8,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "В т.ч.\r\nнадбав-\r\nка, руб"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "13": {
+              "Ident": "StiText",
+              "Name": "Text49",
+              "Guid": "7f35367db5053b06217a578160076e0f",
+              "ClientRectangle": "23.6,0,2,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Пред.\r\nрозничная\r\nстоимость,\r\nруб"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "14": {
+              "Ident": "StiText",
+              "Name": "Text50",
+              "Guid": "7a3bb01a54431db5fad7b44d6f521564",
+              "ClientRectangle": "25.6,0,2,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Изменения\r\nрозничной\r\nстоимости,\r\n%"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            }
+          },
+          "PrintOnAllPages": false
+        },
+        "4": {
+          "Ident": "StiGroupHeaderBand",
+          "Name": "GroupHeaderBand1",
+          "ClientRectangle": "0,8.4,27.7,0.4",
+          "Interaction": {
+            "Ident": "StiBandInteraction"
+          },
+          "CanBreak": true,
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text17",
+              "Guid": "ccee7715c94a021452878b87e0af0147",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "0,0,27.6,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{Прейскурант_список.Имя_МЦ}"
+              },
+              "CanBreak": true,
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "Type": "Expression"
+            }
+          },
+          "Condition": {
+            "Value": "{Прейскурант_список.Имя_МЦ}"
+          }
+        },
+        "5": {
+          "Ident": "StiDataBand",
+          "Name": "DataBand1",
+          "ClientRectangle": "0,9.6,27.7,0.4",
+          "Interaction": {
+            "Ident": "StiBandInteraction"
+          },
+          "CanBreak": true,
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text23",
+              "Guid": "f1ecef45980b81a9bc90b7a29d2efb71",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "0,0,2,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{Прейскурант_список.Номер_накладной}"
+              },
+              "CanBreak": true,
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "Type": "DataColumn"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text24",
+              "Guid": "ef2cae59ccd3a4d48905eb81341110a1",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "2,0,1.6,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{Прейскурант_список.Дата_накладной}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "Type": "Expression"
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text25",
+              "Guid": "ede77571591ce89725e5079321152e78",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "3.6,0,1.8,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{Прейскурант_список.Цена_по_накладной}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "GroupSeparator": ",",
+                "State": "DecimalDigits"
+              },
+              "Type": "DataColumn"
+            },
+            "3": {
+              "Ident": "StiText",
+              "Name": "Text26",
+              "Guid": "4ac4a8da27ad03735f128a818b82feaf",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "5.4,0,2,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HideZeros": true,
+              "Text": {
+                "Value": "{Прейскурант_список.ПроцентОптовойНадбавки}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "DecimalSeparator": ",",
+                "GroupSeparator": " ",
+                "State": "DecimalDigits"
+              },
+              "Type": "Expression"
+            },
+            "4": {
+              "Ident": "StiText",
+              "Name": "Text27",
+              "Guid": "f4e659fefb43c9c0e000dc087114f642",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "7.4,0,2,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HideZeros": true,
+              "Text": {
+                "Value": "{Прейскурант_список.ЦенаПроизводителя}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "GroupSeparator": ",",
+                "State": "DecimalDigits"
+              },
+              "Type": "DataColumn"
+            },
+            "5": {
+              "Ident": "StiText",
+              "Name": "Text28",
+              "Guid": "3583aef3b10b44afd43275b8ec43907e",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "9.4,0,1.6,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HideZeros": true,
+              "Text": {
+                "Value": "{Прейскурант_список.ПроцентТорговойНадбавки}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "DecimalSeparator": ",",
+                "GroupSeparator": " ",
+                "State": "DecimalDigits"
+              },
+              "Type": "DataColumn"
+            },
+            "6": {
+              "Ident": "StiText",
+              "Name": "Text16",
+              "Guid": "155957c1b9c7ca92b0652948732efd92",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "11,0,2.4,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HideZeros": true,
+              "Text": {
+                "Value": "{Прейскурант_список.Цена_с_ТорговойНадбавкой}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Right",
+              "Border": "All;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "GroupSeparator": ",",
+                "State": "DecimalDigits"
+              },
+              "Type": "DataColumn"
+            },
+            "7": {
+              "Ident": "StiText",
+              "Name": "Text18",
+              "Guid": "982b2ee6f9904b7c7886c46960c4b107",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "13.4,0,1,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HideZeros": true,
+              "Text": {
+                "Value": "{Прейскурант_список.СтавкаНДС}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Center",
+              "Border": "All;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "GroupSeparator": ",",
+                "State": "DecimalDigits"
+              },
+              "Type": "DataColumn"
+            },
+            "8": {
+              "Ident": "StiText",
+              "Name": "Text19",
+              "Guid": "f810a44e31510709d3db5792852bd829",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "14.4,0,2,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HideZeros": true,
+              "Text": {
+                "Value": "{Прейскурант_список.Цена_с_НДС}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Right",
+              "Border": "All;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "GroupSeparator": ",",
+                "State": "DecimalDigits"
+              },
+              "Type": "DataColumn"
+            },
+            "9": {
+              "Ident": "StiText",
+              "Name": "Text20",
+              "Guid": "f78df9290c7d50df3859e6eb455c7ace",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "16.4,0,1.8,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HideZeros": true,
+              "Text": {
+                "Value": "{Прейскурант_список.КоэффициентРозницы}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Center",
+              "Border": "All;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "DecimalDigits": 1,
+                "GroupSeparator": ",",
+                "State": "DecimalDigits"
+              },
+              "Type": "DataColumn"
+            },
+            "10": {
+              "Ident": "StiText",
+              "Name": "Text21",
+              "Guid": "532f34ddf01c6619e23a80a7f3a43b1c",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "18.2,0,2,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HideZeros": true,
+              "Text": {
+                "Value": "{Прейскурант_список.Розничная_стоимость}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Right",
+              "Border": "All;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "GroupSeparator": ",",
+                "State": "DecimalDigits"
+              },
+              "Type": "DataColumn"
+            },
+            "11": {
+              "Ident": "StiText",
+              "Name": "Text51",
+              "Guid": "0a6e89c7b8b7c49bfe8ebb2e0209ce38",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "20.2,0,1.6,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HideZeros": true,
+              "Text": {
+                "Value": "{Прейскурант_список.НДС}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Right",
+              "Border": "All;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "GroupSeparator": ",",
+                "State": "DecimalDigits"
+              },
+              "Type": "DataColumn"
+            },
+            "12": {
+              "Ident": "StiText",
+              "Name": "Text52",
+              "Guid": "b175da8448cdcd25207315864a244319",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "21.8,0,1.8,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HideZeros": true,
+              "Text": {
+                "Value": "{Прейскурант_список.ТорговаяНадбавка}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Right",
+              "Border": "All;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "GroupSeparator": ",",
+                "State": "DecimalDigits"
+              },
+              "Type": "DataColumn"
+            },
+            "13": {
+              "Ident": "StiText",
+              "Name": "Text53",
+              "Guid": "091092045fbcee65e706aca412bcc07f",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "23.6,0,2,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HideZeros": true,
+              "Text": {
+                "Value": "{Прейскурант_список.Цены_прошлые}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Right",
+              "Border": "All;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "GroupSeparator": ",",
+                "State": "DecimalDigits"
+              },
+              "Type": "DataColumn"
+            },
+            "14": {
+              "Ident": "StiText",
+              "Name": "Text54",
+              "Guid": "7595d3913c52fc6adcb597a11e457c9e",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "25.6,0,2,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HideZeros": true,
+              "Text": {
+                "Value": "\r\n\r\n{IIF(Прейскурант_список.Цены_прошлые!=0, ((Прейскурант_список.Розничная_стоимость - Прейскурант_список.Цены_прошлые) * 100)/Прейскурант_список.Розничная_стоимость)}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Right",
+              "Border": "All;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "GroupSeparator": ",",
+                "State": "DecimalDigits"
+              },
+              "Type": "Expression"
+            }
+          },
+          "DataSourceName": "Прейскурант список"
+        },
+        "6": {
+          "Ident": "StiFooterBand",
+          "Name": "FooterBand1",
+          "ClientRectangle": "0,10.8,27.7,0.6",
+          "Enabled": false,
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text29",
+              "Guid": "fb49f2cc6364eae311ec71f5445388f0",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "0,0.2,12.2,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{Подписи.Должность_исполнителя}"
+              },
+              "CanBreak": true,
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "Type": "DataColumn"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text30",
+              "Guid": "a9680570655e2b6a10bcb2f4e05cdea8",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "14.6,0.2,7.4,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{Подписи.Имя_исполнителя}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Right",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "Type": "DataColumn"
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text31",
+              "ClientRectangle": "12.2,0.2,2.4,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HorAlignment": "Right",
+              "Border": "Bottom;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "Type": "Expression"
+            }
+          }
+        }
+      },
+      "PaperSize": "A4",
+      "UnlimitedBreakable": false,
+      "Orientation": "Landscape",
+      "PageWidth": 29.7,
+      "PageHeight": 21,
+      "Watermark": {
+        "TextBrush": "solid:50,0,0,0"
+      },
+      "Margins": {
+        "Left": 1,
+        "Right": 1,
+        "Top": 1,
+        "Bottom": 1
+      }
+    }
+  }
+}

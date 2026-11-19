@@ -1,0 +1,2 @@
+<?php
+require_once(__DIR__.'/../../init.php'); class equeue_app_videoProgramAdd { private $db; private $videoPath = "video/equeue/"; public function readVideoProgramListAdd(){ $dir = getServerRootPath(); $files = glob($dir . $this->videoPath . "*"); $result = []; $i = 0; foreach ($files as $file){ if (is_file($file)){ array_push($result, array("id" => $i, "fileName" => basename($file))); $i++; } } return $result; } } handleJsonRpc('equeue_app_videoProgramAdd');

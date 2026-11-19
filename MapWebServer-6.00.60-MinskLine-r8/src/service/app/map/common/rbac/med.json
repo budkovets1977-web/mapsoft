@@ -1,0 +1,33 @@
+{
+    "text": "Медицинская информационная система",
+    "id": "med",
+    "expanded": true,
+    "children": [
+        {
+            "text": "Задачи",
+            "id": "med-tasks",
+            "read": "readMedTasks"
+        }, {
+            "text": "Отделения",
+            "id": "med-offices"/*,
+            "read": "readMedOffices"*/
+        }, {
+            "text": "Участки",
+            "id": "med-sectors",
+            "read": "readMedSectors"
+        }, {
+            "text": "Справочники",
+            "id": "med-catalogs",
+            "include": "med-catalogs"
+        }, {
+            "text": "Отчеты",
+            "id": "med-reports"/*,
+            "read": "app/map/reports/rbac/readRbacReports"*/
+        }, {
+            "text": "Формы",
+            "id": "med-forms",
+            "expanded": true,
+            "include": "med-forms"
+        }
+    ]
+}

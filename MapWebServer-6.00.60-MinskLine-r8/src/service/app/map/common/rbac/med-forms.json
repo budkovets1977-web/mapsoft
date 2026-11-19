@@ -1,0 +1,54 @@
+{
+    "children": [
+        {
+            "text": "Картотека пациентов",
+            "id": "med-common-patients",
+            "children": [
+                {
+                    "text": "Диспансеризация",
+                    "id": "med-common-patients.clinical-examination"
+                }, {
+                    "text": "Снятие с учёта",
+                    "id": "med-common-patients.deregistration"
+                }
+            ]
+        }, {
+            "text": "Амбулаторные карты",
+            "id": "med-card-cards",
+            "children": [
+                {
+                    "text": "Проверка",
+                    "id": "med-card-cards.check"
+                },
+                {
+                    "text": "Настройка экспорта в БРНС и ЛНС",
+                    "id": "med-card-cards.setup-export-brns-lns"
+                }
+            ]
+        }, {
+            "text": "Заказ талонов",
+            "id": "med-reception-coupons"
+        }, {
+            "text": "Лабораторные исследования",
+            "id": "med-lab-studies"
+        }, {
+            "text": "Лучевые исследования",
+            "id": "med-xray-studies"
+        }, {
+            "text": "Функциональные исследования",
+            "id": "med-functional-studies"
+        }, {
+            "text": "Регистрация листков нетрудоспособности",
+            "id": "med-sickdays-sheets"
+        }, {
+            "text": "Журнал вызовов скорой помощи",
+            "id": "med-clinicstats-ambulance"
+        }, {
+            "text": "Журнал регистрации смертности",
+            "id": "med-clinicstats-mortality"
+        }, {
+            "text": "Журнал льготных рецептов",
+            "id": "med-recipes-log"
+        }
+    ]
+}

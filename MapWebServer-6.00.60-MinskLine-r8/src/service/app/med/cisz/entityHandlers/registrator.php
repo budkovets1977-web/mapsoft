@@ -1,0 +1,2 @@
+<?php
+class med_cisz_entityHandlers_registrator { private array $handlers = [ 'MedLog' => med_cisz_entityHandlers_medLogHandler::class ]; public function registry(string $resourceProfile, $class): void { if (isset($this->handlers[$resourceProfile])) { throw new LogicException("ResourceHandler for '$resourceProfile' is already registered."); } $this->handlers[$resourceProfile] = $class; } public function get(string $resourceProfile) { return $this->handlers[$resourceProfile] ?? throw new UnknownProfileException($resourceProfile); } }

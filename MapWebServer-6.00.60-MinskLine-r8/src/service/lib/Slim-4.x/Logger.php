@@ -1,0 +1,2 @@
+<?php
+ declare(strict_types=1); namespace Slim; use Psr\Log\AbstractLogger; use Psr\Log\InvalidArgumentException; class Logger extends AbstractLogger { public function log($level, $message, array $context = []) { error_log($message); } } 

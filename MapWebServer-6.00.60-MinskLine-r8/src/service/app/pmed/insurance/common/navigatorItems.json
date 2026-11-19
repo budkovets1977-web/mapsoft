@@ -1,0 +1,72 @@
+{
+	"children": [{
+		"id": 1,
+		"name": "Врач",
+		"expanded": true,
+		"children": [{
+			"id": 11,
+			"name": "Заказанные талоны",
+			"leaf": true,
+            "widget": "service131-coupons",
+            "title": "Заказанные талоны"
+ 		}]
+	}, {
+		"id": 2,
+		"name": "Экономист",
+		"expanded": true,
+		"children": [{
+			"id": 21,
+			"name": "Виды приёма",
+			"leaf": true,
+            "roles": "1,999",
+            "widget": "service131-receptionkinds",
+            "title": "Виды приёма"
+ 		}]
+	}, {
+		"id": 3,
+		"name":	"Медрегистратор",
+		"expanded": true,
+		"children": [{
+			"id": 31,
+			"name": "Создание талонов",
+			"leaf": true,
+            "roles": "2,999",
+            "widget": "service131-medreceptionist",
+            "title": "Создание талонов"
+ 		}, {
+			"id": 32,
+			"name": "Врачи",
+			"leaf": true,
+			"roles": "2,999",
+			"widget": "service131-doctors",
+			"title": "Врачи"
+ 		}]
+	}, {
+		"id": 4,
+		"name": "Администратор",
+		"expanded": true,
+		"roles": "9,99,999",
+		"children": [{
+			"id": 41,
+			"name": "Медицинские учреждения",
+			"leaf": true,
+			"roles": "99,999",
+			"widget": "service131-customers",
+			"title": "Учреждения"
+		}, {
+			"id": 42,
+			"name": "Пользователи",
+			"leaf": true,
+			"roles": "9,99,999",
+			"widget": "service131-users",
+			"title": "Пользователи"
+ 		}, {
+			"id": 44,
+			"name": "Услуги",
+			"leaf": true,
+			"roles": "99,999",
+			"widget": "service131-services",
+			"title": "Услуги"
+ 		}]
+	}]
+}

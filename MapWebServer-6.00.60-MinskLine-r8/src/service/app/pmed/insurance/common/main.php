@@ -1,0 +1,2 @@
+<?php
+ $serviceClass = 'pmed_insurance_common_main'; class pmed_insurance_common_main extends common_main { public function readNavigatorItems ($params = null) { return $this->loadJsonNavigatorItems([]); } } 

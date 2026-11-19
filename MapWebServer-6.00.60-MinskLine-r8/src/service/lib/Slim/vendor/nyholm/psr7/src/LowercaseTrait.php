@@ -1,0 +1,2 @@
+<?php
+ declare(strict_types=1); namespace Nyholm\Psr7; trait LowercaseTrait { private static function lowercase(string $value): string { return \strtr($value, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'); } } 

@@ -1,0 +1,2 @@
+<?php
+ $reportPath = realpath(sys_get_temp_dir()) . "\\{$_GET['reportName']}"; header("Content-Type: application/pdf"); header("Cache-control: private, no-store, no-cache, must-revalidate, max-age=0"); header("Connection: close"); readfile($reportPath); unlink($reportPath); 

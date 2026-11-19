@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Инфокиоск: настройка</title>
+	<meta charset="UTF-8">
+    <link rel="shortcut icon" href="../www/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../www/favicon.ico" type="image/x-icon">
+    <link type="text/css" rel="stylesheet" href="../www/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="../www/css/shared.css"  media="screen,projection"/>
+    <script language="javascript" type="text/javascript" src="../www/js/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../www/js/materialize.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/setup.js"></script></head>
+  </head>
+  <body>
+    <nav role="navigation">
+      <div class="container">
+        <div class="nav-wrapper"><a id="logo-container" href="http://www.zebradog.com" target="_blank" class="brand-logo"><img src="../www/img/logo.png" alt=""></a>
+          <ul id="nav-mobile" class="right side-nav">
+            <li><a href="http://demo.zebradog.com"  id="demo" target="_blank">Посмотреть примеры</a></li>
+          </ul><a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <h1>Настройка</h1>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="url" type="text">
+            <label for="url">URL (должен начинаться с http:// или https://)</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s3">
+            <input type="checkbox" id="reset" />
+            <label for="reset">Сброс при бездействии</label>
+            <div class="row reset disabled">
+              <div class="col input-field s4">
+                <input id="resetinterval" type="text" value="5">
+              </div>
+              <div class="col input-field s8">
+                <label for="reset">минут</label>
+              </div>
+            </div>
+
+          </div>
+          <div class="col s3">
+            <input type="checkbox" id="restart" />
+            <label for="restart">Ежедневная перезагрузка</label>
+            <div class="row restart disabled">
+              <div class="col input-field s6">
+                 <select id="hour" class="browser-default">
+                   <option value="1">1:00</option>
+                   <option value="2">2:00</option>
+                   <option value="3">3:00</option>
+                   <option value="4" selected>4:00</option>
+                   <option value="5">5:00</option>
+                   <option value="6">6:00</option>
+                   <option value="7">7:00</option>
+                   <option value="8">8:00</option>
+                   <option value="9">9:00</option>
+                   <option value="10">10:00</option>
+                   <option value="11">11:00</option>
+                   <option value="12">12:00</option>
+                </select>
+              </div>
+              <div class="col input-field s6">
+                 <select id="houroffset">
+                   <option value="0" selected>AM</option>
+                   <option value="12">PM</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col s3">
+            <input type="checkbox" id="local" checked/>
+            <label for="local" class="active">Локальное администрирование</label>
+            <div class="row local">
+              <div class="col s12"><p>Нажмите <strong>CTRL + A</strong> для активации после настройки.</p></div>
+            </div>
+          </div>
+          <div class="col s3">
+            <input type="checkbox" id="remote" />
+            <label for="remote">Удаленное администрирование</label>
+          </div>
+        </div>
+        <div class="row admin">
+          <div class="input-field col s12">
+            <input id="username" type="text" value="admin">
+            <label for="username" class="active">Пользователь</label>
+          </div>
+        </div>
+        <div class="row admin">
+          <div class="input-field col s6">
+            <input id="password" type="password">
+            <label for="password">Пароль</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="confirm_password" type="password">
+            <label for="confirm_password">Подтверждение</label>
+          </div>
+        </div>
+        <div class="row disabled remote">
+          <div class="col s11">
+            <label for="host">Хост</label>
+             <select id="host" class="browser-default">
+              <option value="127.0.0.1">lo - 127.0.0.1</option>
+            </select>
+          </div>
+          <div class="col s1">
+            <label for="port">Порт</label>
+            <input id="port" type="text" value="80">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <p><a class="btn-large waves-effect" id="save">Сохранить</a></p>
+          </div>
+        </div>
+
+      </div>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+* {
+	text-shadow: transparent 0px 0px 1px, rgba(0,0,0,0.7) 0px 0px 0px !important;
+	font-size: 13px;
+	font-weight: 500;
+	font-family: 'Ubuntu', 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
+}
+
+html {
+	overflow:  hidden;
+}
+
+.opt-caption {
+	font-size: 14px;
+	line-height: 16px;
+	font-weight: bold;
+}
+
+.opt-frame {
+	margin-top: 5px;
+}
+
+.opt-frame-opt {
+	border: 1px solid silver;
+	padding: 3px;
+	margin-left: 10px;
+	margin-bottom: 5px;
+	background: #f1f9fd;
+}
+
+.opt-appid .opt-appid-field {
+	margin-top: 5px;
+	width: 250px;
+}
+
+.opt-appid .opt-appid-note {
+	margin-left: 10px;
+	font-size: 10px;
+	color: gray;
+}
+
+.opt-frame-btn {
+	text-align: right;
+}
+
+.opt-btn-status {
+	color: gray;
+	font-size: 12px;
+}

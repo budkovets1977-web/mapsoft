@@ -1,0 +1,17 @@
+{
+    "text": "Сервис регистрация диапазонов номеров карточек пациентов",
+    "id": "patientident",
+    "expanded": true,
+    "actions": {
+        "list": {
+            "create": "создание",
+            "update": "изменение",
+            "delete": "удаление"
+        },
+        "order": [
+            "create",
+            "update",
+            "delete"
+        ]
+    }
+}

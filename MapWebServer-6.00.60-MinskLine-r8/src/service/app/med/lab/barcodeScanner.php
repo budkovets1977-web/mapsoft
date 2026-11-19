@@ -1,0 +1,21 @@
+<?php
+ require_once(__DIR__ . '/../../init.php'); class med_lab_barcodescanner { const PARAM_PREFIX = 'settingsPrefix'; const PARAM_SUFFIX = 'settingsSuffix'; const PARAM_LENGTH_ENTNAME = 'lengthEntName'; const SETTINGS_DEF = 'laboratory'; const SETTINGS_BASE = 0; const MAX_ENT_NAME_DEF = 32; const BARCODE_DEF = 7; const SETUP_FUNC_TYPE = 18; const MAP_BARCODE_NAMES = [ ['bcCode_2_5_interleaved', '2 of 5 interleaved'], ['bcCode_2_5_industrial', '2 of 5 industrial'], ['bcCode_2_5_matrix', '2 of 5matrix'], ['bcCode39', 'Code 39'], ['bcCode39Extended', 'Code 39 extended'], ['bcCode128A', 'Code 128A'], ['bcCode128B', 'Code 128B'], ['bcCode128C', 'Code 128C'], ['bcCode93', 'Code 93'], ['bcCode93Extended', 'Code 93 extended'], ['bcCodeMSI', 'MSI'], ['bcCodePostNet', 'PostNet'], ['bcCodeCodabar', 'Codebar'], ['bcCodeEAN8', 'EAN 8'], ['bcCodeEAN13', 'EAN 13'], ['bcCodeUPC_A', 'UPC A'], ['bcCodeUPC_E0', 'UPC E0'], ['bcCodeUPC_E1', 'UPC E1'], ['bcCodeUPC_Supp2', 'UPC supp2'], ['bcCodeUPC_Supp5', 'UPC supp5'], ['bcCodeEAN128A', 'EAN 128A'], ['bcCodeEAN128B', 'EAN 128B'], ['bcCodeEAN128C', 'EAN 128C'] ]; private $db; private function readBarcodeTypeSOLIS($params = null) { $db = $this->db ?: $this->db = connectDb(); $sql = <<<"EOT"
+select distinct
+       barcodeType "type"
+from MedLabStudy
+order by barcodeType
+EOT;
+return selectSql($db, $sql); } public function getScannerSettings($params) { $fieldType = "type"; $settingsName = isEmptyProperty($params, 'settingsName', self::SETTINGS_DEF); $userId = isEmptyProperty($params, 'userId', self::SETTINGS_BASE); $settings = $this->readSettings(); $typeSOLIS = $this->readBarcodeTypeSOLIS(); $ret = new stdClass(); $ret->prefix = isset($settings[$userId][self::PARAM_PREFIX]) ? $settings[$userId][self::PARAM_PREFIX] : ""; $ret->suffix = isset($settings[$userId][self::PARAM_SUFFIX]) ? $settings[$userId][self::PARAM_SUFFIX] : ""; $ret->maxEntName = isset($settings[$settingsName][self::PARAM_LENGTH_ENTNAME]) ? $settings[$settingsName][self::PARAM_LENGTH_ENTNAME] : self::MAX_ENT_NAME_DEF; $ret->correlations = array(); foreach ($typeSOLIS as $item) { if (!empty($item[$fieldType])) { $val = isset($settings[$settingsName][$item[$fieldType]]) ? $settings[$settingsName][$item[$fieldType]] : -1; $ret->correlations += [$item[$fieldType] => $val !== "" ? (int)$val : -1]; } } $ret->barcodeDef = self::BARCODE_DEF; return $ret; } private function updateSettings($params) { $db = $this->db ?: $this->db = connectDb(); $sql = <<<"EOT"
+insert into SysSetupFunc (type, data)
+values (?, ?)
+on conflict (type) do update set
+    data = ?
+returning type as id
+EOT;
+$db->beginTransaction(); try { executeSql($db, $sql, [ self::SETUP_FUNC_TYPE, $params, $params ]); $db->commit(); } catch (Throwable $e) { $db->rollback(); throw $e; } return true; } public function setScannerSettings($params) { $settings = $this->readSettings(); $userId = isUndefinedProperty($params, 'userId', self::SETTINGS_BASE); $settings[$userId] = [ self::PARAM_PREFIX => isEmptyProperty($params, 'prefix'), self::PARAM_SUFFIX => isEmptyProperty($params, 'suffix') ]; $settings[self::SETTINGS_DEF] = [ self::PARAM_LENGTH_ENTNAME => isUndefinedProperty($params, 'maxEntName', self::MAX_ENT_NAME_DEF) ]; if (isset($params->correlations)) { foreach ($params->correlations as $key => $value) { $settings[self::SETTINGS_DEF] += [$key => $value]; } } $str = ""; createIniString($str, $settings); return $this->updateSettings($str); } private function readSettings($params = null) { $db = $this->db ?: $this->db = connectDb(); $sql = <<<"EOT"
+select
+       data::varchar "data"
+from SysSetupFunc
+where type = ?
+EOT;
+return parse_ini_string(selectSqlValue($db, $sql, [self::SETUP_FUNC_TYPE]) ?? '', true); } public function getMAPBarcodeTypeList($params = null) { $type = isset($params) ? isUndefinedProperty($params, 'type') : null; if (isset($type)) { $ret = array(); foreach (self::MAP_BARCODE_NAMES as $item) { $ret[] = $item[$type]; } return $ret; } else { return self::MAP_BARCODE_NAMES; } } public function getSettings($params) { $ret = $this->getScannerSettings($params); $ret->barcodeTypes = $this->getMAPBarcodeTypeList($params); return $ret; } } handleJsonRpc('med_lab_barcodescanner'); 

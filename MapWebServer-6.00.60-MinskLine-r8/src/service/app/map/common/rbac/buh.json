@@ -1,0 +1,29 @@
+{
+    "text": "Бухгалтерия",
+    "id": "buh",
+    "expanded": true,
+    "children": [
+        {
+            "text": "Задачи",
+            "id": "buh-tasks"/*,
+            "read": "readBuhTasks"*/
+        }, {
+            "text": "Отделения",
+            "id": "buh-offices"/*,
+            "read": "readBuhOffices"*/
+        }, {
+            "text": "Справочники",
+            "id": "buh-catalogs"/*,
+            "include": "buh-catalogs"*/
+        }, {
+            "text": "Отчеты",
+            "id": "buh-reports"/*,
+            "read": "app/map/reports/rbac/readRbacReports"*/
+        }, {
+            "text": "Формы",
+            "id": "buh-forms",
+            "expanded": true/*,
+            "include": "med-forms"*/
+        }
+    ]
+}

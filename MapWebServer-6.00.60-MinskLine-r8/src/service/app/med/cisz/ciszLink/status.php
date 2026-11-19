@@ -1,0 +1,2 @@
+<?php
+enum med_cisz_ciszLink_status: int { case NotSend = 0; case Sent = 1; case Modified = 2; public function isNotSend(): bool { return $this === self::NotSend; } public function needsSending(): bool { return $this->isNotSend(); } }

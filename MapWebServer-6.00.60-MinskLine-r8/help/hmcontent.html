@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html><head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- This line includes the general project style sheet (not required) -->
+   <link type="text/css" href="default.css" rel="stylesheet">
+
+<!-- This block defines the styles of the TOC headings, change them as needed -->
+<style type="text/css">
+a { color: black; text-decoration: none }
+a:visited {color: black}
+a:hover { text-decoration: underline }
+.navtitle    { font-size: 14pt; font-weight: bold; margin-bottom: 16px; }
+.navbar      { font-size: 10pt; }
+span#navsearch {display: none;}
+
+ body { }
+.heading1 { font-size: 10pt; color: #000000; text-decoration: none; }
+.heading2 { font-size: 10pt; color: #000000; text-decoration: none; }
+.heading3 { font-size: 10pt; color: #000000; text-decoration: none; }
+.heading4 { font-size: 10pt; color: #000000; text-decoration: none; }
+.heading5 { font-size: 10pt; color: #000000; text-decoration: none; }
+.heading6 { font-size: 10pt; color: #000000; text-decoration: none; }
+
+.hilight1 { font-size: 10pt; color: #FFFFFF; background: #004101; text-decoration: none; }
+.hilight2 { font-size: 10pt; color: #FFFFFF; background: #004101; text-decoration: none; }
+.hilight3 { font-size: 10pt; color: #FFFFFF; background: #004101; text-decoration: none; }
+.hilight4 { font-size: 10pt; color: #FFFFFF; background: #004101; text-decoration: none; }
+.hilight5 { font-size: 10pt; color: #FFFFFF; background: #004101; text-decoration: none; }
+.hilight6 { font-size: 10pt; color: #FFFFFF; background: #004101; text-decoration: none; }
+
+/* TOC LIST CSS */
+#toc    { padding:0; margin:0 }
+#toc li { margin-top:2px; margin-left:0px; padding:1px; }
+#toc ul { padding-left:0; margin-left:-16px; }
+/* TOC LIST CSS */
+</style>
+<!--[if lt IE 7]>
+<style type="text/css">
+ html {padding: 0; margin: 0;overflow-x: hidden;}
+ body { margin: 0; padding: 15px 0 0 10px;} 
+</style> 
+<![endif]-->
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript">
+     var parentScope = (parent.hmNavigationFrame);
+     if (!parentScope) {
+		      var s = document.createElement("script");
+		      s.setAttribute("type","text/javascript");
+		      s.setAttribute("src", "helpman_navigation.js");
+		      document.getElementsByTagName("head")[0].appendChild(s);
+	    }
+     else {
+       if (initialtocstate != "expandall") parent.hmAddCss(document, "#toc li ul { display: none }");
+     }
+     function loadicons() { var icons = new Array(); for (i=0; i<arguments.length; i++) { icons[i] = new Image(); icons[i].src = arguments[i]; } }
+     function loadtoc() { if (parentScope) parent.loadstate(document.getElementById("toc")); else loadstate(document.getElementById("toc")); }
+     function savetoc() { if (parentScope) parent.savestate(document.getElementById("toc")); else savestate(document.getElementById("toc")); }
+     function clicked(node, event) { deselect(); if (parentScope) parent.hmNodeClicked(node, event); else hmNodeClicked(node, event); }
+     function dblclicked(node) { if (parentScope) parent.hmNodeDblclicked(node); else hmNodeDblclicked(node); }
+     function deselect() { if (window.getSelection) window.getSelection().removeAllRanges(); else if (document.selection) document.selection.empty(); }
+     $(document).ready(function(){
+       loadtoc();
+       $(window).onunload = savetoc;
+     });
+   </script>
+</head>
+<body style="background:#FFFFFF url('lines.gif')">
+<p class="navtitle">Медицинская информационная система</p>
+<p class="navbar">
+<b>Содержание</b>&nbsp;|&nbsp;<a href="hmkwindex.html">Указатель</a>&nbsp;
+<span id="navsearch">|&nbsp;<a href="hmftsearch.html">Поиск</a></span>
+<hr size="1" />
+
+<!-- Placeholder for the TOC - this variable is REQUIRED! -->
+<ul id="toc" style="list-style-type:none;display:block;padding-left:0">
+<li class="heading1" id="i1" data-bg="button_closedbook.gif;button_openbook.gif" style="background:url(button_openbook.gif) no-repeat;cursor:pointer;padding-left:34px" onclick="return clicked(this,event)"><a class="heading1" id="a1" href="obshie_svedenia_o_programme.html" target="hmcontent"><span class="heading1" id="s1" ondblclick="return dblclicked(this)">Общие сведения о программе</span></a>
+<ul id="ul1" style="list-style-type:none">
+<li class="heading2" id="i1.1" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a1.1" href="zapusk_programmy.html" target="hmcontent"><span class="heading2" id="s1.1">Запуск программы</span></a>
+</li>
+<li class="heading2" id="i1.2" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a1.2" href="glavnoe_okno.html" target="hmcontent"><span class="heading2" id="s1.2">Главное окно</span></a>
+</li>
+<li class="heading2" id="i1.3" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a1.3" href="osnovnye_upravljajuwie_elementy.html" target="hmcontent"><span class="heading2" id="s1.3">Основные управляющие элементы</span></a>
+</li>
+</ul>
+</li>
+<li class="heading1" id="i2" data-bg="button_closedbook.gif;button_openbook.gif" style="background:url(button_openbook.gif) no-repeat;cursor:pointer;padding-left:34px" onclick="return clicked(this,event)"><a class="heading1" id="a2" href=javascript:void(0);><span class="heading1" id="s2" ondblclick="return dblclicked(this)">Регистратура</span></a>
+<ul id="ul2" style="list-style-type:none">
+<li class="heading2" id="i2.1" data-bg="button_closedbook.gif;button_openbook.gif" style="background:url(button_openbook.gif) no-repeat;cursor:pointer;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a2.1" href=javascript:void(0);><span class="heading2" id="s2.1" ondblclick="return dblclicked(this)">Основные операции и режимы</span></a>
+<ul id="ul2.1" style="list-style-type:none">
+<li class="heading3" id="i2.1.1" data-bg="button_closedbook.gif;button_openbook.gif" style="background:url(button_openbook.gif) no-repeat;cursor:pointer;padding-left:34px" onclick="return clicked(this,event)"><a class="heading3" id="a2.1.1" href=javascript:void(0);><span class="heading3" id="s2.1.1" ondblclick="return dblclicked(this)">Картотека пациентов</span></a>
+<ul id="ul2.1.1" style="list-style-type:none">
+<li class="heading4" id="i2.1.1.1" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.1.1" href="registratura_kartoteka_start.html" target="hmcontent"><span class="heading4" id="s2.1.1.1">Стартовая форма</span></a>
+</li>
+<li class="heading4" id="i2.1.1.2" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.1.2" href="registratura_kartoteka_main.html" target="hmcontent"><span class="heading4" id="s2.1.1.2">Основная форма</span></a>
+</li>
+<li class="heading4" id="i2.1.1.3" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.1.3" href="registratura_kartoteka_redaktor.html" target="hmcontent"><span class="heading4" id="s2.1.1.3">Редактор информации о пациенте</span></a>
+</li>
+<li class="heading4" id="i2.1.1.4" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.1.4" href="registratura_kartoteka_poisk.html" target="hmcontent"><span class="heading4" id="s2.1.1.4">Поиск по картотеке</span></a>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i2.1.2" data-bg="button_closedbook.gif;button_openbook.gif" style="background:url(button_openbook.gif) no-repeat;cursor:pointer;padding-left:34px" onclick="return clicked(this,event)"><a class="heading3" id="a2.1.2" href=javascript:void(0);><span class="heading3" id="s2.1.2" ondblclick="return dblclicked(this)">Запись на приём</span></a>
+<ul id="ul2.1.2" style="list-style-type:none">
+<li class="heading4" id="i2.1.2.1" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.2.1" href="registratura_zapis_na_priem_start.html" target="hmcontent"><span class="heading4" id="s2.1.2.1">Стартовая форма</span></a>
+</li>
+<li class="heading4" id="i2.1.2.2" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.2.2" href="registratura_zapis_na_priem_main.html" target="hmcontent"><span class="heading4" id="s2.1.2.2">Основная форма</span></a>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i2.1.3" data-bg="button_closedbook.gif;button_openbook.gif" style="background:url(button_openbook.gif) no-repeat;cursor:pointer;padding-left:34px" onclick="return clicked(this,event)"><a class="heading3" id="a2.1.3" href=javascript:void(0);><span class="heading3" id="s2.1.3" ondblclick="return dblclicked(this)">График работы врачей</span></a>
+<ul id="ul2.1.3" style="list-style-type:none">
+<li class="heading4" id="i2.1.3.1" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.3.1" href="registratura_grafik_start.html" target="hmcontent"><span class="heading4" id="s2.1.3.1">Стартовая форма</span></a>
+</li>
+<li class="heading4" id="i2.1.3.2" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.3.2" href="registratura_grafik_main.html" target="hmcontent"><span class="heading4" id="s2.1.3.2">Основная форма</span></a>
+</li>
+<li class="heading4" id="i2.1.3.3" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.3.3" href="registratura_grafik_redaktor.html" target="hmcontent"><span class="heading4" id="s2.1.3.3">Редактор графика дня врачебного приёма</span></a>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i2.1.4" data-bg="button_closedbook.gif;button_openbook.gif" style="background:url(button_openbook.gif) no-repeat;cursor:pointer;padding-left:34px" onclick="return clicked(this,event)"><a class="heading3" id="a2.1.4" href=javascript:void(0);><span class="heading3" id="s2.1.4" ondblclick="return dblclicked(this)">Вызов врача на дом</span></a>
+<ul id="ul2.1.4" style="list-style-type:none">
+<li class="heading4" id="i2.1.4.1" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.4.1" href="vyzov_vracha_main.html" target="hmcontent"><span class="heading4" id="s2.1.4.1">Основная форма</span></a>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i2.1.5" data-bg="button_closedbook.gif;button_openbook.gif" style="background:url(button_openbook.gif) no-repeat;cursor:pointer;padding-left:34px" onclick="return clicked(this,event)"><a class="heading3" id="a2.1.5" href=javascript:void(0);><span class="heading3" id="s2.1.5" ondblclick="return dblclicked(this)">Журнал направлений</span></a>
+<ul id="ul2.1.5" style="list-style-type:none">
+<li class="heading4" id="i2.1.5.1" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.5.1" href="zhurnal_napravlenij_main.html" target="hmcontent"><span class="heading4" id="s2.1.5.1">Основная форма</span></a>
+</li>
+<li class="heading4" id="i2.1.5.2" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.5.2" href="zhurnal_napravlenij_redaktor.html" target="hmcontent"><span class="heading4" id="s2.1.5.2">Редактор направления</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<script type="text/javascript">loadicons('button_openbook.gif','button_closedbook.gif','button_topic.gif');</script>
+<hr size="1" /><p><span style="font-size: 8px">© 2019 ЗАО &quot;МАПСОФТ&quot;</span></p>
+<script type="text/javascript">
+document.getElementById("navsearch").style.display="inline";
+</script> 
+</body>
+</html>
+
+
+
+
+
+
+
+

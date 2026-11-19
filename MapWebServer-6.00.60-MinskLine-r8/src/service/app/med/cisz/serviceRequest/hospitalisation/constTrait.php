@@ -1,0 +1,2 @@
+<?php
+trait med_cisz_serviceRequest_hospitalisation_constTrait { const string PROFILE_NAME = 'ServiceRequestHospitalisation'; const string PROFILE_URL = med_cisz_constant::URL_STRUCTURE_DEFINITION . self::PROFILE_NAME; }

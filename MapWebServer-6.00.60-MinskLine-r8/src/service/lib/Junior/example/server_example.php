@@ -1,0 +1,2 @@
+<?php
+ require_once(__DIR__."../src/autoload.php"); class MyClass { public function foo() { return "bar"; } public function isEven($number) { if ($number % 2 == 0) { return true; } return false; } public function sum($a, $b, $c) { return $a + $b + $c; } public function makeFullName(array $named_params) { return $named_params['first_name'] . ' ' . $named_params['last_name']; } public function notify($number) { return; } } $server = new Junior\Server(new MyClass()); $server->process();

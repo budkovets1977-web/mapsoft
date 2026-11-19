@@ -1,0 +1,371 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Активные пользователи МИС</title>
+<link rel="icon" href="favicon.ico?v=102" type="image/x-icon">
+<style>
+:root {
+    --bg: #f0f4f8; --card: #ffffff; --ink: #16243a; --ink2: #476b8f;
+    --line: #dde8f4; --accent: #1873c6; --ok: #1d8a4e; --err: #c62828;
+    --head: #0b2545;
+}
+* { box-sizing: border-box; }
+body {
+    margin: 0; font: 14px/1.45 "Segoe UI", system-ui, sans-serif;
+    background: var(--bg); color: var(--ink);
+}
+header {
+    position: sticky; top: 0; z-index: 5;
+    background: linear-gradient(90deg, var(--head), #14406e);
+    color: #fff; padding: 10px 18px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+header h1 { font-size: 17px; margin: 0; font-weight: 700; }
+header .meta { font-size: 12.5px; opacity: .85; }
+header .spacer { flex: 1; }
+#state { font-size: 12.5px; padding: 3px 10px; border-radius: 12px; background: rgba(255,255,255,.15); }
+#state.err { background: #b3261e; }
+#state.off { background: #6b7280; }
+.hbtn {
+    display: inline-block; font-size: 12.5px; padding: 5px 14px; border-radius: 12px;
+    background: #ffffff; color: var(--head); font-weight: 600; text-decoration: none;
+    box-shadow: 0 1px 4px rgba(0,0,0,.25);
+}
+.hbtn:hover { filter: brightness(.95); }
+main { padding: 14px 18px 40px; }
+.controls { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; flex-wrap: wrap; }
+.controls label { font-size: 13px; color: var(--ink2); }
+#badge {
+    font-size: 14px; padding: 5px 14px; border-radius: 14px;
+    background: #ffffff; color: var(--ink);
+    box-shadow: 0 1px 4px rgba(0,0,0,.15);
+}
+#badge b { font-size: 17px; color: var(--head); font-variant-numeric: tabular-nums; }
+.tablewrap {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    overflow: auto; box-shadow: 0 1px 3px rgba(11,37,69,.06);
+}
+table { width: 100%; border-collapse: collapse; }
+th {
+    text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: .04em;
+    color: var(--ink2); padding: 9px 14px; border-bottom: 2px solid var(--accent);
+    background: #fafcff; white-space: nowrap; vertical-align: middle;
+}
+td { padding: 8px 14px; border-bottom: 1.5px solid #9fc2e0; vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+tbody tr:nth-child(even) td { background: #f4f9fe; }
+tbody tr:hover td { background: #e9f3fd; }
+td.c, th.c { text-align: center; font-variant-numeric: tabular-nums; vertical-align: middle; }
+td.uname { font-weight: 600; }
+td.time { color: var(--ink2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; background: var(--ok); box-shadow: 0 0 4px var(--ok); }
+.computer { white-space: nowrap; }
+.computer small { display: block; color: var(--ink2); }
+#msg { max-width: 760px; margin: 60px auto; text-align: center; font-size: 15px; color: var(--ink2); }
+#msg b { color: var(--ink); }
+#loginbox { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: var(--bg); z-index: 10; }
+#loginbox[hidden] { display: none; }
+.login-card {
+    background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 28px 32px;
+    width: 360px; box-shadow: 0 6px 30px rgba(11,37,69,.12);
+}
+.login-card h2 { margin: 0 0 18px; font-size: 19px; color: var(--head); }
+.login-card .fld { margin-bottom: 14px; }
+.login-card label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink2); margin-bottom: 4px; font-weight: 600; }
+.login-card input:not([type=checkbox]) {
+    width: 100%; font: inherit; padding: 9px 12px; border: 1px solid var(--line);
+    border-radius: 8px; background: #f8fbff;
+}
+.login-card input:focus { outline: 2px solid var(--accent); border-color: var(--accent); }
+.login-card .rem { display: flex; gap: 8px; align-items: center; font-size: 13px; color: var(--ink2); text-transform: none; letter-spacing: 0; font-weight: 400; margin: 4px 0 14px; }
+#lbtn {
+    width: 100%; font: inherit; font-weight: 700; padding: 11px; border: 0; border-radius: 10px;
+    background: linear-gradient(90deg, var(--head), #14406e); color: #fff; cursor: pointer;
+}
+#lbtn:hover { filter: brightness(1.15); }
+#lerr { background: #fdecea; color: var(--err); border-radius: 8px; padding: 8px 12px; font-size: 13px; margin-bottom: 12px; }
+.login-card .hint { font-size: 12px; color: var(--ink2); margin: 16px 0 0; line-height: 1.4; }
+details.legend {
+    max-width: 1100px; margin: 16px auto 0; background: #fff; border: 1px solid var(--line);
+    border-radius: 12px; padding: 12px 18px; font-size: 13px; color: var(--ink2);
+}
+details.legend summary { cursor: pointer; font-weight: 600; color: var(--ink); }
+details.legend table { margin-top: 10px; }
+details.legend td { padding: 5px 10px; border-bottom: 1px solid #eef3f9; font-size: 12.5px; }
+details.legend td:first-child { font-weight: 600; color: var(--ink); white-space: nowrap; }
+</style>
+</head>
+<body>
+<header>
+    <h1>Активные пользователи МИС</h1>
+    <span class="meta" id="who"></span>
+    <span class="spacer"></span>
+    <span class="meta">Обновлено: <span id="upd">—</span></span>
+    <span id="state">подключение…</span>
+    <a class="hbtn" href="cisz-monitor.html">← Мониторинг ЦИСЗ</a>
+</header>
+<main>
+    <div class="controls">
+        <label>Считать активными за последние
+            <select id="period">
+                <option value="5">5 минут</option>
+                <option value="15">15 минут</option>
+                <option value="30" selected>30 минут</option>
+                <option value="60">1 час</option>
+                <option value="0">сутки (все)</option>
+            </select>
+        </label>
+        <label><input type="checkbox" id="autorefresh" checked> автообновление (30 с)</label>
+        <span id="badge">Сессий: <b id="cnt">0</b></span>
+    </div>
+    <div id="content"></div>
+    <div id="msg" hidden></div>
+    <div id="loginbox" hidden>
+        <div class="login-card">
+            <h2>Вход в мониторинг ЦИСЗ</h2>
+            <div class="fld"><label>Логин</label><input id="luser" autocomplete="username"></div>
+            <div class="fld"><label>Пароль</label><input id="lpass" type="password" autocomplete="current-password"></div>
+            <label class="rem"><input type="checkbox" id="lremember"> Запомнить пароль на этом компьютере</label>
+            <div id="lerr" hidden></div>
+            <button id="lbtn">Войти</button>
+            <p class="hint">Используются те же логин и пароль, что и в МИС. Требуется разрешение «Мониторинг ЦИСЗ».</p>
+        </div>
+    </div>
+    <details class="legend">
+        <summary>Описание данных</summary>
+        <table>
+            <tr><td>Пользователь</td><td>Учётная запись МИС (Nick) и ФИО сотрудника из карточки пользователя (WebUser.Fio).</td></tr>
+            <tr><td>Время входа</td><td>Время последнего входа этого пользователя в МИС (WebUser.LastLogonTime, серверное время).</td></tr>
+            <tr><td>Активность</td><td>Время последнего действия в системе (последний запрос к серверу в этой сессии). Все строки в списке — активные подключения в выбранном интервале.</td></tr>
+            <tr><td>АРМ (компьютер)</td><td>IP-адрес компьютера, с которого установлено подключение. Сетевое имя показывается, если оно известно системе (определяется автоматически, когда сеть даёт обратный DNS, и сохраняется в справочнике); иначе — только адрес.</td></tr>
+            <tr><td>Программа</td><td>Браузер и операционная система компьютера (определяется из User-Agent браузера).</td></tr>
+            <tr><td>Конфигурация</td><td>Какое приложение открыто в сессии: «mis» — Поликлиника / Администрирование, «infopanel» — табло информационной панели и т.п.</td></tr>
+            <tr><td>Сессий</td><td>Количество активных подключений в выбранном интервале. Одна строка = одно подключение (у пользователя может быть несколько окон/вкладок).</td></tr>
+        </table>
+    </details>
+</main>
+<script>
+'use strict';
+const SERVICE = '/service/app/med/cisz/monitor.php';
+const LOGIN_SERVICE = '/service/common/config';
+const LOGIN_SERVICE2 = '/service/common/login';
+const REFRESH_MS = 30000;
+
+const $state = document.getElementById('state');
+const $who = document.getElementById('who');
+const $upd = document.getElementById('upd');
+const $content = document.getElementById('content');
+const $msg = document.getElementById('msg');
+const $loginbox = document.getElementById('loginbox');
+const $lerr = document.getElementById('lerr');
+const $period = document.getElementById('period');
+const $auto = document.getElementById('autorefresh');
+const $cnt = document.getElementById('cnt');
+
+let session = null;
+let timer = null;
+let initialized = false;
+
+(function () {
+    const m = location.search.match(/[?&]session=([a-f0-9]+)/i);
+    if (m) { session = m[1]; try { history.replaceState(null, '', location.pathname); } catch (e) {} }
+})();
+
+function saveLogin(user, pass, remember) {
+    try {
+        if (remember) {
+            localStorage.setItem('ciszusers-login', btoa(unescape(encodeURIComponent(user))));
+            localStorage.setItem('ciszusers-pass', btoa(unescape(encodeURIComponent(pass))));
+        } else {
+            localStorage.removeItem('ciszusers-login');
+            localStorage.removeItem('ciszusers-pass');
+        }
+    } catch (e) {}
+}
+function loadLogin() {
+    try {
+        const u = localStorage.getItem('ciszusers-login'), p = localStorage.getItem('ciszusers-pass');
+        return (u && p) ? { user: decodeURIComponent(escape(atob(u))), pass: decodeURIComponent(escape(atob(p))) } : null;
+    } catch (e) { return null; }
+}
+
+async function misLogin(user, pass) {
+    let r = await fetch(LOGIN_SERVICE, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin',
+        body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'createSession', params: {} })
+    });
+    const created = (await r.json()).result;
+    session = created.session;
+    await fetch(LOGIN_SERVICE + '?session=' + session + '&config=mis', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin',
+        body: JSON.stringify({ jsonrpc: '2.0', id: 2, method: 'check', params: { needVersions: false } })
+    });
+    r = await fetch(LOGIN_SERVICE2 + '?session=' + session, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin',
+        body: JSON.stringify({ jsonrpc: '2.0', id: 3, method: 'readCustomers', params: [] })
+    });
+    const cj = await r.json();
+    if (cj.error) throw new Error(cj.error.message || 'Ошибка чтения организаций');
+    const customerId = (cj.result && cj.result[0] && cj.result[0].id) || 1;
+    r = await fetch(LOGIN_SERVICE2 + '?session=' + session, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin',
+        body: JSON.stringify({ jsonrpc: '2.0', id: 4, method: 'login', params: [user, pass, customerId] })
+    });
+    const lj = await r.json();
+    if (lj.error) throw Object.assign(new Error(lj.error.message || 'Ошибка входа'), { loginError: true });
+    return lj.result;
+}
+
+async function rpc(method, params) {
+    const url = SERVICE + (session ? '?session=' + session : '');
+    const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'session': session || '' },
+        credentials: 'same-origin',
+        body: JSON.stringify({ jsonrpc: '2.0', id: Date.now(), method, params: params || {} })
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    if (data.error) throw data.error;
+    return data.result;
+}
+
+function esc(s) {
+    return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function fmtTime(v) {
+    if (!v) return '—';
+    const m = String(v).match(/(\d{4}-\d\d-\d\d)[ T](\d{2}:\d\d(:\d\d)?)/);
+    if (!m) return String(v);
+    const today = new Date().toLocaleDateString('sv-SE');
+    return m[1] === today ? m[2] : m[1].slice(8) + '.' + m[1].slice(5, 7) + ' ' + m[2];
+}
+function agentShort(agent) {
+    if (!agent) return '—';
+    const b = /YaBrowser/.test(agent) ? 'Яндекс' : /Edg\//.test(agent) ? 'Edge' : /OPR\//.test(agent) ? 'Opera'
+        : /Chrome/.test(agent) ? 'Chrome' : /Firefox/.test(agent) ? 'Firefox' : /MSIE|Trident/.test(agent) ? 'IE' : 'Браузер';
+    const os = /Windows NT 10/.test(agent) ? 'Windows 10/11' : /Windows NT 6\.[13]/.test(agent) ? 'Windows 8/8.1'
+        : /Windows NT 6\.1/.test(agent) ? 'Windows 7' : /Windows/.test(agent) ? 'Windows' : /Android/.test(agent) ? 'Android' : '—';
+    return b + ' • ' + os;
+}
+
+function setState(text, cls) { $state.textContent = text; $state.className = cls || ''; }
+
+function showMessage(html) {
+    $msg.innerHTML = html;
+    $msg.hidden = false;
+    $content.innerHTML = '';
+}
+
+function render(items) {
+    $msg.hidden = true;
+    if (!items.length) {
+        showMessage('Активных подключений не найдено в выбранном интервале.');
+        $cnt.textContent = '0';
+        return;
+    }
+    $cnt.textContent = items.length;
+    let html = '<div class="tablewrap"><table><thead><tr>' +
+        '<th>Пользователь</th><th>Время входа</th><th>Активность</th><th>АРМ (компьютер)</th>' +
+        '<th>Программа</th><th>Конфигурация</th>' +
+        '</tr></thead><tbody>';
+    for (const it of items) {
+        const arm = (it.ip || '—') + (it.computer ? '<small>' + esc(it.computer) + '</small>' : '');
+        html += '<tr>' +
+            `<td class="uname"><span class="dot"></span>${esc(it.userName)}${it.fio ? ' <small style="color:var(--ink2)">' + esc(it.fio) + '</small>' : ''}</td>` +
+            `<td class="time c">${esc(fmtTime(it.loginTime))}</td>` +
+            `<td class="time c">${esc(fmtTime(it.accessTime))}</td>` +
+            `<td class="computer">${arm}</td>` +
+            `<td class="c">${esc(agentShort(it.agent))}</td>` +
+            `<td class="c">${esc(it.config || '—')}</td>` +
+            '</tr>';
+    }
+    html += '</tbody></table></div>';
+    $content.innerHTML = html;
+}
+
+async function poll() {
+    try {
+        const data = await rpc('readActiveUsers', { minutes: Number($period.value) });
+        render(data.items || []);
+        $upd.textContent = fmtTime(data.serverTime) || new Date().toLocaleTimeString('ru-RU');
+        setState('онлайн');
+        initialized = true;
+    } catch (e) {
+        if (e && (e.code === -401 || /вход/i.test(e.message || ''))) {
+            showLogin();
+        } else if (e && /Нет доступа/.test(e.message || '')) {
+            setState('нет доступа', 'err');
+            showMessage('<b>Нет доступа.</b><br>Отчёт об активных пользователях доступен по разрешению ' +
+                '<b>«Мониторинг ЦИСЗ»</b> (Администрирование → Роли).');
+            stopPolling();
+        } else {
+            setState('ошибка связи', 'err');
+            if (initialized) showMessage('<b>Ошибка получения данных:</b> ' + esc(e.message || e));
+        }
+    }
+}
+
+function startPolling() {
+    stopPolling();
+    poll();
+    timer = setInterval(poll, REFRESH_MS);
+}
+function stopPolling() {
+    if (timer) { clearInterval(timer); timer = null; }
+}
+
+function showLogin(errorText) {
+    stopPolling();
+    setState('не авторизован', 'off');
+    $loginbox.hidden = false;
+    if (errorText) { $lerr.textContent = errorText; $lerr.hidden = false; }
+}
+
+async function doLogin() {
+    const user = document.getElementById('luser').value.trim();
+    const pass = document.getElementById('lpass').value;
+    const remember = document.getElementById('lremember').checked;
+    if (!user || !pass) return;
+    $lerr.hidden = true;
+    setState('вход…');
+    try {
+        const me = await misLogin(user, pass);
+        saveLogin(user, pass, remember);
+        $loginbox.hidden = true;
+        $who.textContent = 'Пользователь: ' + ((me.user && me.user.name) || user);
+        startPolling();
+    } catch (e) {
+        setState('не авторизован', 'off');
+        $lerr.textContent = e.message || 'Ошибка входа';
+        $lerr.hidden = false;
+    }
+}
+document.getElementById('lbtn').addEventListener('click', doLogin);
+document.getElementById('lpass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+document.getElementById('luser').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('lpass').focus(); });
+$period.addEventListener('change', poll);
+$auto.addEventListener('change', () => { $auto.checked ? startPolling() : stopPolling(); });
+
+(async function init() {
+    const saved = loadLogin();
+    if (saved) {
+        document.getElementById('luser').value = saved.user;
+        document.getElementById('lpass').value = saved.pass;
+        document.getElementById('lremember').checked = true;
+        try {
+            const me = await misLogin(saved.user, saved.pass);
+            $loginbox.hidden = true;
+            $who.textContent = 'Пользователь: ' + ((me.user && me.user.name) || saved.user);
+            startPolling();
+            return;
+        } catch (e) { /* показать форму */ }
+    }
+    showLogin();
+})();
+</script>
+</body>
+</html>
+

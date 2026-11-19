@@ -1,0 +1,9 @@
+/* Настройки для медицинских приложений */
+{    
+	"doctorPhotos": "D:\\MAPSOFT\\MedCouponService\\www\\doctorphotos",
+
+	"configLinkCertificateDispensary": "medcard",
+
+    /* Интервал (секунды) обновления списка амубалторных карт пациентов у врача */    
+    "autoRefreshCardsInterval": 10
+}

@@ -1,0 +1,8 @@
+Windows Registry Editor Version 5.00
+
+; Автозагрузка хелпера автоматического выбора сертификата ЭЦП (ЦИСЗ)
+; Добавляет SetCiszCert.ps1 в автозапуск текущего пользователя.
+; Скрипт должен лежать в C:\MAP\Avest\SetCiszCert.ps1
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run]
+"SetCiszCert"="powershell -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File \"C:\\MAP\\Avest\\SetCiszCert.ps1\""

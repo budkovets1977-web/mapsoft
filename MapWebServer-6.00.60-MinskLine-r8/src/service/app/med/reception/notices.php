@@ -1,0 +1,2 @@
+<?php
+ class med_reception_notices extends common_notices { const NOTICE_TEMPLATES = [ 'medreception-talonmap-update' => [ 'tasks' => 'medreception', 'persist' => false, 'widget' => 'med-reception-talonmap' ], ]; }

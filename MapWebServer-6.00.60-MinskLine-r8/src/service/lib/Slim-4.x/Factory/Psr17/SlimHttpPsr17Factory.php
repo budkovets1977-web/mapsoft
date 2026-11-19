@@ -1,0 +1,2 @@
+<?php
+ declare(strict_types=1); namespace Slim\Factory\Psr17; use Psr\Http\Message\ResponseFactoryInterface; use Psr\Http\Message\StreamFactoryInterface; class SlimHttpPsr17Factory extends Psr17Factory { protected static $responseFactoryClass = 'Slim\Http\Factory\DecoratedResponseFactory'; public static function createDecoratedResponseFactory( ResponseFactoryInterface $responseFactory, StreamFactoryInterface $streamFactory ): ResponseFactoryInterface { return new static::$responseFactoryClass($responseFactory, $streamFactory); } } 

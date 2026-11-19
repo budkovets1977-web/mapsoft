@@ -1,0 +1,1087 @@
+{
+  "ReportGuid": "2cffaa0ce46e8b02dc4ea0e26b66e025",
+  "ReportName": "Report",
+  "ReportAlias": "Report",
+  "ReportFile": "prejskurant.mrt",
+  "ReportCreated": "/Date(0+0300)/",
+  "ReportChanged": "/Date(0+0300)/",
+  "EngineVersion": "EngineV2",
+  "CalculationMode": "Interpretation",
+  "ReportUnit": "Centimeters",
+  "PreviewSettings": 268435455,
+  "Dictionary": {
+    "Variables": {
+      "0": {
+        "Name": "На_дату",
+        "DialogInfo": {
+          "DateTimeType": "DateAndTime"
+        },
+        "Alias": "На_дату",
+        "Type": "System.DateTime",
+        "RequestFromUser": true,
+        "Key": "94db5f8f9c76455ebd44f984a4b53c7e",
+        "AllowUseAsSqlParameter": true,
+        "SelectionMode": "Nothing"
+      },
+      "1": {
+        "Name": "Организация",
+        "Alias": "Организация",
+        "Type": "System.Int32",
+        "RequestFromUser": true,
+        "Key": "d05b06e2b9504fadae1a214ca8b0940f",
+        "AllowUseAsSqlParameter": true,
+        "SelectionMode": "Nothing"
+      },
+      "2": {
+        "Name": "Подразделение",
+        "Alias": "Подразделение",
+        "Type": "System.Int32",
+        "RequestFromUser": true,
+        "Key": "2b2948c105084d10873ee70157e670ff",
+        "AllowUseAsSqlParameter": true,
+        "SelectionMode": "Nothing"
+      },
+      "3": {
+        "Name": "Прейскурант",
+        "Alias": "Прейскурант",
+        "Type": "System.Int32",
+        "RequestFromUser": true,
+        "Key": "ef6cc5ef820244188bebb730f8c96b14",
+        "AllowUseAsSqlParameter": true,
+        "SelectionMode": "Nothing"
+      },
+      "4": {
+        "Name": "Руководитель",
+        "Alias": "Руководитель",
+        "Type": "System.Int32",
+        "RequestFromUser": true,
+        "Key": "97f987d41dad43989f46baec16f3b150",
+        "AllowUseAsSqlParameter": true,
+        "SelectionMode": "Nothing"
+      },
+      "5": {
+        "Name": "Исполнитель",
+        "Alias": "Исполнитель",
+        "Type": "System.Int32",
+        "RequestFromUser": true,
+        "AllowUseAsSqlParameter": true,
+        "SelectionMode": "Nothing"
+      }
+    },
+    "DataSources": {
+      "0": {
+        "Ident": "StiPostgreSQLSource",
+        "Name": "Прейскурант список",
+        "Alias": "Прейскурант список",
+        "Key": "79fe05ee4e724ddfa9152b393aac9d78",
+        "Columns": {
+          "0": {
+            "Name": "Код_сортировки",
+            "Index": -1,
+            "NameInSource": "field14",
+            "Alias": "Код_сортировки",
+            "Type": "System.String"
+          },
+          "1": {
+            "Name": "Дата_прейскуранта",
+            "Index": -1,
+            "NameInSource": "field13",
+            "Alias": "Дата_прейскуранта",
+            "Type": "System.String"
+          },
+          "2": {
+            "Name": "Имя_МЦ",
+            "Index": -1,
+            "NameInSource": "field5",
+            "Alias": "Имя_МЦ",
+            "Type": "System.String"
+          },
+          "3": {
+            "Name": "Имя_Организации",
+            "Index": -1,
+            "NameInSource": "field1",
+            "Alias": "Имя_Организации",
+            "Type": "System.String"
+          },
+          "4": {
+            "Name": "Код_Полный",
+            "Index": -1,
+            "NameInSource": "field4",
+            "Alias": "Код_Полный",
+            "Type": "System.String"
+          },
+          "5": {
+            "Name": "Код_услуг",
+            "Index": -1,
+            "NameInSource": "field2",
+            "Alias": "Код_услуг",
+            "Type": "System.Int32"
+          },
+          "6": {
+            "Name": "Наименование",
+            "Index": -1,
+            "NameInSource": "field3",
+            "Alias": "Наименование",
+            "Type": "System.String"
+          },
+          "7": {
+            "Name": "Наименование_Вида",
+            "Index": -1,
+            "NameInSource": "field11",
+            "Alias": "Наименование_Вида",
+            "Type": "System.String"
+          },
+          "8": {
+            "Name": "ПрейскурантВид",
+            "Index": -1,
+            "NameInSource": "field10",
+            "Alias": "ПрейскурантВид",
+            "Type": "System.Int32"
+          },
+          "9": {
+            "Name": "СуммыМатериальные",
+            "Index": -1,
+            "NameInSource": "field7",
+            "Alias": "СуммыМатериальные",
+            "Type": "System.Decimal"
+          },
+          "10": {
+            "Name": "СуммыСторонних",
+            "Index": -1,
+            "NameInSource": "field8",
+            "Alias": "СуммыСторонних",
+            "Type": "System.Decimal"
+          },
+          "11": {
+            "Name": "Тариф",
+            "Index": -1,
+            "NameInSource": "field6",
+            "Alias": "Тариф",
+            "Type": "System.Decimal"
+          },
+          "12": {
+            "Name": "Цена",
+            "Index": -1,
+            "NameInSource": "field9",
+            "Alias": "Цена",
+            "Type": "System.Decimal"
+          },
+          "13": {
+            "Name": "Цена_материала",
+            "Index": -1,
+            "NameInSource": "field12",
+            "Alias": "Цена_материала",
+            "Type": "System.Decimal"
+          }
+        },
+        "NameInSource": "PricePgSQL",
+        "Type": "Table",
+        "SqlCommand": "SELECT\r\n\tCASE COALESCE(Enterprise1.FullName, E'' )= E'' WHEN true THEN Enterprise1.Name WHEN false THEN Enterprise1.FullName END as Field1,\r\n pmsPricelist1.pmsPricelistCode as Field2,\r\n pmsPricelist1.Name as Field3,\r\n pmsPricelist1.FullCode as Field4,\r\n fn_pmsMatWealthName( pmsPricelistWealth1.matWealthCode ) as Field5,\r\n pmsPricelistSum1.Tariff as Field6,\r\n pmsPricelistSum1.MaterialSum as Field7,\r\n pmsPricelistSum1.AsideServiceSum as Field8,\r\n pmsPricelistSum1.serviceprice as Field9,\r\n pmsPricelist1.Kind as Field10,\r\n pmsPricelistKind1.Name as Field11,\r\n pmsWealthPrice1.Price*COALESCE(pmsPricelistWealth1.Amount, 1) as Field12,\r\n DATEFORMAT(@На_дату, 'dd.mm.yyyy') as Field13,\r\n pmsPricelist1.SortCode as Field14\r\nFROM\r\n Enterprise AS Enterprise1 JOIN pmsPricelistKind AS pmsPricelistKind1 ON pmsPricelistKind1.EnterpriseCode = Enterprise1.EnterpriseCode\r\n JOIN pmsPricelist AS pmsPricelist1 ON pmsPricelist1.pmsPricelistKindCode = pmsPricelistKind1.pmsPricelistKindCode AND COALESCE( pmsPricelist1.Active, 0 ) = 1\r\n LEFT OUTER JOIN pmsPricelistWealth AS pmsPricelistWealth1 ON pmsPricelistWealth1.pmsPricelistCode = pmsPricelist1.pmsPricelistCode AND COALESCE( pmsPricelistWealth1.Active,0) = 1 AND COALESCE( pmsPricelistWealth1.Kind,0) = 1\r\nLEFT OUTER JOIN pmsPricelistSum AS pmsPricelistSum1 ON pmsPricelistSum1.pmsPricelistCode = pmsPricelist1.pmsPricelistCode AND pmsPricelistSum1.OnDate = (Select MAX(OnDate) from pmspricelistsum Where pmspricelistcode = pmsPricelist1.pmsPricelistCode AND OnDate <= (@На_дату))\r\nLEFT OUTER JOIN MatWealth as MatWealth1 ON MatWealth1.MatWealthCode = pmsPricelistWealth1.matWealthCode\r\nLEFT JOIN lateral (\r\n    select \r\n\t pwp.pmsWealthPriceCode,\r\n     pwp.Price\r\n    from pmsWealthPrice AS pwp\r\n    where pwp.EnterpriseCode = @Организация \r\n\tAND pwp.EnterpriseStructureCode = @Подразделение \r\n\tAND pwp.MatWealthCode IN (\r\n\t    select MatWealthCode \r\n\t\tfrom MatWealth\r\n\t\twhere MatWealthObjectCode = MatWealth1.MatWealthObjectCode\r\n\t\tand Active = 1)\r\n\tAND pwp.OnDate = (Select MAX(OnDate) from pmswealthprice Where enterprisecode = @Организация AND enterprisestructurecode = @Подразделение AND matwealthcode = pwp.matWealthCode AND OnDate <= (@На_дату))\r\n\torder by pwp.pmsWealthPriceCode\r\n\tlimit 1) as pmsWealthPrice1 on True\r\nWHERE\r\n Enterprise1.EnterpriseCode = @Организация\r\n AND COALESCE( pmsPricelistKind1.Active,0) = 1\r\n AND pmsPricelistKind1.pmsPricelistKindCode = @Прейскурант\r\nGROUP BY\r\n 1, 4, 10, 11, 5, 3, 6, 2, 7, 8, 9, 12, 13\r\nORDER BY\r\n 1 , 11 , 4 , 3 , 5 ;"
+      },
+      "1": {
+        "Ident": "StiPostgreSQLSource",
+        "Name": "Подписи",
+        "Alias": "Подписи",
+        "Key": "2f9933a2d90c49f3b07919a3706a6d9e",
+        "Columns": {
+          "0": {
+            "Name": "Имя_исполнителя",
+            "Index": -1,
+            "NameInSource": "field1",
+            "Alias": "Имя_исполнителя",
+            "Type": "System.String"
+          },
+          "1": {
+            "Name": "Должность_исполнителя",
+            "Index": -1,
+            "NameInSource": "field2",
+            "Alias": "Должность_исполнителя",
+            "Type": "System.String"
+          },
+          "2": {
+            "Name": "Имя_руководителя",
+            "Index": -1,
+            "NameInSource": "field3",
+            "Alias": "Имя_руководителя",
+            "Type": "System.String"
+          },
+          "3": {
+            "Name": "Должность_руководителя",
+            "Index": -1,
+            "NameInSource": "field4",
+            "Alias": "Должность_руководителя",
+            "Type": "System.String"
+          }
+        },
+        "NameInSource": "PricePgSQL",
+        "SqlCommand": "SELECT\r\n\tfn_cmFIO( WorkerInfo1.ManCode, 2 ) as Field1,\r\n\tWorkerInfo1.PostName as Field2,\r\n\tfn_cmFIO( WorkerInfo2.ManCode, 2) as Field3,\r\n\tWorkerInfo2.PostName as Field4\r\n\tFROM\r\n\tEnterprise AS Enterprise1 LEFT OUTER JOIN Worker AS Worker1 ON Worker1.EnterpriseCode = Enterprise1.EnterpriseCode AND Worker1.WorkerCode = @Исполнитель\r\n LEFT OUTER JOIN WorkerInfo AS WorkerInfo1 ON WorkerInfo1.WorkerCode = Worker1.WorkerCode\r\n LEFT OUTER JOIN Worker AS Worker2 ON Worker2.EnterpriseCode = Enterprise1.EnterpriseCode AND Worker2.WorkerCode = @Руководитель\r\n LEFT OUTER JOIN WorkerInfo AS WorkerInfo2 ON WorkerInfo2.WorkerCode = Worker2.WorkerCode\r\nWHERE\r\n Enterprise1.EnterpriseCode = @Организация\r\nORDER BY\r\n 1 ;\r\n"
+      }
+    },
+    "Databases": {
+      "0": {
+        "Ident": "StiPostgreSQLDatabase",
+        "Name": "PricePgSQL",
+        "Alias": "PricePgSQL",
+        "Key": "93c609ceec724173aa3869b1ecfc89d5",
+        "ConnectionStringEncrypted": "41LZCe9ZAelieKXJxFj0XotaeUNJWQG8RVihlOsN9GP5cGXreVnT8MBJ1b3oJSUXhWjXg0YIUfDCGei9ypzgu9R4B6HJCVqB4RGlzGMp"
+      }
+    }
+  },
+  "Pages": {
+    "0": {
+      "Ident": "StiPage",
+      "Name": "Page1",
+      "Guid": "e9e5df8ef00a49a88f8cd26b096e1006",
+      "Interaction": {
+        "Ident": "StiInteraction"
+      },
+      "Border": ";;2;;;;;solid:Black",
+      "Brush": "solid:",
+      "Components": {
+        "0": {
+          "Ident": "StiPageHeaderBand",
+          "Name": "PageHeaderBand1",
+          "PrintOn": "ExceptFirstPage",
+          "ClientRectangle": "0,0.4,19,1",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text10",
+              "Guid": "333ff39dc15b27c35e672d0f89bc9b7a",
+              "ClientRectangle": "0,0,1.6,1",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "№\r\nп/п"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text11",
+              "Guid": "fc871d71395f690ca58f4f617f354f9c",
+              "ClientRectangle": "1.6,0,8.4,1",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Наименования платных услуг"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text12",
+              "Guid": "52ca5e5ffe5e6945f8b7498c33545f56",
+              "ClientRectangle": "10,0,2.2,1",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Тариф"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "3": {
+              "Ident": "StiText",
+              "Name": "Text13",
+              "Guid": "ee45ee82d8149b7cdad37620ab9dee23",
+              "ClientRectangle": "12.2,0,2.2,1",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Мат.\r\nзатраты"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "4": {
+              "Ident": "StiText",
+              "Name": "Text14",
+              "Guid": "b7cb358620abd7aab86ba313c784632a",
+              "ClientRectangle": "14.4,0,2.4,1",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Услуги\r\nсторонних\r\nорг-ций"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "5": {
+              "Ident": "StiText",
+              "Name": "Text15",
+              "Guid": "3d9a836d392995c7027622ad0a37a7ae",
+              "ClientRectangle": "16.8,0,2.2,1",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Цена\r\nуслуги"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            }
+          }
+        },
+        "1": {
+          "Ident": "StiPageFooterBand",
+          "Name": "PageFooterBand1",
+          "ClientRectangle": "0,27.1,19,0.6",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text22",
+              "Guid": "5a598f5686f1693c724dd66c0f66ebe7",
+              "ClientRectangle": "16.6,0.1,2.4,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "лист {PageNumber}"
+              },
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            }
+          }
+        },
+        "2": {
+          "Ident": "StiReportTitleBand",
+          "Name": "ReportTitleBand1",
+          "ClientRectangle": "0,2.2,19,3.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text1",
+              "Guid": "df00e66d4fb8a731e358d6835e3f0dcb",
+              "ClientRectangle": "9.2,0,9.6,1.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Утверждаю:\r\n{Подписи.Должность_руководителя}\r\n______________ {Подписи.Имя_руководителя}"
+              },
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "LineSpacing": 1.5,
+              "Type": "Expression"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text2",
+              "Guid": "0edc7ad20d016bf3cd6b7f2359287d45",
+              "ClientRectangle": "0,2,19,0.8",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Прейскурант на платные медицинские услуги – {Прейскурант_список.Наименование_Вида}"
+              },
+              "HorAlignment": "Center",
+              "Font": ";10;Bold;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text3",
+              "Guid": "e30f30b3e05942b5fc93fa780fe4b320",
+              "ClientRectangle": "0,2.8,19,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "от {Прейскурант_список.Дата_прейскуранта}"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": ";10;;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "3": {
+              "Ident": "StiText",
+              "Name": "Text32",
+              "Guid": "4537344ea947ec26a8bd74b85a80f8d0",
+              "ClientRectangle": "9.2,1.4,9.6,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{Прейскурант_список.Дата_прейскуранта}"
+              },
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextFormat": {
+                "Ident": "StiDateFormatService"
+              },
+              "Type": "Expression"
+            }
+          }
+        },
+        "3": {
+          "Ident": "StiHeaderBand",
+          "Name": "HeaderBand1",
+          "ClientRectangle": "0,6.2,19,1",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text4",
+              "Guid": "00e39d97688bfe90abaac45a29ef2aac",
+              "ClientRectangle": "0,0,1.6,1",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "п/п"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text5",
+              "Guid": "6d00c8871c1b548f79e167e5ab3e6a16",
+              "ClientRectangle": "1.6,0,8.4,1",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Наименования платных услуг"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text6",
+              "Guid": "ee195f5fd72a3126378b944aa93fce01",
+              "ClientRectangle": "10,0,2.2,1",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Тариф"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "3": {
+              "Ident": "StiText",
+              "Name": "Text7",
+              "Guid": "30b1a3f6d78ffbb7671a1c7be45b55d8",
+              "ClientRectangle": "12.2,0,2.2,1",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Мат.\r\nзатраты"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "4": {
+              "Ident": "StiText",
+              "Name": "Text8",
+              "Guid": "537e34d111d5c5d762f9b32a5024ff8d",
+              "ClientRectangle": "14.4,0,2.4,1",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Услуги\r\nсторонних\r\nорг-ций"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "5": {
+              "Ident": "StiText",
+              "Name": "Text9",
+              "Guid": "330e8da9c7fe477b26002bee95d1b68a",
+              "ClientRectangle": "16.8,0,2.2,1",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Цена\r\nуслуги"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            }
+          },
+          "PrintOnAllPages": false
+        },
+        "4": {
+          "Ident": "StiGroupHeaderBand",
+          "Name": "GroupHeaderBand1",
+          "ClientRectangle": "0,8,19,0.4",
+          "Interaction": {
+            "Ident": "StiBandInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text16",
+              "Guid": "70a1070540d570fa4a6d0700c57041d5",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "0,0,1.6,0.4",
+              "Conditions": {
+                "0": {
+                  "Ident": "StiCondition",
+                  "DataType": "Numeric",
+                  "Column": "Прейскурант_список.ПрейскурантВид",
+                  "Value1": "2",
+                  "TextColor": "0,0,0",
+                  "Font": ";;Bold;",
+                  "BorderSides": "All"
+                }
+              },
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{Прейскурант_список.Код_Полный}"
+              },
+              "CanBreak": true,
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "Type": "Expression"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text17",
+              "Guid": "ccee7715c94a021452878b87e0af0147",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "1.6,0,8.4,0.4",
+              "Conditions": {
+                "0": {
+                  "Ident": "StiCondition",
+                  "DataType": "Numeric",
+                  "Column": "Прейскурант_список.ПрейскурантВид",
+                  "Value1": "2",
+                  "TextColor": "0,0,0",
+                  "Font": ";;Bold;",
+                  "BorderSides": "Top, Left, Bottom"
+                }
+              },
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{Прейскурант_список.Наименование}"
+              },
+              "CanBreak": true,
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "Type": "Expression"
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text18",
+              "Guid": "8a6432477d53ca0be325e3254d1327cc",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "10,0,2.2,0.4",
+              "Conditions": {
+                "0": {
+                  "Ident": "StiCondition",
+                  "DataType": "Numeric",
+                  "Column": "Прейскурант_список.ПрейскурантВид",
+                  "Value1": "2",
+                  "TextColor": "0,0,0",
+                  "Font": ";;Bold;",
+                  "BorderSides": "Top, Bottom"
+                }
+              },
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HideZeros": true,
+              "Text": {
+                "Value": "{IIF(Прейскурант_список.ПрейскурантВид!=2, Прейскурант_список.Тариф)}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "GroupSeparator": ",",
+                "State": "DecimalDigits"
+              },
+              "Type": "Expression"
+            },
+            "3": {
+              "Ident": "StiText",
+              "Name": "Text19",
+              "Guid": "d099ef863ec9df8b0d94337aa58d2094",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "12.2,0,2.2,0.4",
+              "Conditions": {
+                "0": {
+                  "Ident": "StiCondition",
+                  "DataType": "Numeric",
+                  "Column": "Прейскурант_список.ПрейскурантВид",
+                  "Value1": "2",
+                  "TextColor": "0,0,0",
+                  "Font": ";;Bold;",
+                  "BorderSides": "Top, Bottom"
+                }
+              },
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HideZeros": true,
+              "Text": {
+                "Value": "{IIF(Прейскурант_список.ПрейскурантВид!=2, Прейскурант_список.СуммыМатериальные)}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "GroupSeparator": ",",
+                "State": "DecimalDigits"
+              },
+              "Type": "Expression"
+            },
+            "4": {
+              "Ident": "StiText",
+              "Name": "Text20",
+              "Guid": "8aac6a577645b53bf2cda45c69793102",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "14.4,0,2.4,0.4",
+              "Conditions": {
+                "0": {
+                  "Ident": "StiCondition",
+                  "DataType": "Numeric",
+                  "Column": "Прейскурант_список.ПрейскурантВид",
+                  "Value1": "2",
+                  "TextColor": "0,0,0",
+                  "Font": ";;Bold;",
+                  "BorderSides": "Top, Bottom"
+                }
+              },
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HideZeros": true,
+              "Text": {
+                "Value": "{IIF(Прейскурант_список.ПрейскурантВид!=2, Прейскурант_список.СуммыСторонних)}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "GroupSeparator": ",",
+                "State": "DecimalDigits"
+              },
+              "Type": "Expression"
+            },
+            "5": {
+              "Ident": "StiText",
+              "Name": "Text21",
+              "Guid": "99de090f0d0cab9de31195e50bc8e0ae",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "16.8,0,2.2,0.4",
+              "Conditions": {
+                "0": {
+                  "Ident": "StiCondition",
+                  "DataType": "Numeric",
+                  "Column": "Прейскурант_список.ПрейскурантВид",
+                  "Value1": "2",
+                  "TextColor": "0,0,0",
+                  "Font": ";;Bold;",
+                  "BorderSides": "Top, Right, Bottom"
+                }
+              },
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HideZeros": true,
+              "Text": {
+                "Value": "{IIF(Прейскурант_список.ПрейскурантВид!=2, Прейскурант_список.Цена)}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "GroupSeparator": ",",
+                "State": "DecimalDigits"
+              },
+              "Type": "Expression"
+            }
+          },
+          "Condition": {
+            "Value": "{Прейскурант_список.Код_сортировки}"
+          }
+        },
+        "5": {
+          "Ident": "StiDataBand",
+          "Name": "DataBand1",
+          "ClientRectangle": "0,9.2,19,0.4",
+          "Conditions": {
+            "0": {
+              "Ident": "StiCondition",
+              "Condition": "IsNull",
+              "Column": "Прейскурант_список.field5",
+              "Enabled": false,
+              "BorderSides": "None"
+            }
+          },
+          "Interaction": {
+            "Ident": "StiBandInteraction"
+          },
+          "CanBreak": true,
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text23",
+              "ClientRectangle": "0,0,1.6,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": "All;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "Type": "Expression"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text24",
+              "Guid": "ef2cae59ccd3a4d48905eb81341110a1",
+              "ClientRectangle": "1.6,0,8.4,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "  {Прейскурант_список.Имя_МЦ}"
+              },
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "Type": "Expression"
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text25",
+              "ClientRectangle": "10,0,2.2,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "Type": "Expression"
+            },
+            "3": {
+              "Ident": "StiText",
+              "Name": "Text26",
+              "Guid": "4ac4a8da27ad03735f128a818b82feaf",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "12.2,0,2.2,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HideZeros": true,
+              "Text": {
+                "Value": "{Прейскурант_список.Цена_материала}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "DecimalSeparator": ",",
+                "GroupSeparator": " ",
+                "State": "DecimalDigits"
+              },
+              "Type": "Expression"
+            },
+            "4": {
+              "Ident": "StiText",
+              "Name": "Text27",
+              "Guid": "f4e659fefb43c9c0e000dc087114f642",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "14.4,0,2.4,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HideZeros": true,
+              "CanBreak": true,
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "Type": "Expression"
+            },
+            "5": {
+              "Ident": "StiText",
+              "Name": "Text28",
+              "Guid": "3583aef3b10b44afd43275b8ec43907e",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "16.8,0,2.2,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HideZeros": true,
+              "Text": {
+                "Value": "{Прейскурант_список.Цена_материала}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "DecimalSeparator": ",",
+                "GroupSeparator": " ",
+                "State": "DecimalDigits"
+              },
+              "Type": "Expression"
+            }
+          },
+          "DataSourceName": "Прейскурант список"
+        },
+        "6": {
+          "Ident": "StiFooterBand",
+          "Name": "FooterBand1",
+          "ClientRectangle": "0,10.4,19,0.6",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text29",
+              "Guid": "fb49f2cc6364eae311ec71f5445388f0",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "0,0.2,12.2,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{Подписи.Должность_исполнителя}"
+              },
+              "CanBreak": true,
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "Type": "DataColumn"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text30",
+              "Guid": "a9680570655e2b6a10bcb2f4e05cdea8",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "14.6,0.2,4.4,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{Подписи.Имя_исполнителя}"
+              },
+              "CanBreak": true,
+              "HorAlignment": "Right",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "Type": "DataColumn"
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text31",
+              "ClientRectangle": "12.2,0.2,2.4,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "HorAlignment": "Right",
+              "Border": "Bottom;;;;;;;solid:0,0,0",
+              "Brush": "solid:",
+              "TextBrush": "solid:0,0,0",
+              "Type": "Expression"
+            }
+          }
+        }
+      },
+      "PageWidth": 21,
+      "PageHeight": 29.7,
+      "Watermark": {
+        "TextBrush": "solid:50,0,0,0"
+      },
+      "Margins": {
+        "Left": 1,
+        "Right": 1,
+        "Top": 1,
+        "Bottom": 1
+      }
+    }
+  }
+}

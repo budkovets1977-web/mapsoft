@@ -1,0 +1,2 @@
+<?php
+require_once(__DIR__.'/../init.php'); $serviceClass = 'common_roles'; class common_roles { public function readRoles ($params = null) { return []; } public function readUserProfile () { } public function updateUserProfile ($profile) { } } require_once(__DIR__."/../{$_SESSION['appConfig']['rolesService']}/common/roles.php"); handleJsonRpc($serviceClass);

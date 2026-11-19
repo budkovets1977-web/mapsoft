@@ -1,0 +1,2 @@
+<?php
+ namespace Http\Message; use Psr\Http\Message\ResponseInterface; use Psr\Http\Message\StreamInterface; interface ResponseFactory { public function createResponse( $statusCode = 200, $reasonPhrase = null, array $headers = [], $body = null, $protocolVersion = '1.1' ); } 

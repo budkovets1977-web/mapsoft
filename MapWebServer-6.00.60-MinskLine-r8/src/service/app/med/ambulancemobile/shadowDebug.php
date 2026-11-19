@@ -1,0 +1,2 @@
+<?php
+require_once(__DIR__ . '/../../init.php'); class med_ambulancemobile_shadowDebug { public function shadowLog($params) { $log = isUndefinedProperty($params,'log'); $androidId = isUndefinedProperty($params,'androidId'); app_log($log, 0, 'debugMobileApp'.$androidId); } } handleJsonRpc('med_ambulancemobile_shadowDebug');

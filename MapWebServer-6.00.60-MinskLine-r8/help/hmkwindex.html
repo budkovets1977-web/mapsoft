@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html><head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+   <!-- This line includes the general project style sheet (not required) -->
+   <link type="text/css" href="default.css" rel="stylesheet">
+
+   <style type="text/css">
+       a { color: black; text-decoration: none }
+       a:visited {color: black}
+       a:hover { text-decoration: underline }
+       .navtitle    { font-size: 14pt; font-weight: bold; margin-bottom: 16px; }
+       .navbar      { font-size: 10pt; }
+       .idxsection  { font-family: Arial,Helvetica; font-weight: bold; font-size: 21px; color: #000000; text-decoration: none;
+                    margin-top: 15px; margin-bottom: 0px; }
+       .idxkeyword  { font-family: Arial,Helvetica; font-weight: normal; font-size: 15px; color: #000000; text-decoration: none }
+       .idxkeyword2 { font-family: Arial,Helvetica; font-weight: normal; font-size: 15px; color: #000000; text-decoration: none }
+       .idxlink     { font-family: Arial,Helvetica; font-weight: normal; font-size: 14px; color: #000000; text-decoration: none }
+       TABLE.idxtable { background: #F4F4F4; border-width: 1px; border-color: #000000; border-collapse: collapse;
+                        filter: progid:DXImageTransform.Microsoft.Shadow(color=B0B0B0, Direction=135, Strength=4) }
+       TD.idxtable    { background: #F4F4F4; }
+       span#navsearch {display: none;}
+   </style>
+<!--[if lt IE 7]>
+<style type="text/css">
+html { overflow-x: hidden;} 
+</style> 
+<![endif]-->
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="hmcontextids.js"></script>
+</head>
+<body style="background:#FFFFFF url('lines.gif')">
+<p class="navtitle">Медицинская информационная система</p>
+<p class="navbar">
+<a href="hmcontent.html">Содержание</a>&nbsp;
+|&nbsp;<b>Указатель</b>&nbsp;
+<span id="navsearch">|&nbsp;<a href="hmftsearch.html">Поиск</a></span>
+</p><hr size="1" />
+
+<br/>
+  <a href="#А">А</a>
+  <a href="#Б">Б</a>
+  <a href="#В">В</a>
+  <a href="#Г">Г</a>
+  <a href="#Д">Д</a>
+  <a href="#Е">Е</a>
+  <a href="#Ж">Ж</a>
+  <a href="#З">З</a>
+  <a href="#И">И</a>
+  <a href="#К">К</a>
+  <a href="#Л">Л</a>
+  <a href="#М">М</a>
+  <a href="#Н">Н</a>
+  <a href="#О">О</a>
+  <a href="#П">П</a>
+  <a href="#Р">Р</a>
+  <a href="#С">С</a>
+  <a href="#Т">Т</a>
+  <a href="#У">У</a>
+  <a href="#Ф">Ф</a>
+  <a href="#Х">Х</a>
+  <a href="#Ц">Ц</a>
+  <a href="#Ч">Ч</a>
+  <a href="#Ш">Ш</a>
+  <a href="#Щ">Щ</a>
+  <a href="#Э">Э</a>
+  <a href="#Ю">Ю</a>
+  <a href="#Я">Я</a>
+
+<!-- Placeholder for the keyword index - this variable is REQUIRED! -->
+<script type="text/javascript">
+
+  function hmInitHideLinks(cssCode) {
+  	var styleElement = document.createElement("style");
+  	styleElement.type = "text/css";
+  	if (styleElement.styleSheet) {
+    	styleElement.styleSheet.cssText = cssCode;
+  	}
+  	else {
+    	styleElement.appendChild(document.createTextNode(cssCode));
+  	}
+  	document.getElementsByTagName("head")[0].appendChild(styleElement);
+  }
+
+  hmInitHideLinks("#idx div { display: none }");
+
+  var currentdiv = null;
+  var canhidelinks = true;
+
+  function hmshowLinks(divID) {
+    var thisdiv = document.getElementById(divID);
+    canhidelinks = true;
+    hmhideLinks();
+    if (thisdiv) {
+      currentdiv = thisdiv;
+      $(currentdiv).show();
+      $(currentdiv).mouseover(hmdivMouseOver).mouseout(hmdivMouseOut);
+      $(document).mouseup(hmhideLinks);
+    }
+  }
+  function hmdivMouseOver() { canhidelinks = false; };
+  function hmdivMouseOut() { canhidelinks = true; };
+  function hmhideLinks() {
+    if (canhidelinks) {
+      if (currentdiv) {
+        $(currentdiv).hide();
+        $(currentdiv).unbind("onmouseover", "onmouseout");
+      }
+      currentdiv = null;
+      $(document).unbind("onmouseup");
+    }
+  }
+</script>
+<div id="idx" style="margin:0;padding:0;border:none">
+<a name="В" id="В"></a><p class="idxsection">- В -</p>
+<p class="idxkeyword" style="margin:0 0 0 0px"><a href="vyzov_vracha_main.html" target="hmcontent"><span class="idxkeyword">Вызов врача на дом. Основная форма</span></a></p>
+<a name="Г" id="Г"></a><p class="idxsection">- Г -</p>
+<p class="idxkeyword" style="margin:0 0 0 0px"><a href="glavnoe_okno.html" target="hmcontent"><span class="idxkeyword">Главное окно</span></a></p>
+<p class="idxkeyword" style="margin:0 0 0 0px"><a href="registratura_grafik_main.html" target="hmcontent"><span class="idxkeyword">График работы врачей. Основная форма</span></a></p>
+<p class="idxkeyword" style="margin:0 0 0 0px"><a href="registratura_grafik_redaktor.html" target="hmcontent"><span class="idxkeyword">График работы врачей. Редактор графика дня врачебного приёма</span></a></p>
+<p class="idxkeyword" style="margin:0 0 0 0px"><a href="registratura_grafik_start.html" target="hmcontent"><span class="idxkeyword">График работы врачей. Стартовая форма</span></a></p>
+<a name="Ж" id="Ж"></a><p class="idxsection">- Ж -</p>
+<p class="idxkeyword" style="margin:0 0 0 0px"><a href="zhurnal_napravlenij_redaktor.html" target="hmcontent"><span class="idxkeyword">Журнал направлений. Редактор направления</span></a></p>
+<a name="З" id="З"></a><p class="idxsection">- З -</p>
+<p class="idxkeyword" style="margin:0 0 0 0px"><a href="registratura_zapis_na_priem_main.html" target="hmcontent"><span class="idxkeyword">Запись на приём. Основная форма</span></a></p>
+<p class="idxkeyword" style="margin:0 0 0 0px"><a href="registratura_zapis_na_priem_start.html" target="hmcontent"><span class="idxkeyword">Запись на приём. Стартовая форма</span></a></p>
+<p class="idxkeyword" style="margin:0 0 0 0px"><a href="zapusk_programmy.html" target="hmcontent"><span class="idxkeyword">Запуск программы</span></a></p>
+<a name="К" id="К"></a><p class="idxsection">- К -</p>
+<p class="idxkeyword" style="margin:0 0 0 0px"><a href="registratura_kartoteka_main.html" target="hmcontent"><span class="idxkeyword">Картотека. Основная форма</span></a></p>
+<p class="idxkeyword" style="margin:0 0 0 0px"><a href="registratura_kartoteka_poisk.html" target="hmcontent"><span class="idxkeyword">Картотека. Поиск</span></a></p>
+<p class="idxkeyword" style="margin:0 0 0 0px"><a href="registratura_kartoteka_redaktor.html" target="hmcontent"><span class="idxkeyword">Картотека. Редактор информации о пациенте</span></a></p>
+<p class="idxkeyword" style="margin:0 0 0 0px"><a href="registratura_kartoteka_start.html" target="hmcontent"><span class="idxkeyword">Картотека. Стартовая форма</span></a></p>
+<a name="О" id="О"></a><p class="idxsection">- О -</p>
+<p class="idxkeyword" style="margin:0 0 0 0px"><a href="obshie_svedenia_o_programme.html" target="hmcontent"><span class="idxkeyword">Общие сведения о программе</span></a></p>
+<p class="idxkeyword" style="margin:0 0 0 0px"><a href="osnovnye_upravljajuwie_elementy.html" target="hmcontent"><span class="idxkeyword">Основные управляющие элементы</span></a></p>
+</div>
+
+<script type="text/javascript">
+document.getElementById("navsearch").style.display="inline";
+</script> 
+</body>
+</html>
+
+
+
+
+

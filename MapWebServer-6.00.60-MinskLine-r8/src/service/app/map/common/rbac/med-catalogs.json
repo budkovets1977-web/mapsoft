@@ -1,0 +1,47 @@
+{
+    "children": [
+        {
+            "text": "Организации",
+            "id": "map-common-organizations",
+            "children": [
+                {
+                    "text": "Категории",
+                    "id": "map-common-organizationkinds"
+                }
+            ]
+        }, {
+            "text": "Отделения",
+            "id": "map-common-offices"
+        }, {
+            "text": "Участки",
+            "id": "med-common-sectors",
+            "children": [
+                {
+                    "text": "Типы",
+                    "id": "med-common-sectortypes"
+                }
+            ]
+        }, {
+            "text": "Поликлиники",
+            "id": "med-common-clinics"
+        }, {
+            "text": "Адреса",
+            "id": "map-common-addresses",
+            "children": [
+                {
+                    "text": "Страны",
+                    "id": "map-common-countries"
+                }, {
+                    "text": "Районы",
+                    "id": "med-common-districts"
+                }, {
+                    "text": "Типы населенных пунктов",
+                    "id": "map-common-addressplacetypes"
+                }, {
+                    "text": "Типы улиц",
+                    "id": "map-common-addressstreettypes"
+                }
+            ]
+        }
+    ]
+}

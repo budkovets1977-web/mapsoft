@@ -1,0 +1,2 @@
+<?php
+ class UnknownProfileException extends \RuntimeException { public function __construct(string $profileName) { parent::__construct( sprintf( med_cisz_constant::ERROR_INVALID_CREATE_BUNDLE_PARAMS_TEXT, "Обработчик профиля ({$profileName}) — не зарегистрирован." ), med_cisz_constant::ERROR_INVALID_CREATE_BUNDLE_PARAMS_CODE ); } }

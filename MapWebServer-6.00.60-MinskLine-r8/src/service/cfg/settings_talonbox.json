@@ -1,0 +1,506 @@
+/*
+    Настройка инфокиоска выдачи талонов (Регистратура).
+    Важен регистр названий параметров.
+*/
+{
+    /* Настройка подключения */
+    "connect": {
+        /*
+          Тип подключения. Возможные варианты:
+            "map" - подключение к БД МАП, строка подключения будет браться из файла настроек конфигурация config.json;
+            "belcmt" - подключение к службе БелЦМТ, настройка подключения будет ниже в разделе "belcmt".
+        */
+        "type": "map",
+
+        /* Разные настройки подключения к БД МАП */
+        "map": {
+            "currentEnterpriseId":      1,  /* Код текущей организации */
+            "enterpriseStructureId":    0   /* Код подразделения. 0 - Без фильтрации */
+        },
+
+        /* Настройка подключения к сервису БелЦМТ */
+        "belcmt": {
+            "url": "http://999.999.999.999:9999/info/index.php", /* Ссылка для подключения к веб-службе БелЦМТ */
+            "calendarMonths": 6 /* Количество месяцев на которое отображаются талоны врачей от текущей даты. */
+        },
+        /*
+          Дополнительные параметры к прокси-серверу, для подключения к другим сервисам (БелЦМТ).
+        */
+        "proxy": {
+            "host": null,
+            "port": null,
+            "user": null,
+            "pass": null
+        }
+    },
+
+    "print": {
+        "osapi": "http://127.0.0.1:7943"    // Адрес и порт сервера осапи. Используется для печати талона.
+    },
+
+    "showMouse":            0,              // Отображение курсора мыши, для отладки
+    "debug":                0,              // Режим отладки. Выводит в консоль различные сообщения о работе приложения.
+    "info": {
+        "path": "shared/talonbox/info/index.html",  // Путь стартовой страницы 'Информация' (должно лежать относительно прописанного Alias в httpd.conf)
+        "fontSizeDelta":    -2                      // Этим параметром можно менять размер шрифта, если нужно (+ увеличение, - уменьшение).
+    },
+
+    "maxActiveCoupons":     5,              // Максимальное количество талонов для выдачи
+
+    "ordersValidityMonths": 3,              // Срок актуальности назначений (в месяцах)
+
+    /* Счетчики */
+    "timers": {
+        "refresh":          60,             // сек., Период обновления главного экрана
+        "inactive":         60,             // сек., Время бездействия пользователя
+        "inactiveLogin":    15,             // сек., Время бездействия пользователя при логине
+        "finish":           30              // сек., Последний экран, время, через которое вернуться на главный экран
+    },
+
+    "buttonsDisableTime":   5,              // сек., Экран печати талона. Время блокировки кнопок после нажатия для ограничения повторного нажатия
+
+    "mainLogo":             1,              // 1 - Mapsoft, 2 - eDoctor
+
+    // Язык инфокиоска по умолчанию. Инфокиоск всегда будет загружаться на этом языке.
+    // При смене языка интерфейс будет обновляться на лету.
+    "defaultLang": "ru",
+
+    "ru": {
+        "organizationName": "Поликлиника",                  // Название организации. Используется при печати на талоне.
+
+        // Общие языковые переменные
+        "commonLang": {
+            "back": "Назад",
+            "exit": "Выход",
+            "couponWords": {
+                "1":    "талон",
+                "2":    "талона",
+                "3":    "талонов"
+            },
+            "finishWork": "Завершить работу?",                                          // Текст окна сообщения о завершении работы
+            "empty": "Терминал не работает",                                            // Текст в случае ошибок не доступности сервисов на первом экране
+            "serverError": "Ошибка сервера",                                            // Сообщение при ошибках сетевого подключения (к сервису, MedCouponService и пр., вне главного экрана)
+            "noData": "Нет данных",
+            "noReservation": "Заказ талонов ограничен",
+            "errorOccured": "Произошла ошибка",
+            "askForHelp": "Обратитесь в регистратуру",
+            "maxCouponsExceeded": "Превышен лимит выдачи талонов",                      // Без точки в конце, потому что в коде будет добавлена информация о максимальном количестве талонов.
+            "youHaveCouponToThisDoctor": "У вас уже есть талон к этому врачу",
+            "noSelfRegistration": "Самозапись невозможна, обратитесь в регистратуру",
+            "errorReservingCoupon": "Произошла ошибка при заказе талона",
+            "talonNotAvailable": "Талон больше недоступен для заказа. Талон уже заказан или удален.",
+            "noSuchCoupon": "Талон не существует, либо уже заказан",
+            "buttonYes": "Да",                                                          // Текст кнопки Да
+            "buttonNo": "Нет",                                                          // Текст кнопки Нет
+            "buttonCloseWindow": "Закрыть окно",                                        // Текст кнопки Закрыть окно
+            "couponReserved": "Талон зарезервирован",
+            "printError": "Произошла ошибка печати",
+            "buttonClose": "Закрыть",
+            "buttonChoose": "Выбрать"
+        },
+
+        /* Данные титульного экрана */
+        "main": {
+            "title": "Выберите действие",
+            "button1": {
+                "title": "Записаться на приём",
+                "note": "",
+                "hidden": 0      // Кнопка скрыта
+            },
+            "button2": {
+                "title": "Водительская комиссия",
+                "note": "",
+                "hidden": 1      // Кнопка скрыта
+            },
+            "button3": {
+                "title": "Мои талоны",
+                "note": "отмена или печать заказанных талонов",
+                "hidden": 0      // Кнопка скрыта
+            },
+            "button4": {
+                "title": "Талон по коду",
+                "note": "получить талон, заказанный на talon.by",
+                "hidden": 1      // Кнопка скрыта
+            },
+            "button5": {
+                "title": "Информация",
+                "note": "",
+                "hidden": 0      // Кнопка скрыта
+            },
+            "button6": {
+                "title": "Интерактивная карта",
+                "note": "",
+                "hidden": 1      // Кнопка скрыта
+            }
+        },
+
+        /* Данные экрана выбора специальности */
+        "profession": {
+            "title1": "Выберите специальность врача",       /* заголовок при записи на прием */
+            "title2": "Выберите вид медосмотра",            /* заголовок при медкомиссии */
+            "columns": 2                                    /* количество колонок */
+        },
+
+        /* Данные экрана выбора дальнейших действий (после выбора специальности) */
+        "professionNext": {
+            "title":    "Выбор врача",                      /* заголовок */
+            "button1":  "Выбрать врача",                    /* кнопка выбора врача */
+            "button2":  "Показать талоны всех врачей",      /* кнопка показа талонов всех врачей */
+            "button3":  "Определить участок"                /* кнопка определения участка */
+        },
+
+        /* Данные экрана выбора врача */
+        "doctor": {
+            "title1": "Выберите фамилию врача",             /* заголовок при записи на прием */
+            "title2": "Выберите кабинет"                    /* заголовок при записи на медкомиссию */
+        },
+
+        /* Данные экрана календаря (выбор даты приема) */
+        "calendar": {
+            "title1": "Выберите день посещения врача",      /* заголовок при записи на прием */
+            "title2": "Выберите дату медосмотра",           /* заголовок при записи на медкомиссию */
+            /* подсказка по доступности талонов */
+            "legend": {
+                "greenNote":    " - Талоны доступны для заказа",
+                "orangeNote":   " - Заказ талонов ограничен",
+                "blueNote":     " - Есть заказанный Вами талон"
+            },
+            // Сокращенные названия дней недели календаря
+            "daysShortNames": {
+                "1": "ПН",
+                "2": "ВТ",
+                "3": "СР",
+                "4": "ЧТ",
+                "5": "ПТ",
+                "6": "СБ",
+                "7": "ВС"
+            },
+            // Названия месяцев
+            "monthsNames": {
+                "1":  "Январь",
+                "2":  "Февраль",
+                "3":  "Март",
+                "4":  "Апрель",
+                "5":  "Май",
+                "6":  "Июнь",
+                "7":  "Июль",
+                "8":  "Август",
+                "9":  "Сентябрь",
+                "10": "Октябрь",
+                "11": "Ноябрь",
+                "12": "Декабрь"
+            },
+            "noAvailableCoupons": "Нет свободных талонов",
+            "chooseOtherDoctor": "Выберите другого врача вашего отделения",
+            "noTerritoryDoctor": "Не удалось определить участкового"
+        },
+
+        /* Данные экрана талонов (выбор времени талона) */
+        "coupon": {
+            "title": "Выберите время",      /* заголовок экрана */
+            "columns": 4                    /* количество колонок */
+        },
+
+        /* Данные экрана авторизации */
+        "authenticate": {
+            "cityDisabled": 1,
+            "defaultCityType": "Город",
+            "defaultCity": "МИНСК",
+            "title": "Введите данные либо воспользуйтесь сканером",
+            "changeTo": "Изменить на",
+            "type1": "А Б В Г Д",
+            "type2": "Й Ц У К Е Н",
+            "enterDigits": "Ввести цифры",
+            "enterLetters": "Ввести буквы",
+            "delete": "Стереть",
+            "enter": "Продолжить",
+            "surname": "Фамилия/номер карты (штрих-код)",
+            "initials": "Инициалы",
+            "birthDate": "Дата рождения",
+            "birthDateEmpty": "ДД.ММ.ГГГГ",
+            "city": "Город",
+            "house": "Дом",
+            "corpus": "Корпус",
+            "flat": "Квартира",
+            "street1": "Улица",     // 1 - Краткий вариант, если необходимо. Если необходимости в сокращении нет, должен дублировать полный вариант.
+            "street2": "Улица",     // 2 - Полный вариант.
+            "avenue1": "Пр-кт",
+            "avenue2": "Проспект",
+            "passage1": "Проезд",
+            "passage2": "Проезд",
+            "alley1": "Пер.",
+            "alley2": "Переулок",
+            "tract1": "Тракт",
+            "tract2": "Тракт",
+            "square1": "Площадь",
+            "square2": "Площадь",
+            "boulevard1": "Бульвар",
+            "boulevard2": "Бульвар",
+            "highway1": "Шоссе",
+            "highway2": "Шоссе",
+            "embankment1": "Наб.",
+            "embankment2": "Набережная",
+            "countryside": "Деревня",
+            "village": "Село",
+            "township": "Поселок",
+            "agrotown": "Агрогородок",
+            "farm": "Хутор",
+            "patientNotUnique": "Несколько совпадений, уточните данные",
+            "patientNotFound": "Пациент с такими данными не найден",
+            "incompleteSearchData": "Неполные данные для поиска"
+        },
+
+        /* Данные экрана печати талона */
+        "printCancelCoupon": {
+            "titlePrint": "Печать талона",
+            "titlePrintCancel": "Печать или отмена талона",
+            "buttonPrintCoupon": "Напечатать талон",
+            "buttonCancelCoupon": "Отменить запись",
+            "couponCanceled": "Запись отменена"
+        },
+
+        /* Данные экрана Мои талоны */
+        "myCoupons": {
+            "title": "Выберите талон для печати или отмены",
+            "title2": "Мои талоны",
+            "noCoupons": "У вас нет заказанных талонов"
+        },
+
+        /* Данные экрана Талон по коду */
+        "couponByCode": {
+            "title": "Введите код талона",
+            "couponNotFound": "Талон с таким кодом не найден"
+        },
+
+        /* Данные экрана Информация */
+        "info": {
+            "title": "Информация"
+        },
+
+        /* Данные экрана Интерактивная карта */
+        "interactiveMap": {
+            "title": "Интерактивная карта"
+        },
+
+        /* Данные экрана Поиск */
+        "search": {
+            "title": "Поиск"
+        }
+    },
+
+    "en": {
+        "organizationName": "Health Organization",                                      // Название организации. Используется при печати на талоне.
+
+        // Общие языковые переменные
+        "commonLang": {
+            "back": "Back",
+            "exit": "Exit",
+            "couponWords": {
+                "1":    "Coupon",
+                "2":    "Coupons",
+                "3":    "Coupons"
+            },
+            "finishWork": "Finish session?",                                            // Текст окна сообщения о завершении работы
+            "empty": "Terminal is not working",                                         // Текст в случае ошибок не доступности сервисов на первом экране
+            "serverError": "Server error",                                              // Сообщение при ошибках сетевого подключения (к сервису, MedCouponService и пр., вне главного экрана)
+            "noData": "No data",
+            "noReservation": "Ordering coupons is limited",
+            "errorOccured": "An error has occurred",
+            "askForHelp": "Contact the reception",
+            "maxCouponsExceeded": "The limit for coupons has been exceeded",            // Без точки в конце, потому что в коде будет добавлена информация о максимальном количестве талонов.
+            "youHaveCouponToThisDoctor": "You already have a coupon to this doctor",
+            "noSelfRegistration": "Self-recording is not possible. Contact the reception",
+            "errorReservingCoupon": "An error has occurred while ordering a coupon",
+            "talonNotAvailable": "The coupon is no longer available for order. The coupon has already been ordered or deleted.",
+            "noSuchCoupon": "The coupon does not exist or has already been ordered",
+            "buttonYes": "Yes",                                                          // Текст кнопки Да
+            "buttonNo": "No",                                                            // Текст кнопки Нет
+            "buttonCloseWindow": "Close",                                                // Текст кнопки Закрыть окно
+            "couponReserved": "The coupon is reserved",
+            "printError": "A print error has occurred",
+            "buttonClose": "Close",
+            "buttonChoose": "Choose"
+        },
+
+        /* Данные титульного экрана */
+        "main": {
+            "title": "Choose an action",
+            "button1": {
+                "title": "Sign up for an appointment",
+                "note": "",
+                "hidden": 0     // Кнопка скрыта
+            },
+            "button2": {
+                "title": "Medical board for drivers",
+                "note": "",
+                "hidden": 0     // Кнопка скрыта
+            },
+            "button3": {
+                "title": "My coupons",
+                "note": "cancel or print the ordered coupons",
+                "hidden": 0     // Кнопка скрыта
+            },
+            "button4": {
+                "title": "Get coupon by code",
+                "note": "getting the coupon you have ordered on talon.by",
+                "hidden": 0     // Кнопка скрыта
+            },
+            "button5": {
+                "title": "Information",
+                "note": "",
+                "hidden": 1     // Кнопка скрыта
+            },
+            "button6": {
+                "title": "Interactive Map",
+                "note": "",
+                "hidden": 1     // Кнопка скрыта
+            }
+        },
+
+        /* Данные экрана выбора специальности */
+        "profession": {
+            "title1": "Choose a doctor's specialty",        /* заголовок при записи на прием */
+            "title3": "Choose the type of medical board",   /* заголовок при медкомиссии */
+            "columns": 2                                    /* количество колонок */
+        },
+
+        /* Данные экрана выбора дальнейших действий (после выбора специальности) */
+        "professionNext": {
+            "title":    "Choose a doctor",                  /* заголовок */
+            "button1":  "Choose a doctor",                  /* кнопка выбора врача */
+            "button2":  "View coupons for all doctors",     /* кнопка показа талонов всех врачей */
+            "button3":  "Define a district"                 /* кнопка определения участка */
+        },
+
+        /* Данные экрана выбора врача */
+        "doctor": {
+            "title1": "Choose the name of the doctor",      /* заголовок при записи на прием */
+            "title2": "Choose cabinet"                      /* заголовок при записи на медкомиссию */
+        },
+
+        /* Данные экрана календаря (выбор даты приема) */
+        "calendar": {
+            "title1": "Choose the day of the visit to the doctor",      /* заголовок при записи на прием */
+            "title2": "Choose the date of the medical board",           /* заголовок при записи на медкомиссию */
+            /* подсказка по доступности талонов */
+            "legend": {
+                "greenNote":    " - Coupons are available for order",
+                "orangeNote":   " - Ordering coupons is limited",
+                "blueNote":     " - There is a coupon you ordered"
+            },
+            // Сокращенные названия дней недели календаря
+            "daysShortNames": {
+                "1": "MON",
+                "2": "TUE",
+                "3": "WED",
+                "4": "THU",
+                "5": "FRI",
+                "6": "SAT",
+                "7": "SUN"
+            },
+            // Названия месяцев
+            "monthsNames": {
+                "1":  "January",
+                "2":  "February",
+                "3":  "March",
+                "4":  "April",
+                "5":  "May",
+                "6":  "June",
+                "7":  "July",
+                "8":  "August",
+                "9":  "September",
+                "10": "October",
+                "11": "November",
+                "12": "December"
+            },
+            "noAvailableCoupons": "No available coupons",
+            "chooseOtherDoctor": "Choose another doctor of your medical unit",
+            "noTerritoryDoctor": "Can not identify territory doctor"
+        },
+
+        /* Данные экрана талонов (выбор времени талона) */
+        "coupon": {
+            "title": "Choose time",     /* заголовок экрана */
+            "columns": 4                /* количество колонок */
+        },
+
+        /* Данные экрана авторизации */
+        "authenticate": {
+            "cityDisabled": 1,
+            "defaultCityType": "City",
+            "defaultCity": "MINSK",
+            "title": "Please enter your data or use the scanner",
+            "changeTo": "Change to",
+            "type1": "A B C D",
+            "type2": "Q W E R T Y",
+            "enterDigits": "Digits",
+            "enterLetters": "Letters",
+            "delete": "Delete",
+            "enter": "Enter",
+            "surname": "Surname/card number (Barcode)",
+            "initials": "Initials",
+            "birthDate": "Date of Birth",
+            "birthDateEmpty": "DD.MM.YYYY",
+            "city": "City",
+            "house": "House",
+            "corpus": "Corpus",
+            "flat": "Flat",
+            "street1": "Street",
+            "street2": "Street",
+            "avenue1": "Ave.",
+            "avenue2": "Avenue",
+            "passage1": "Passage",
+            "passage2": "Passage",
+            "alley1": "Alley",
+            "alley2": "Alley",
+            "tract1": "Tract",
+            "tract2": "Tract",
+            "square1": "Square",
+            "square2": "Square",
+            "boulevard1": "Blvd",
+            "boulevard2": "Boulevard",
+            "highway1": "Highway",
+            "highway2": "Highway",
+            "embankment1": "Emb.",
+            "embankment2": "Embankment",
+            "countryside": "Countryside",
+            "village": "Village",
+            "township": "Township",
+            "agrotown": "Agro-town",
+            "farm": "Farm",
+            "patientNotUnique": "Several matches. Please enter the details",
+            "patientNotFound": "There is no patient with such data",
+            "incompleteSearchData": "Incomplete data for search"
+        },
+
+        /* Данные экрана печати талона */
+        "printCancelCoupon": {
+            "titlePrint": "Print coupon",
+            "titlePrintCancel": "Print or cancel a coupon",
+            "buttonPrintCoupon": "Print coupon",
+            "buttonCancelCoupon": "Cancel coupon",
+            "couponCanceled": "The coupon has been canceled"
+        },
+
+        /* Данные экрана Мои талоны */
+        "myCoupons": {
+            "title": "Choose a coupon to print or cancel",
+            "noCoupons": "You have no coupons"
+        },
+
+        /* Данные экрана Талон по коду */
+        "couponByCode": {
+            "title": "Enter the coupon code",
+            "couponNotFound": "There is no coupon with this code"
+        },
+
+        /* Данные экрана Информация */
+        "info": {
+            "title": "Information"
+        },
+
+        "interactiveMap": {
+            "title": "Interactive Map"
+        }
+    }
+}

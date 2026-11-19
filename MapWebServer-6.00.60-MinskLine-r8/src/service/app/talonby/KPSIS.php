@@ -1,0 +1,2 @@
+<?php
+ require_once(__DIR__ . '/../init.php'); class utils_KPSIS { public function postToTerminal($content, $url) { $params = new stdClass; $params->url = $url.'/api/v1/auth'; $params->request_content = json_encode($content); $result = httpPOST($params); if (empty($result)) { return false; } return safe_json_decode($result['body']); } } handleJsonRpc('utils_KPSIS'); 

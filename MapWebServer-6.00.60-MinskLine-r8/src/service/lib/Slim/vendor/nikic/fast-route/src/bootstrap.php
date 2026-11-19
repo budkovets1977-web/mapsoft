@@ -1,0 +1,2 @@
+<?php
+ namespace FastRoute; require __DIR__ . '/functions.php'; spl_autoload_register(function ($class) { if (safe_strpos($class, 'FastRoute\\') === 0) { $name = substr($class, safe_strlen('FastRoute')); require __DIR__ . strtr($name, '\\', DIRECTORY_SEPARATOR) . '.php'; } }); 

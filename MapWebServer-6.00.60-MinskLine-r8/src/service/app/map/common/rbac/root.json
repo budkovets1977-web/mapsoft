@@ -1,0 +1,14 @@
+{
+    "text": "Настройка прав пользователей",
+    "id": "root",
+    "expanded": true,
+    "children": [
+        {
+            "include": "buh"
+        }, {
+            "include": "med"
+        }, {
+            "include": "system"
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "text": "Системные",
+    "id": "system",
+    "children": [
+        {
+            "text": "Учётные записи пользователей",
+            "id": "common-rbacroles",
+            "children": [
+                {
+                    "text": "Редактирование",
+                    "id": "common-rbacroles.edit"
+                }
+            ]
+        }
+    ]
+}

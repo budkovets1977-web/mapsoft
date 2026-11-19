@@ -1,0 +1,12 @@
+<?php
+ require_once(__DIR__ . '/../init.php'); class med_talonby_brockerExchange { const TASK_NAME = 'talonbyLinkTalon'; const DEBUG_HTTP = true; private $db; public function getBrockerData() { $db = $this->db ?: $this->db = connectDb(); $sql = <<<"EOT"
+SELECT
+    TalonBrockerCode "id",
+    Action "rule",
+    ActionType "service",
+    Data "body"
+FROM TalonBrocker
+ORDER BY ActionOrder, TalonBrockerCode
+LIMIT 100
+EOT;
+$items = selectSql($db, $sql); $total_count = count($items); if ($total_count) { $this->log("Получено $total_count записей, требующих обновления. Начало процесса синхронизации..."); return $items; } else { $this->log("Нет данных для отправки"); return false; } } private function sendBrockerData($items) { suspendJsonRpc(); require_once (__DIR__ . '/linkTalon.php'); resumeJsonRpc(); $linkTalon = new med_talonby_linkTalon; $params = $linkTalon->setupConnect(); $params->request_method = 'management'; foreach ($items as &$row) { $row['body'] = safe_json_decode($row['body']); } $items = json_encode($items, JSON_UNESCAPED_UNICODE); $params->request_content = $items; $result = httpPOST($params); if (empty($result)) { $this->log("Ошибка подключения к сервису Talon.by", 2); return false; } if ($result) { switch ($result['status'][1]) { case "200": $result = safe_json_decode(stristr($result['body'], '{')); $this->log("Сихронизация завершена"); break; case "400": $result = safe_json_decode(stristr($result['body'], '{')); $this->log("Ошибка: $result->reason, $result->message", 2); break; case "404": $result = safe_json_decode(stristr($result['body'], '{')); $this->log("Ошибка: $result->reason, $result->message", 2); break; default: $this->log("Что-то пошло не так...", 2); break; } return $result->data->processed; } else { $this->log("Ошибка подключения к ЦОД"); return false; } } private function deleteResult($array) { $db = $this->db ?: $this->db = connectDb(); $this->log("Удаление синхронизированных записей..."); foreach ($array as $row) { deleteSql($db, 'TalonBrocker', 'TalonBrockerCode', $row); $this->log("Удаление записи id: $row из брокера"); } return true; } public function startExchange() { $items = $this->getBrockerData(); if ($items) { $sended = $this->sendBrockerData($items); if ($sended) { $this->deleteResult($sended); return true; } } } private function log($message, $type = 0) { app_log($message, $type, self::TASK_NAME); } } handleJsonRpc('med_talonby_brockerExchange'); 

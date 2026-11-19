@@ -1,0 +1,559 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="2">
+      <SynevoDB1 Ref="2" type="Stimulsoft.Report.Dictionary.StiPostgreSQLDatabase" isKey="true">
+        <Alias>SynevoPatientList</Alias>
+        <ConnectionStringEncrypted>41L1CdcFAZFiFaVYxFg1Xot2dcJJS1qYRVihlGENZWP5cGXreUGjhMBcoczo4bEXkHB5YE0JUYBHGD2dw1j2L994ZaHIXdOZ4kXQzM8=</ConnectionStringEncrypted>
+        <Key>fc1f626b36bc4f24b18c50e9dd2012dd</Key>
+        <Name>SynevoDB1</Name>
+      </SynevoDB1>
+      <EnterEnterprise Ref="3" type="Stimulsoft.Report.Dictionary.StiPostgreSQLDatabase" isKey="true">
+        <Alias>Выбор организации для параметра</Alias>
+        <ConnectionStringEncrypted>41L1CdcFAZFiFaVYxFg1Xot2dcJJS1qYRVihlGENZWP5cGXreUGjhMBcoczo4bEXkHB5YE0JUYBHGD2dw1j2L994ZaHIXdOZ4kXQzM8=</ConnectionStringEncrypted>
+        <Key>f67c7112291643908e71d22f57018b9c</Key>
+        <Name>EnterEnterprise</Name>
+      </EnterEnterprise>
+    </Databases>
+    <DataSources isList="true" count="4">
+      <SynevoPatientList Ref="4" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
+        <Alias>Список пациентов</Alias>
+        <Columns isList="true" count="12">
+          <value>entcode,System.Int32</value>
+          <value>logcode,System.Int32</value>
+          <value>vistime,System.String</value>
+          <value>telefon,System.String</value>
+          <value>note,System.String</value>
+          <value>birthdate,System.String</value>
+          <value>age,System.Int32</value>
+          <value>cabcode,System.Int32</value>
+          <value>fio,System.String</value>
+          <value>num,System.Int64</value>
+          <value>visdate,System.String</value>
+          <value>maker,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Key>ac3332c9b94f43ecbacde606a129409d</Key>
+        <Name>SynevoPatientList</Name>
+        <NameInSource>SynevoDB1</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>SELECT 
+	map.synevologservice.enterprisecode as EntCode,
+	map.synevologservice.synevologservicecode as LogCode,
+	DATEFORMAT(map.synevologservice.visittime,  E'hh:mm' ) as VisTime,
+    (SELECT string_agg((Q.PhType || Q.PhNum)::text,  E'; ' ORDER BY Q.PhType )
+      FROM
+       (SELECT CASE MP.PhoneType = 1 WHEN true THEN  E'д.т. ' WHEN false THEN CASE MP.PhoneType = 2 WHEN true THEN  E'р.т. ' WHEN false THEN  E'м.т. ' END END as PhType, string_agg((MP.PhoneNumber )::text, ',' ) as PhNum
+         FROM ManPhone AS MP WHERE MP.ManCode = map.synevologservice.medpatientcode AND MP.PhoneNumber &lt;&gt; ( E'' )GROUP BY 1
+        ORDER BY 1) AS Q) as Telefon,
+    map.synevologservice.Note as Note,
+    COALESCE( DATEFORMAT( NULLIF( map.manpassport.DateOfBirth , DATE(  E'1899-12-31' )),  E'dd.mm.yyyy' ),  E' н/у' ) as BirthDate,
+    DATEDIFF('YEAR', map.manpassport.DateOfBirth, DATE(map.synevologservice.visittime)) as Age,
+    map.medcabinet.medcabinetcode as CabCode,
+    CASE COALESCE(map.synevologservice.medpatientcode, 0)&lt;&gt;(0 )WHEN true THEN FN_cmFIO(map.medpatient.ManCode) WHEN false THEN map.synevologservice.patientfio END as FIO,
+    ROW_NUMBER() OVER (PARTITION BY DATE(map.synevologservice.visittime), map.medcabinet.medcabinetcode ORDER BY map.synevologservice.enterprisecode, map.synevologservice.visittime, map.medcabinet.medcabinetcode) as num,
+    DATEFORMAT(DATE(map.synevologservice.visittime), E'dd.mm.yy') as VisDate,
+    map.synevologservice.doctorfio as Maker
+FROM map.synevologservice 
+JOIN map.medcabinet ON map.synevologservice.medcabinetcode = map.medcabinet.medcabinetcode
+LEFT OUTER JOIN map.medpatient ON map.synevologservice.medpatientcode = map.medpatient.medpatientcode
+LEFT OUTER JOIN map.manpassport ON map.manpassport.ManCode = map.medpatient.ManCode
+WHERE map.synevologservice.enterprisecode = {Enterprise}
+AND DATE(map.synevologservice.visittime) = DATE('{DateRecord}')
+ORDER BY
+map.synevologservice.enterprisecode asc, map.synevologservice.visittime asc, map.medcabinet.medcabinetcode asc</SqlCommand>
+      </SynevoPatientList>
+      <EnterEnterprise Ref="5" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
+        <Alias>Выбор организации</Alias>
+        <Columns isList="true" count="2">
+          <value>ORIGINAL,code,code,code,System.Int32,_x0035_4c4a9fe9cad4839a21e32b3d40d0f4b</value>
+          <value>ORIGINAL,name,name,name,System.String,_x0038_866dfaae53f4ea2818f3ee203bf3127</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Key>ca5675ebea104ab389834a77dd945c33</Key>
+        <Name>EnterEnterprise</Name>
+        <NameInSource>EnterEnterprise</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>SELECT map.enterprise.enterprisecode as Code, 
+	map.enterprise.name as Name
+	FROM map.enterprise
+	WHERE map.enterprise.enterprisecode &lt;&gt; 0
+	ORDER BY map.enterprise.name</SqlCommand>
+      </EnterEnterprise>
+      <SynevoPatientCabinet Ref="6" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
+        <Alias>Список кабинетов</Alias>
+        <Columns isList="true" count="5">
+          <value>entcode,System.Int32</value>
+          <value>cabcode,System.Int32</value>
+          <value>cab,System.String</value>
+          <value>visdate,System.String</value>
+          <value>entname,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Key>750c275094294f2688e33013708bbd45</Key>
+        <Name>SynevoPatientCabinet</Name>
+        <NameInSource>SynevoDB1</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>SELECT 
+	map.synevologservice.enterprisecode as EntCode,
+	map.medcabinet.medcabinetcode as CabCode,
+	map.medcabinet.cabinet as Cab,
+	DATEFORMAT(DATE(map.synevologservice.visittime), E'dd.mm.yy') as VisDate,
+	COALESCE( NULLIF( map.Enterprise.FullName,  E'' ), map.Enterprise.Name ) as EntName
+FROM map.synevologservice 
+JOIN map.medcabinet ON map.synevologservice.medcabinetcode = map.medcabinet.medcabinetcode
+LEFT OUTER JOIN map.medpatient ON map.synevologservice.medpatientcode = map.medpatient.medpatientcode
+LEFT OUTER JOIN map.manpassport ON map.manpassport.ManCode = map.medpatient.ManCode
+LEFT OUTER JOIN map.Enterprise ON map.Enterprise.EnterpriseCode = map.synevologservice.EnterpriseCode
+WHERE
+DATE(map.synevologservice.visittime) = DATE('{DateRecord}')
+AND map.synevologservice.enterprisecode = {Enterprise}
+Group by
+entcode, cabcode, cab, visdate, entname
+Order by
+cab asc, VisDate asc</SqlCommand>
+      </SynevoPatientCabinet>
+      <EmptyRow Ref="7" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
+        <Alias>Пустая строка</Alias>
+        <Columns isList="true" count="1">
+          <value>enterprisecode,System.Int32</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Key>ef68f1a86d1c4fb0936a9b2ca015a440</Key>
+        <Name>EmptyRow</Name>
+        <NameInSource>SynevoDB1</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>SELECT map.enterprise.enterprisecode
+	FROM map.enterprise
+	where map.enterprise.enterprisecode = {Enterprise}
+LIMIT 1</SqlCommand>
+      </EmptyRow>
+    </DataSources>
+    <Relations isList="true" count="2">
+      <RelationPatientCabinet Ref="8" type="DataRelation" isKey="true">
+        <Active>True</Active>
+        <Alias>Связь пациента с кабинетом</Alias>
+        <ChildColumns isList="true" count="2">
+          <value>visdate</value>
+          <value>cabcode</value>
+        </ChildColumns>
+        <ChildSource isRef="4" />
+        <Dictionary isRef="1" />
+        <Name>RelationPatientCabinet</Name>
+        <NameInSource>PatientToCabinet</NameInSource>
+        <ParentColumns isList="true" count="2">
+          <value>visdate</value>
+          <value>cabcode</value>
+        </ParentColumns>
+        <ParentSource isRef="6" />
+      </RelationPatientCabinet>
+      <EmptyRowPatient Ref="9" type="DataRelation" isKey="true">
+        <Alias>Пустая строка </Alias>
+        <ChildColumns isList="true" count="1">
+          <value>enterprisecode</value>
+        </ChildColumns>
+        <ChildSource isRef="7" />
+        <Dictionary isRef="1" />
+        <Name>EmptyRowPatient</Name>
+        <NameInSource>EmptyRowForPatient</NameInSource>
+        <ParentColumns isList="true" count="1">
+          <value>entcode</value>
+        </ParentColumns>
+        <ParentSource isRef="4" />
+      </EmptyRowPatient>
+    </Relations>
+    <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <Variables isList="true" count="2">
+      <value>,DateRecord,Дата_x0020_записи,,System.DateTime,_x0033__x002F_6_x002F_2020_x0020_6:58:38_x0020_PM,False,False,True,False,,bdeeb0b4fcc44dda88ce3100c8d56b90,True</value>
+      <value>,Enterprise,Организация,,System.Int32,_x0030_,False,False,True,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_ItemsInitializationType_x003E_Columns_x003C__x002F_ItemsInitializationType_x003E__x003C_KeysColumn_x003E_EnterEnterprise.code_x003C__x002F_KeysColumn_x003E__x003C_ValuesColumn_x003E_EnterEnterprise.name_x003C__x002F_ValuesColumn_x003E__x003C_BindingVariable_x0020_isNull_x003D__x0022_true_x0022__x0020__x002F__x003E__x003C_AllowUserValues_x003E_False_x003C__x002F_AllowUserValues_x003E__x003C_Keys_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_Values_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_ValuesBinding_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_,_x0035_ffb45bc5f214ea29e36f1c697eff9a7,True</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <Key>c1d641c7916c4a9fa18292c66b4e5929</Key>
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="10" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="5">
+        <ReportTitleBand1 Ref="11" type="ReportTitleBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.4,19,1.2</ClientRectangle>
+          <Components isList="true" count="2">
+            <Text1 Ref="12" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.4,19,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,16</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="10" />
+              <Parent isRef="11" />
+              <Text>Запись на прием</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text1>
+            <Text2 Ref="13" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,19,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="10" />
+              <Parent isRef="11" />
+              <Text>{SynevoPatientCabinet.entname}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text2>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>ReportTitleBand1</Name>
+          <Page isRef="10" />
+          <Parent isRef="10" />
+        </ReportTitleBand1>
+        <DataBand1 Ref="14" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,2.4,19,0.8</ClientRectangle>
+          <Components isList="true" count="2">
+            <Text3 Ref="15" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>9.4,0,9.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="10" />
+              <Parent isRef="14" />
+              <Text>Кабинет: {SynevoPatientCabinet.cab}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+            <Text5 Ref="16" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,9.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="10" />
+              <Parent isRef="14" />
+              <Text>Запись на {SynevoPatientCabinet.visdate}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text5>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>SynevoPatientCabinet</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Name>DataBand1</Name>
+          <NewPageBefore>True</NewPageBefore>
+          <Page isRef="10" />
+          <Parent isRef="10" />
+          <Sort isList="true" count="0" />
+        </DataBand1>
+        <HeaderBand1 Ref="17" type="HeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,4,19,0.8</ClientRectangle>
+          <Components isList="true" count="5">
+            <Text11 Ref="18" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.6,0,8.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="10" />
+              <Parent isRef="17" />
+              <Text>Пациент</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text11>
+            <Text12 Ref="19" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>1,0,1.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="10" />
+              <Parent isRef="17" />
+              <Text>Время приема</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="20" type="TimeFormat" isKey="true" />
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text12>
+            <Text13 Ref="21" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,1,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text13</Name>
+              <Page isRef="10" />
+              <Parent isRef="17" />
+              <Text>№ п/п</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text13>
+            <Text14 Ref="22" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>11.4,0,3.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text14</Name>
+              <Page isRef="10" />
+              <Parent isRef="17" />
+              <Text>Контакты</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text14>
+            <Text15 Ref="23" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>15.2,0,3.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="10" />
+              <Parent isRef="17" />
+              <Text>Комментарий</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text15>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>HeaderBand1</Name>
+          <Page isRef="10" />
+          <Parent isRef="10" />
+        </HeaderBand1>
+        <DataBand2 Ref="24" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,5.6,19,0.6</ClientRectangle>
+          <Components isList="true" count="5">
+            <Text4 Ref="25" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>2.6,0,8.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="10" />
+              <Parent isRef="24" />
+              <Text>{SynevoPatientList.fio}, {SynevoPatientList.birthdate} {IIF(SynevoPatientList.age==0, "", "(" + SynevoPatientList.age + "г. )")}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+            <Text6 Ref="26" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>1,0,1.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="10" />
+              <Parent isRef="24" />
+              <Text>{SynevoPatientList.vistime}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="27" type="TimeFormat" isKey="true" />
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
+            <Text7 Ref="28" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,1,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="10" />
+              <Parent isRef="24" />
+              <Text>{SynevoPatientList.num}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text7>
+            <Text8 Ref="29" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>11.4,0,3.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text8</Name>
+              <Page isRef="10" />
+              <Parent isRef="24" />
+              <Text>{SynevoPatientList.telefon}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text8>
+            <Text9 Ref="30" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>15.2,0,3.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="10" />
+              <Parent isRef="24" />
+              <Text>{SynevoPatientList.note}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text9>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName>PatientToCabinet</DataRelationName>
+          <DataSourceName>SynevoPatientList</DataSourceName>
+          <Filters isList="true" count="0" />
+          <MasterComponent isRef="14" />
+          <Name>DataBand2</Name>
+          <Page isRef="10" />
+          <Parent isRef="10" />
+          <Sort isList="true" count="0" />
+        </DataBand2>
+        <DataBand3 Ref="31" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,7,19,0.8</ClientRectangle>
+          <Components isList="true" count="1">
+            <Text10 Ref="32" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,19,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="10" />
+              <Parent isRef="31" />
+              <Text>{SynevoPatientList.maker}{IIF(SynevoPatientList.maker=="", "", ":")}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text10>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>EmptyRow</DataSourceName>
+          <Filters isList="true" count="0" />
+          <MasterComponent isRef="24" />
+          <Name>DataBand3</Name>
+          <Page isRef="10" />
+          <Parent isRef="10" />
+          <Sort isList="true" count="0" />
+        </DataBand3>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>3f1274a0f64b431daf2764b259b68612</Guid>
+      <Margins>1,1,1,1</Margins>
+      <Name>Page1</Name>
+      <PageHeight>29.7</PageHeight>
+      <PageWidth>21</PageWidth>
+      <Report isRef="0" />
+    </Page1>
+  </Pages>
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>4/24/2020 3:36:56 PM</ReportChanged>
+  <ReportCreated>3/4/2020 10:08:51 AM</ReportCreated>
+  <ReportFile>D:\StimulSoft Report Designer (Install)\Reports\Запись на прием (медцентры синэво).mrt</ReportFile>
+  <ReportGuid>0cf0e7a31a1d4ce0a83f48d55c83d579</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2020.2.2.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

@@ -1,0 +1,2 @@
+<?php
+namespace Junior\Clientside; class Response { public $result; public $id; public $error_code; public $error_message; public function __construct($result, $id = null, $error_code = null, $error_message = null) { $this->result = $result; $this->id = $id; $this->error_code = $error_code; $this->error_message = $error_message; } public function __toString() { if ($this->error_message) { return "{$this->error_code}: {$this->error_message}"; } return $this->result; } }

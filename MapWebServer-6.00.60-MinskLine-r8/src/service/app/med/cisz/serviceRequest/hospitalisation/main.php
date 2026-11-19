@@ -1,0 +1,2 @@
+<?php
+class med_cisz_serviceRequest_hospitalisation_main extends med_cisz_serviceRequest_main { use med_cisz_serviceRequest_constTrait; private PDO_ANY $db; public function import($data) { $importer = new med_cisz_serviceRequest_hospitalisation_importer(); $importer->import($data); } }

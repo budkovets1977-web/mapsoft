@@ -1,0 +1,30 @@
+[server]
+; порт, на котором будет запущен сервер
+port=7943
+; параметры метода print
+[print]
+; при отправке задани€ на принтер, преобразовывать ли текст в кодировку CP866
+CP866=1
+; если в строке талона будет больше символов, чем указано в WrapTextAfter, тогда така€ строка будет разбита на несколько
+WrapTextAfter=40
+; параметры метода executeSQL
+[executesql]
+; строка подключени€ к Ѕƒ
+;connect=ado:Provider=SQLOLEDB.1;Data Source=PROG1\SQLEXPRESS;Initial Catalog=ONCW_MIN;User ID=AAA;Password=BBB
+connect=pgsql:host=192.168.101.51;port=1111;dbname=db17;user=map;password=pam
+
+[test_com]
+ ; COM1, COM2...
+port=1
+speed=4800
+boardNumber=1
+blinkCount=3
+data=ј999
+; тип табло (0 - первый вариант, 1 - новый цветной вариант)
+kind=0
+; далее параметры дл€ kind = 1
+; цвета от 0 до 16
+letterColor=0
+digitsColor=0
+borderColor1=0
+borderColor2=0

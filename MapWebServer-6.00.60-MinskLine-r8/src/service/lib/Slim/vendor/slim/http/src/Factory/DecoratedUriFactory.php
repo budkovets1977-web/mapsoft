@@ -1,0 +1,2 @@
+<?php
+ declare(strict_types=1); namespace Slim\Http\Factory; use Psr\Http\Message\UriFactoryInterface; use Psr\Http\Message\UriInterface; use Slim\Http\Uri; class DecoratedUriFactory implements UriFactoryInterface { protected $uriFactory; public function __construct(UriFactoryInterface $uriFactory) { $this->uriFactory = $uriFactory; } public function createUri(string $uri = ''): UriInterface { $uri = $this->uriFactory->createUri($uri); return new Uri($uri); } } 

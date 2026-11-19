@@ -1,0 +1,2 @@
+<?php
+trait med_cisz_contract_rejectionBy_constTrait { const string PROFILE_NAME = 'RejectionBy'; const string PROFILE_URL = med_cisz_constant::URL_STRUCTURE_DEFINITION . self::PROFILE_NAME; const array STATUSES = [ 'executable' => 'в процессе выполнения', 'executed' => 'выполнен', 'cancelled' => 'отклонен', 'entered-in-error' => 'введен по ошибке' ]; }

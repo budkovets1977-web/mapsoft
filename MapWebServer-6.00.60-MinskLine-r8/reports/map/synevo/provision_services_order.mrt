@@ -1,0 +1,850 @@
+{
+  "ReportVersion": "2020.5.2.0",
+  "ReportGuid": "fe099790926142f7b742b6ee4823509f",
+  "ReportName": "Report",
+  "ReportAlias": "Report",
+  "ReportCreated": "/Date(0+0300)/",
+  "ReportChanged": "/Date(1619010323519+0300)/",
+  "EngineVersion": "EngineV2",
+  "CalculationMode": "Interpretation",
+  "PreviewSettings": 268435455,
+  "Script": "using System;\r\nusing System.Drawing;\r\nusing System.Windows.Forms;\r\nusing System.Data;\r\nusing Stimulsoft.Controls;\r\nusing Stimulsoft.Base.Drawing;\r\nusing Stimulsoft.Report;\r\nusing Stimulsoft.Report.Dialogs;\r\nusing Stimulsoft.Report.Components;\r\n\r\nnamespace Reports\r\n{\r\n    public class Report : Stimulsoft.Report.StiReport\r\n    {\r\n        public Report()        {\r\n            this.InitializeComponent();\r\n        }\r\n\r\n        #region StiReport Designer generated code - do not modify\r\n\t\t#endregion StiReport Designer generated code - do not modify\r\n    }\r\n}\r\n",
+  "ReferencedAssemblies": {
+    "0": "System.Dll",
+    "1": "System.Drawing.Dll",
+    "2": "System.Windows.Forms.Dll",
+    "3": "System.Data.Dll",
+    "4": "System.Xml.Dll",
+    "5": "Stimulsoft.Controls.Dll",
+    "6": "Stimulsoft.Base.Dll",
+    "7": "Stimulsoft.Report.Dll"
+  },
+  "Dictionary": {
+    "Variables": {
+      "0": {
+        "Value": "3/6/2020 6:58:38 PM",
+        "Name": "На_дату",
+        "Alias": "Дата записи",
+        "Type": "System.DateTime",
+        "RequestFromUser": true,
+        "Key": "bdeeb0b4fcc44dda88ce3100c8d56b90",
+        "AllowUseAsSqlParameter": true
+      },
+      "1": {
+        "Value": "0",
+        "Name": "Организация",
+        "DialogInfo": {
+          "ItemsInitializationType": "Columns",
+          "KeysColumn": "EnterEnterprise.code",
+          "ValuesColumn": "EnterEnterprise.name",
+          "AllowUserValues": false
+        },
+        "Alias": "Организация",
+        "Type": "System.Int32",
+        "RequestFromUser": true,
+        "Key": "5ffb45bc5f214ea29e36f1c697eff9a7",
+        "AllowUseAsSqlParameter": true
+      },
+      "2": {
+        "Value": "0",
+        "Name": "Заказ",
+        "DialogInfo": {
+          "ItemsInitializationType": "Columns",
+          "KeysColumn": "SelectOrder.logcode",
+          "ValuesColumn": "SelectOrder.logname"
+        },
+        "Alias": "Заказ",
+        "Type": "System.Int32",
+        "RequestFromUser": true,
+        "Key": "ed536a9367d94bb19f6743b4e06dd0c3",
+        "AllowUseAsSqlParameter": true
+      }
+    },
+    "DataSources": {
+      "0": {
+        "Ident": "StiPostgreSQLSource",
+        "Name": "SynevoPatientList",
+        "Alias": "Список пациентов",
+        "Key": "ac3332c9b94f43ecbacde606a129409d",
+        "Columns": {
+          "0": {
+            "Name": "entcode",
+            "Index": -1,
+            "NameInSource": "entcode",
+            "Alias": "entcode",
+            "Type": "System.Int32",
+            "Key": "79ddd08dffcf4568936b3883d40e998e"
+          },
+          "1": {
+            "Name": "entname",
+            "Index": -1,
+            "NameInSource": "entname",
+            "Alias": "entname",
+            "Type": "System.String",
+            "Key": "aefb39e28fa44fa0978a9f99ce287de8"
+          },
+          "2": {
+            "Name": "logcode",
+            "Index": -1,
+            "NameInSource": "logcode",
+            "Alias": "logcode",
+            "Type": "System.Int32",
+            "Key": "dbe0557752af4f838361e26b8525e5b5"
+          },
+          "3": {
+            "Name": "datenum",
+            "Index": -1,
+            "NameInSource": "datenum",
+            "Alias": "datenum",
+            "Type": "System.String",
+            "Key": "a23e7679a7804ab6bcfe6ed6af25567a"
+          },
+          "4": {
+            "Name": "datedoc",
+            "Index": -1,
+            "NameInSource": "datedoc",
+            "Alias": "datedoc",
+            "Type": "System.String",
+            "Key": "50437200143a4021b47510701e95d544"
+          },
+          "5": {
+            "Name": "visdate",
+            "Index": -1,
+            "NameInSource": "visdate",
+            "Alias": "visdate",
+            "Type": "System.String",
+            "Key": "b94e3f6c86064de19a53f354b1280d0e"
+          },
+          "6": {
+            "Name": "vistime",
+            "Index": -1,
+            "NameInSource": "vistime",
+            "Alias": "vistime",
+            "Type": "System.String",
+            "Key": "fd8abc508723453aaeaa7efd07087d6a"
+          },
+          "7": {
+            "Name": "cabname",
+            "Index": -1,
+            "NameInSource": "cabname",
+            "Alias": "cabname",
+            "Type": "System.String",
+            "Key": "76db2e379e19474aa5eb7c58ea7470e2"
+          },
+          "8": {
+            "Name": "maker",
+            "Index": -1,
+            "NameInSource": "maker",
+            "Alias": "maker",
+            "Type": "System.String",
+            "Key": "53cac85982d345759e5374750cde76af"
+          },
+          "9": {
+            "Name": "note",
+            "Index": -1,
+            "NameInSource": "note",
+            "Alias": "note",
+            "Type": "System.String",
+            "Key": "f4213f62bc414048a609747d117d4ce7"
+          },
+          "10": {
+            "Name": "fio",
+            "Index": -1,
+            "NameInSource": "fio",
+            "Alias": "fio",
+            "Type": "System.String",
+            "Key": "cbb9e4a8077c4c4d8c2bab23cbc4abc0"
+          },
+          "11": {
+            "Name": "birthdate",
+            "Index": -1,
+            "NameInSource": "birthdate",
+            "Alias": "birthdate",
+            "Type": "System.String",
+            "Key": "2723cd477a4a41bd834775bd469bb1b6"
+          },
+          "12": {
+            "Name": "adress",
+            "Index": -1,
+            "NameInSource": "adress",
+            "Alias": "adress",
+            "Type": "System.String",
+            "Key": "edc6cfb0964840d18dbcd9b5e45050c2"
+          },
+          "13": {
+            "Name": "telefon",
+            "Index": -1,
+            "NameInSource": "telefon",
+            "Alias": "telefon",
+            "Type": "System.String",
+            "Key": "ca0e04cc2afc45c6ade9dd176ed80d8f"
+          },
+          "14": {
+            "Name": "nickname",
+            "Index": -1,
+            "NameInSource": "nickname",
+            "Alias": "nickname",
+            "Type": "System.String",
+            "Key": "19cc7cfa699c4b1d8dc3dcfd0164bc56"
+          },
+          "15": {
+            "Name": "summ",
+            "Index": -1,
+            "NameInSource": "summ",
+            "Alias": "summ",
+            "Type": "System.Decimal",
+            "Key": "c06391d3c03b4a0f8181a0c60f2ea3ea"
+          },
+          "16": {
+            "Name": "paymentsum",
+            "Index": -1,
+            "NameInSource": "paymentsum",
+            "Alias": "paymentsum",
+            "Type": "System.Decimal",
+            "Key": "a2fa628f2e764052b2da0d36fd6c35e0"
+          }
+        },
+        "NameInSource": "SynevoDB1",
+        "SqlCommand": "SELECT \r\n\tmap.synevologservice.enterprisecode as EntCode,\r\n\tCOALESCE( NULLIF( map.Enterprise.FullName,  E'' ), map.Enterprise.Name ) as EntName,\r\n\tmap.synevologservice.synevologservicecode as LogCode,\r\n\tmap.synevologservice.documentnumber as DateNum,\r\n\tDATEFORMAT(map.synevologservice.documentdate,  E'dd.mm.yyyy' ) as DateDoc,\r\n    DATEFORMAT(map.synevologservice.visittime,  E'dd.mm.yyyy' ) as VisDate,\r\n\tDATEFORMAT(map.synevologservice.visittime,  E'hh:mm' ) as VisTime,\r\n    map.medcabinet.cabinet as CabName,\r\n    map.synevologservice.doctorfio as Maker,\r\n    map.synevologservice.Note as Note,\r\n    CASE COALESCE(map.synevologservice.medpatientcode, 0)<>(0 )WHEN true THEN FN_cmFIO(map.medpatient.ManCode) WHEN false THEN map.synevologservice.patientfio END as FIO,\r\n    COALESCE( DATEFORMAT( NULLIF( map.manpassport.DateOfBirth , DATE(  E'1899-12-31' )),  E'dd.mm.yyyy' ),  E' н/у' ) as BirthDate,\r\n    FN_cmCalcAddress( map.synevologservice.medpatientcode , 4, 1, 1 ) as adress,\r\n    (SELECT string_agg((Q.PhType || Q.PhNum)::text,  E'; ' ORDER BY Q.PhType )\r\n      FROM\r\n     (SELECT CASE MP.PhoneType = 1 WHEN true THEN  E'д.т. ' WHEN false THEN CASE MP.PhoneType = 2 WHEN true THEN  E'р.т. ' WHEN false THEN  E'м.т. ' END END as PhType, string_agg((MP.PhoneNumber )::text, ',' ) as PhNum\r\n         FROM ManPhone AS MP WHERE MP.ManCode = map.synevologservice.medpatientcode AND MP.PhoneNumber <> ( E'' )GROUP BY 1\r\n        ORDER BY 1) AS Q) as Telefon,\r\n    map.webuser.nick as NickName,\r\n    map.synevologservice.summ, \r\n    map.synevologservice.paymentsum\r\nFROM map.synevologservice \r\nLEFT OUTER JOIN map.medcabinet ON map.synevologservice.medcabinetcode = map.medcabinet.medcabinetcode\r\nLEFT OUTER JOIN map.medpatient ON map.synevologservice.medpatientcode = map.medpatient.medpatientcode\r\nLEFT OUTER JOIN map.manpassport ON map.manpassport.ManCode = map.medpatient.ManCode\r\nLEFT OUTER JOIN map.webuser ON map.webuser.webusercode = map.synevologservice.webusercode\r\nLEFT OUTER JOIN map.Enterprise ON map.Enterprise.EnterpriseCode = map.synevologservice.EnterpriseCode\r\nWHERE map.synevologservice.enterprisecode = :Организация\r\nAND map.synevologservice.synevologservicecode = :Заказ\r\nORDER BY\r\nmap.synevologservice.enterprisecode asc, map.synevologservice.visittime asc, map.medcabinet.medcabinetcode asc"
+      },
+      "1": {
+        "Ident": "StiPostgreSQLSource",
+        "Name": "EnterEnterprise",
+        "Alias": "Выбор организации",
+        "Key": "ca5675ebea104ab389834a77dd945c33",
+        "Columns": {
+          "0": {
+            "Name": "code",
+            "Index": -1,
+            "NameInSource": "code",
+            "Alias": "code",
+            "Type": "System.Int32",
+            "Key": "54c4a9fe9cad4839a21e32b3d40d0f4b"
+          },
+          "1": {
+            "Name": "name",
+            "Index": -1,
+            "NameInSource": "name",
+            "Alias": "name",
+            "Type": "System.String",
+            "Key": "8866dfaae53f4ea2818f3ee203bf3127"
+          }
+        },
+        "NameInSource": "EnterEnterprise",
+        "SqlCommand": "SELECT map.enterprise.enterprisecode as Code, \r\n\tmap.enterprise.name as Name\r\n\tFROM map.enterprise\r\n\tWHERE map.enterprise.enterprisecode <> 0\r\n\tORDER BY map.enterprise.name"
+      },
+      "2": {
+        "Ident": "StiPostgreSQLSource",
+        "Name": "SynevoPatientService",
+        "Alias": "Список услуг",
+        "Key": "750c275094294f2688e33013708bbd45",
+        "Columns": {
+          "0": {
+            "Name": "logcode",
+            "Index": -1,
+            "NameInSource": "logcode",
+            "Alias": "logcode",
+            "Type": "System.Int32"
+          },
+          "1": {
+            "Name": "servcode",
+            "Index": -1,
+            "NameInSource": "servcode",
+            "Alias": "servcode",
+            "Type": "System.Int32"
+          },
+          "2": {
+            "Name": "servname",
+            "Index": -1,
+            "NameInSource": "servname",
+            "Alias": "servname",
+            "Type": "System.String"
+          },
+          "3": {
+            "Name": "price",
+            "Index": -1,
+            "NameInSource": "price",
+            "Alias": "price",
+            "Type": "System.Decimal"
+          },
+          "4": {
+            "Name": "amount",
+            "Index": -1,
+            "NameInSource": "amount",
+            "Alias": "amount",
+            "Type": "System.Decimal"
+          },
+          "5": {
+            "Name": "result",
+            "Index": -1,
+            "NameInSource": "result",
+            "Alias": "result",
+            "Type": "System.Decimal"
+          }
+        },
+        "NameInSource": "SynevoDB1",
+        "SqlCommand": "SELECT \r\n\tmap.synevologservice.synevologservicecode as LogCode,\r\n\tmap.synevologservicerow.synevologservicerowcode as ServCode,\r\n\tmap.synevologservicerow.servicename as ServName,\r\n    map.synevologservicerow.serviceprice as Price,\r\n\tmap.synevologservicerow.serviceamount as Amount,\r\n\tmap.synevologservicerow.resultsum as Result\r\nFROM map.synevologservice \r\nJOIN map.synevologservicerow ON map.synevologservicerow.synevologservicecode =  map.synevologservice.synevologservicecode\r\nWHERE\r\nmap.synevologservice.enterprisecode = :Организация\r\nAND map.synevologservice.synevologservicecode = :Заказ\r\nOrder by\r\nLogCode, ServName asc"
+      },
+      "3": {
+        "Ident": "StiPostgreSQLSource",
+        "Name": "EmptyRow",
+        "Alias": "Пустая строка",
+        "Key": "ef68f1a86d1c4fb0936a9b2ca015a440",
+        "Columns": {
+          "0": {
+            "Name": "enterprisecode",
+            "Index": -1,
+            "NameInSource": "enterprisecode",
+            "Alias": "enterprisecode",
+            "Type": "System.Int32",
+            "Key": "2e17a379e994464390708a66777775a8"
+          }
+        },
+        "NameInSource": "SynevoDB1",
+        "SqlCommand": "SELECT map.enterprise.enterprisecode\r\n\tFROM map.enterprise\r\n\twhere map.enterprise.enterprisecode = :Организация\r\nLIMIT 1"
+      },
+      "4": {
+        "Ident": "StiPostgreSQLSource",
+        "Name": "SelectOrder",
+        "Alias": "ВыборЗаказа",
+        "Key": "a91f0a60eda94befa5db7a8a5c2886b9",
+        "Columns": {
+          "0": {
+            "Name": "logcode",
+            "Index": -1,
+            "NameInSource": "logcode",
+            "Alias": "logcode",
+            "Type": "System.Int32",
+            "Key": "16ec5141df2c45c6a7575d4edea8adb3"
+          },
+          "1": {
+            "Name": "logname",
+            "Index": -1,
+            "NameInSource": "logname",
+            "Alias": "logname",
+            "Type": "System.String",
+            "Key": "8693b7ab66ce4b309e42b12c8e736532"
+          }
+        },
+        "NameInSource": "EnterOrder",
+        "SqlCommand": "SELECT\r\n\tmap.synevologservice.synevologservicecode as LogCode,\r\n\t'№' + map.synevologservice.documentnumber + ' от ' + DATEFORMAT(map.synevologservice.documentdate,  E'dd.mm.yyyy' ) as LogName\r\nFROM map.synevologservice \r\nJOIN map.medcabinet ON map.synevologservice.medcabinetcode = map.medcabinet.medcabinetcode\r\nLEFT OUTER JOIN map.medpatient ON map.synevologservice.medpatientcode = map.medpatient.medpatientcode\r\nLEFT OUTER JOIN map.manpassport ON map.manpassport.ManCode = map.medpatient.ManCode\r\nLEFT OUTER JOIN map.webuser ON map.webuser.webusercode = map.synevologservice.webusercode\r\nLEFT OUTER JOIN map.Enterprise ON map.Enterprise.EnterpriseCode = map.synevologservice.EnterpriseCode\r\nWHERE map.synevologservice.enterprisecode = :Организация\r\nAND DATE(map.synevologservice.visittime) = :На_дату\r\nAND map.synevologservice.synevologservicecode <> 0\r\nAND (EXISTS(SELECT slr.synevologservicerowcode FROM map.synevologservicerow as slr WHERE slr.synevologservicecode = map.synevologservice.synevologservicecode)\r\nOR COALESCE(map.synevologservice.paymentsum, 0)<>(0))\r\nORDER BY\r\nLogName asc"
+      }
+    },
+    "Databases": {
+      "0": {
+        "Ident": "StiPostgreSQLDatabase",
+        "Name": "SynevoDB1",
+        "Alias": "SynevoPatientList",
+        "Key": "fc1f626b36bc4f24b18c50e9dd2012dd",
+        "ConnectionStringEncrypted": "41L1CdcFAZFiFaVYxFg1Xot2dcJJS1qYRVihlGENZWP5cGXreUGjhMBcoczo4bEXkHB5YE0JUYBHGD2dw1j2L994ZaHIXdOZ4kXQzM8="
+      },
+      "1": {
+        "Ident": "StiPostgreSQLDatabase",
+        "Name": "EnterEnterprise",
+        "Alias": "Выбор организации для параметра",
+        "Key": "f67c7112291643908e71d22f57018b9c",
+        "ConnectionStringEncrypted": "41L1CdcFAZFiFaVYxFg1Xot2dcJJS1qYRVihlGENZWP5cGXreUGjhMBcoczo4bEXkHB5YE0JUYBHGD2dw1j2L994ZaHIXdOZ4kXQzM8="
+      },
+      "2": {
+        "Ident": "StiPostgreSQLDatabase",
+        "Name": "EnterOrder",
+        "Alias": "Выбор заказа для параметра",
+        "Key": "be5ca1d7d1a84278be46429ce6fb181a",
+        "ConnectionStringEncrypted": "41L1CdcFAZFiFaVYxFg1Xot2dcJJS1qYRVihlGENZWP5cGXreUGjhMBcoczo4bEXkHB5YE0JUYBHGD2dw1j2L994ZaHIXdOZ4kXQzM8="
+      }
+    },
+    "Relations": {
+      "0": {
+        "Name": "EmptyRowPatient",
+        "ChildColumns": {
+          "0": "enterprisecode"
+        },
+        "ParentColumns": {
+          "0": "entcode"
+        },
+        "NameInSource": "EmptyRowForPatient",
+        "Alias": "Пустая строка ",
+        "Key": "0998e8f653d14b5a8962334067bf53e3",
+        "ParentSource": "SynevoPatientList",
+        "ChildSource": "EmptyRow"
+      },
+      "1": {
+        "Name": "ServiceToDoc",
+        "ChildColumns": {
+          "0": "logcode"
+        },
+        "ParentColumns": {
+          "0": "logcode"
+        },
+        "NameInSource": "Связь",
+        "Alias": "Услуги документа",
+        "Active": true,
+        "Key": "84cd88be2e74430e9c7d09328a137129",
+        "ParentSource": "SynevoPatientList",
+        "ChildSource": "SynevoPatientService"
+      }
+    }
+  },
+  "Pages": {
+    "0": {
+      "Ident": "StiPage",
+      "Name": "Page1",
+      "Guid": "3f1274a0f64b431daf2764b259b68612",
+      "Interaction": {
+        "Ident": "StiInteraction"
+      },
+      "Border": ";;2;;;;;solid:Black",
+      "Brush": "solid:",
+      "Components": {
+        "0": {
+          "Ident": "StiReportTitleBand",
+          "Name": "ReportTitleBand1",
+          "ClientRectangle": "0,0.4,19,1.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text1",
+              "Guid": "e4d8b0642b589043208058fdefaadc05",
+              "ClientRectangle": "0,0.4,19,0.8",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Заказ на оказание медицинских услуг"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": ";16;;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text2",
+              "Guid": "1547682a685768e785e010a4e49f78f4",
+              "ClientRectangle": "0,0,19,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{SynevoPatientList.entname}"
+              },
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            }
+          }
+        },
+        "1": {
+          "Ident": "StiDataBand",
+          "Name": "DataBand1",
+          "ClientRectangle": "0,2.4,19,0.8",
+          "Interaction": {
+            "Ident": "StiBandInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text5",
+              "Guid": "26056081f8fde0325291a579458beab3",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "0,0,19,0.8",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "№{SynevoPatientList.datenum}    {SynevoPatientList.visdate}    {SynevoPatientList.vistime} каб.{SynevoPatientList.cabname}     {SynevoPatientList.maker}     {SynevoPatientList.note}\r\n{SynevoPatientList.fio} {SynevoPatientList.birthdate}\r\n{SynevoPatientList.adress} {SynevoPatientList.telefon}\r\n"
+              },
+              "VertAlignment": "Center",
+              "Font": ";10;;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "Type": "Expression"
+            }
+          },
+          "PrintIfDetailEmpty": true,
+          "DataSourceName": "SynevoPatientList"
+        },
+        "2": {
+          "Ident": "StiHeaderBand",
+          "Name": "HeaderBand1",
+          "ClientRectangle": "0,4,19,0.8",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text11",
+              "Guid": "ae9c350c8c6ad97ea7bdfb39615c02d1",
+              "ClientRectangle": "0,0,11.8,0.8",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Наименование услуги"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "Type": "Expression"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text12",
+              "Guid": "6ffef5eead2d208289fe4f1f5161a92c",
+              "ClientRectangle": "11.8,0,1.8,0.8",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Количество"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiTimeFormatService"
+              },
+              "Type": "Expression"
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text14",
+              "Guid": "8b1c69ad32fd331f8b9705f132d2cd1f",
+              "ClientRectangle": "13.6,0,2.6,0.8",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Цена"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "Type": "Expression"
+            },
+            "3": {
+              "Ident": "StiText",
+              "Name": "Text15",
+              "Guid": "2c971716bd5ec9163c218574cc5afe43",
+              "ClientRectangle": "16.2,0,2.8,0.8",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Сумма"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "Type": "Expression"
+            }
+          }
+        },
+        "3": {
+          "Ident": "StiDataBand",
+          "Name": "DataBand2",
+          "ClientRectangle": "0,5.6,19,0.6",
+          "Interaction": {
+            "Ident": "StiBandInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text4",
+              "Guid": "fa7b44ea95e899224f814d5fe83d5b0c",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "0,0,11.8,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{SynevoPatientService.servname}"
+              },
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "Type": "Expression"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text6",
+              "Guid": "95ec7965155391ada21a53ae16e0e178",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "11.8,0,1.8,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{SynevoPatientService.amount}"
+              },
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "GroupSeparator": " "
+              },
+              "Type": "Expression"
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text8",
+              "Guid": "fda6df380f5dea4947043ff606be0cfa",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "13.6,0,2.6,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{SynevoPatientService.price}"
+              },
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "GroupSeparator": " ",
+                "State": "DecimalDigits"
+              },
+              "Type": "Expression"
+            },
+            "3": {
+              "Ident": "StiText",
+              "Name": "Text9",
+              "Guid": "8bc7d8eb7639823280d2e469a2a28d2c",
+              "CanGrow": true,
+              "GrowToHeight": true,
+              "ClientRectangle": "16.2,0,2.8,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{SynevoPatientService.result}"
+              },
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "GroupSeparator": " ",
+                "State": "DecimalDigits"
+              },
+              "Type": "Expression"
+            }
+          },
+          "DataSourceName": "SynevoPatientService",
+          "DataRelationName": "Связь",
+          "MasterComponent": "DataBand1"
+        },
+        "4": {
+          "Ident": "StiFooterBand",
+          "Name": "FooterBand1",
+          "ClientRectangle": "0,7,19,1.4",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text3",
+              "Guid": "b52eb2aa76282f48a5afce8fda9a3c98",
+              "ClientRectangle": "0,0,1.2,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Итого:"
+              },
+              "VertAlignment": "Center",
+              "Font": ";10;;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text7",
+              "Guid": "398d7a07b357a2b90f64f427a4c45f5d",
+              "ClientRectangle": "1.2,0,2.4,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{SynevoPatientList.summ}"
+              },
+              "VertAlignment": "Center",
+              "Font": ";10;;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "GroupSeparator": " ",
+                "State": "DecimalDigits"
+              },
+              "Type": "Expression"
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text13",
+              "Guid": "fd382f75e34fb7f8af831327ada1ccf0",
+              "ClientRectangle": "5.4,0,1.8,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Оплачено:"
+              },
+              "VertAlignment": "Center",
+              "Font": ";10;;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "3": {
+              "Ident": "StiText",
+              "Name": "Text16",
+              "Guid": "2e96f04e411f04b74c5770ed6d6b17b4",
+              "ClientRectangle": "7.2,0,2.4,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{SynevoPatientList.paymentsum}"
+              },
+              "VertAlignment": "Center",
+              "Font": ";10;;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextFormat": {
+                "Ident": "StiNumberFormatService",
+                "NegativePattern": 1,
+                "GroupSeparator": " ",
+                "State": "DecimalDigits"
+              },
+              "Type": "Expression"
+            },
+            "4": {
+              "Ident": "StiText",
+              "Name": "Text17",
+              "Guid": "e81b09807e5f5d3962b6b74b7c1adf6a",
+              "ClientRectangle": "0,0.6,19,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Запись: {SynevoPatientList.nickname}  {SynevoPatientList.datedoc}"
+              },
+              "VertAlignment": "Center",
+              "Font": ";10;;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "5": {
+              "Ident": "StiText",
+              "Name": "Text10",
+              "ClientRectangle": "0,1,19,0.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Font": ";10;;",
+              "Border": "Top;;;Dash;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            }
+          },
+          "PrintIfEmpty": true
+        }
+      },
+      "PageWidth": 21.0,
+      "PageHeight": 29.7,
+      "Watermark": {
+        "TextBrush": "solid:50,0,0,0"
+      },
+      "Margins": {
+        "Left": 1.0,
+        "Right": 1.0,
+        "Top": 1.0,
+        "Bottom": 1.0
+      }
+    }
+  }
+}

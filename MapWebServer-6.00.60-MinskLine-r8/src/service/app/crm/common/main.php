@@ -1,0 +1,2 @@
+<?php
+ $serviceClass = 'map_crm_common_main'; class map_crm_common_main extends common_main { public function readNavigatorItems ($params) { $userRoles = safe_explode(',', getSessionValue('roles')); return $this->loadJsonNavigatorItems($userRoles); } } 

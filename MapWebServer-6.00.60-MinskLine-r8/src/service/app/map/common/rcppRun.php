@@ -1,0 +1,2 @@
+<?php
+ require_once(__DIR__.'/../../init.php'); class map_common_rcppRun { public function run($params) { $module = isEmptyProperty($params, 'module'); $fn = isEmptyProperty($params, 'fn'); $param = isEmptyProperty($params, 'params'); $errorStr = 'Не передан параметр '; if (!$module) { throw new \Exception($errorStr . '"module"'); } if (!$fn) { throw new \Exception($errorStr . '"fn"'); } return rcppRun($module, $fn, $param); } } $service = new Junior\Server(new map_common_rcppRun()); $service->process(); 

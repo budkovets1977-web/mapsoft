@@ -1,0 +1,21 @@
+﻿{
+    "manifest_version": 2,
+    "minimum_chrome_version": "46.0",
+    "offline_enabled": true,
+	"name": "Mapsoft Tools App",
+	"description": "Помощник для веб приложений Mapsoft",
+	"version": "0.0.4",
+	"icons": {
+        "16": "icons/16.png",
+	    "48": "icons/48.png",
+	    "128": "icons/128.png"
+	},
+    "app": {
+        "background": {
+           "scripts": ["js/background.js"]
+        }
+	},
+	"permissions": [{
+        "fileSystem": ["write", "retainEntries", "directory"]
+    }]
+}

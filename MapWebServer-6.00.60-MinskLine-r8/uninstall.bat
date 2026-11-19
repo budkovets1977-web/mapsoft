@@ -1,0 +1,1 @@
+@call bin\setup.bat uninstall

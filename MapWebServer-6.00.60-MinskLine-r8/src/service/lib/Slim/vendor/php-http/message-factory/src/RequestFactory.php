@@ -1,0 +1,2 @@
+<?php
+ namespace Http\Message; use Psr\Http\Message\UriInterface; use Psr\Http\Message\RequestInterface; use Psr\Http\Message\StreamInterface; interface RequestFactory { public function createRequest( $method, $uri, array $headers = [], $body = null, $protocolVersion = '1.1' ); } 

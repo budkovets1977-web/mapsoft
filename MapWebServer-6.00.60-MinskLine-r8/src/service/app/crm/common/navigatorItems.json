@@ -1,0 +1,21 @@
+{
+	"children": [{
+		"id": 1,
+		"name": "Заявки на пароли",
+		"leaf": true,
+		"roles": "password_db_request",
+		"widget": "crm-passworddb-requests"
+	}, {
+		"id": 2,
+		"name": "Аккредитация заявок",
+		"leaf": true,
+		"roles": "password_db_approve",
+		"widget": "crm-passworddb-approvals"
+	},	{
+		"id": 3,
+		"name": "Журнал активности",
+		"leaf": true,
+		"roles": "password_db_log",
+		"widget": "crm-passworddb-log"
+	}]
+}

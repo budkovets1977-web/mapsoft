@@ -1,0 +1,3183 @@
+.chrome-43 .x-form-text-wrap{vertical-align:top}.common-login-customer-group{font-weight:bold;text-decoration:underline}.coupons-grid-row-nothing{background-color:#f8f8f8;color:#d8d8d8}.coupons-grid-row-ordered{background-color:#cff}.coupons-grid-action-cancel{background-image:url(images/coupons/coupons-grid-action-cancel.png)}.coupons-grid-action-free{background-image:url(images/coupons/coupons-grid-action-free.png)}.coupons-grid-action-restore{background-image:url(images/coupons/coupons-grid-action-restore.png)}.coupons-grid-action-order{background-image:url(images/coupons/coupons-grid-action-order.png)}.receptionist-grid-action-clear{background-image:url(images/receptionist/receptionist-grid-action-clear.png)}.receptionist-grid-action-generate{background-image:url(images/receptionist/receptionist-grid-action-generate.png)}
+
+/* ===== MAPSOFT modern medical theme 2026 (ported from 6.00.47 build) ===== */
+/* ==========================================================================
+   MAPSOFT МИС — modern medical theme (2026, v2)
+   --------------------------------------------------------------------------
+   Design language:
+     · cool blue / pale blue palette, white surfaces, soft layered shadows
+     · 14px card radius, 10px control radius, 34px control height
+     · Ubuntu (bundled) with tabular numerals, tighter tracking on headings
+     · real FontAwesome 4.7 glyphs (the webfont is registered here)
+   Loaded last through resources/common.css in every theme build.
+   ========================================================================== */
+
+/* ---- 1. FontAwesome webfont registration --------------------------------
+   App-all_*.css declare .fa-* glyph rules but never declare @font-face,
+   so every .x-fa icon rendered as an empty box. Registering the bundled
+   webfont fixes the header tools, navigator icons and grid icons at once. */
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('font-awesome/fonts/fontawesome-webfont.eot');
+    src: url('font-awesome/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font-awesome/fonts/fontawesome-webfont.woff2') format('woff2'),
+         url('font-awesome/fonts/fontawesome-webfont.woff') format('woff'),
+         url('font-awesome/fonts/fontawesome-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ---- 1b. Webfont delivery: WOFF first, TrueType kept as fallback --------
+   App-all_*.css declares all 18 faces pointing at .ttf (88-120 KB each).
+   Converted copies live next to them as .woff — same glyphs, ~44% smaller.
+   Re-declared here because common.css is the last stylesheet in the chain and
+   the last matching @font-face wins. WOFF2 would be smaller still, but the
+   brotli encoder is not available in this environment.                     */
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('fonts/Ubuntu-Light.woff') format('woff'), url('fonts/Ubuntu-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('fonts/Ubuntu-LightItalic.woff') format('woff'), url('fonts/Ubuntu-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('fonts/Ubuntu-Regular.woff') format('woff'), url('fonts/Ubuntu-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('fonts/Ubuntu-Italic.woff') format('woff'), url('fonts/Ubuntu-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('fonts/Ubuntu-Medium.woff') format('woff'), url('fonts/Ubuntu-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('fonts/Ubuntu-MediumItalic.woff') format('woff'), url('fonts/Ubuntu-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('fonts/Ubuntu-Bold.woff') format('woff'), url('fonts/Ubuntu-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('fonts/Ubuntu-BoldItalic.woff') format('woff'), url('fonts/Ubuntu-BoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fonts/OpenSans-Light.woff') format('woff'), url('fonts/OpenSans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fonts/OpenSans-LightItalic.woff') format('woff'), url('fonts/OpenSans-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fonts/OpenSans-Regular.woff') format('woff'), url('fonts/OpenSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fonts/OpenSans-Italic.woff') format('woff'), url('fonts/OpenSans-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fonts/OpenSans-Semibold.woff') format('woff'), url('fonts/OpenSans-Semibold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fonts/OpenSans-SemiboldItalic.woff') format('woff'), url('fonts/OpenSans-SemiboldItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fonts/OpenSans-Bold.woff') format('woff'), url('fonts/OpenSans-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fonts/OpenSans-BoldItalic.woff') format('woff'), url('fonts/OpenSans-BoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fonts/OpenSans-ExtraBold.woff') format('woff'), url('fonts/OpenSans-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fonts/OpenSans-ExtraBoldItalic.woff') format('woff'), url('fonts/OpenSans-ExtraBoldItalic.ttf') format('truetype');
+    font-weight: 800;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* ---- 2. Design tokens --------------------------------------------------- */
+:root {
+    --ms-blue-900: #0b3f77;
+    --ms-blue-800: #0d5199;
+    --ms-blue-700: #0f63bd;
+    --ms-blue-600: #1668c9;
+    --ms-blue-500: #2b86e0;
+    --ms-blue-400: #56a8ee;
+    --ms-cyan-500: #0e9bd8;
+
+    --ms-ink-900: #16243a;
+    --ms-ink-700: #24405e;
+    --ms-ink-500: #476b8f;
+    --ms-ink-400: #6b86a3;
+    --ms-ink-300: #9db2c7;
+
+    --ms-line: #dde8f4;
+    --ms-line-2: #eaf1f8;
+    --ms-surface: #ffffff;
+    --ms-surface-2: #f7fbfe;
+    --ms-surface-3: #eef4fa;
+
+    --ms-canvas: #eef3f9;
+
+    --ms-r-card: 14px;
+    --ms-r-control: 10px;
+    --ms-r-chip: 8px;
+
+    --ms-sh-sm: 0 1px 2px rgba(13, 55, 95, .07), 0 1px 3px rgba(13, 55, 95, .05);
+    --ms-sh-md: 0 3px 10px rgba(13, 55, 95, .09), 0 1px 3px rgba(13, 55, 95, .06);
+    /* Large blur radii are the most expensive thing in this stylesheet to
+       paint. The big shadow is reserved for real dialogs only. */
+    --ms-sh-lg: 0 10px 28px rgba(11, 45, 82, .16), 0 2px 6px rgba(11, 45, 82, .07);
+
+    /* White labels ride on this gradient, so every stop has to clear 4.5:1 on
+       its own. The old stops did not: #1f7fd8 measured 4,13:1 and #0e9bd8
+       3,13:1, i.e. the right half of every primary button failed WCAG AA.
+       The replacements sit 23-35 RGB units from the old middle tone, so the
+       fill still reads as the same blue; the cyan accent itself survives in
+       --ms-cyan-500 for highlights.
+         #1668c9 -> 5,44:1    #1873c6 -> 4,88:1    #0f74bb -> 4,96:1 */
+    --ms-grad: linear-gradient(135deg, #1668c9 0%, #1873c6 55%, #0f74bb 100%);
+    --ms-grad-soft: linear-gradient(135deg, #e9f3fd 0%, #f2f9fe 100%);
+}
+
+/* ---- 3. Base canvas & typography ---------------------------------------- */
+html,
+body {
+    background-color: var(--ms-canvas) !important;
+    /* NB: deliberately NOT `background-attachment: fixed`. With a fixed
+       attachment Chrome has to repaint the whole viewport on every scroll
+       frame. A plain gradient on the root is visually identical here because
+       the app shell does not scroll the document — the Ext scrollers do. */
+    background-image:
+        radial-gradient(1100px 520px at 18% -12%, #e4effb 0%, rgba(228, 239, 251, 0) 70%),
+        radial-gradient(900px 480px at 92% 4%, #e6f4fb 0%, rgba(230, 244, 251, 0) 68%);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+}
+
+body.x-body {
+    font-family: Ubuntu, "Open Sans", "Segoe UI", "Helvetica Neue", helvetica, arial, sans-serif;
+    font-size: 13.5px;
+    color: var(--ms-ink-900);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.x-border-layout-ct,
+.x-panel-body-default,
+.x-panel-body-default-framed {
+    background-color: var(--ms-surface);
+}
+
+.x-border-layout-ct {
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---- 4. Top application bar -------------------------------------------- */
+.app-common-main > .x-panel-header-default,
+#common-main > .x-panel-header,
+#common-main_header {
+    background: var(--ms-grad) !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(9, 55, 104, .35) !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .10) inset, 0 6px 18px rgba(11, 45, 82, .16);
+}
+
+.app-common-main > .x-panel-header-default .x-panel-header-title-default,
+#common-main .x-panel-header .x-panel-header-title-default {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .015em;
+    padding: 0 18px;
+}
+
+#common-main_header-title-textEl table td {
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: .015em;
+    padding-right: 2px;
+}
+
+/* signed-in user chip on the right of the title.
+   The title is a 100%-wide table, so the chip must hug its own content —
+   otherwise the cell background stretches across the whole bar. */
+#common-main_header-title-textEl table {
+    width: 100%;
+}
+
+#common-main_header-title-textEl table td {
+    vertical-align: middle;
+}
+
+#common-main_header-title-textEl table td[align="right"] {
+    width: 1%;
+    white-space: nowrap;
+    font-size: 12.5px;
+    font-weight: 600;
+    /* The chip used to lighten the band (white 13%) and print #dcecfb
+       on it. Lightening the backdrop under light text reliably destroys
+       contrast - measured 3,22:1. Darkening the chip and printing pure
+       white gives 6,06:1 and still reads as a chip. */
+    color: #ffffff;
+    padding: 4px 14px 4px 32px;
+    border-radius: 999px;
+    background: rgba(4, 34, 70, .22);
+    border: 1px solid rgba(255, 255, 255, .22);
+    position: relative;
+}
+
+#common-main_header-title-textEl table td[align="right"]:before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    margin-top: -3.5px;
+    border-radius: 50%;
+    background: #7ee0a8;
+    box-shadow: 0 0 0 3px rgba(126, 224, 168, .22);
+}
+
+/* header tool buttons */
+#common-main_header .x-tool,
+.app-common-main > .x-panel-header-default .x-tool {
+    color: #eaf4ff;
+}
+
+#common-main_header .x-tool-tool-el,
+.app-common-main > .x-panel-header-default .x-tool-tool-el {
+    font-family: 'FontAwesome' !important;
+    font-size: 15px !important;
+    line-height: 28px !important;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--ms-r-chip);
+    background: rgba(255, 255, 255, .13);
+    border: 1px solid rgba(255, 255, 255, .16);
+    color: #ffffff;
+    text-align: center;
+    transition: background .16s ease, transform .16s ease;
+    animation: none !important;
+}
+
+#common-main_header .x-tool:hover .x-tool-tool-el,
+.app-common-main > .x-panel-header-default .x-tool:hover .x-tool-tool-el {
+    background: rgba(255, 255, 255, .28);
+    transform: translateY(-1px);
+}
+
+#common-main_header .x-tool-tool-el:before,
+.app-common-main > .x-panel-header-default .x-tool-tool-el:before {
+    line-height: 28px !important;
+}
+
+/* ---- 5. FontAwesome / map_icons neutralisation -------------------------- */
+.x-fa {
+    font-family: 'FontAwesome' !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    animation: none !important;
+    color: inherit;
+    font-size: inherit;
+}
+
+/* NOTE: .map-icons is also used outside the navigator (grid avatars such as
+   .ionicons-md-contacts). Those rely on the real map_icons webfont, so the
+   FontAwesome swap below is scoped to navigator tree icons only. */
+.x-tree-icon,
+.app-navigator .map-icons {
+    font-family: 'FontAwesome' !important;
+    font-size: 17px !important;
+    color: var(--ms-blue-600);
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 7px;
+    background: rgba(22, 104, 201, .10);
+    transition: background .16s ease, color .16s ease;
+}
+
+.x-tree-icon:before,
+.app-navigator .map-icons:before {
+    line-height: 22px !important;
+}
+
+/* avatars and other map_icons glyphs keep their original webfont, only the
+   teal colour is swapped for the blue family */
+.map-icons {
+    font-family: 'map_icons' !important;
+    color: var(--ms-blue-500) !important;
+}
+
+.x-grid .map-icons,
+.x-grid-cell .map-icons {
+    color: var(--ms-blue-500) !important;
+}
+
+.x-grid-row-selected .map-icons,
+.x-grid-item-selected .map-icons {
+    color: var(--ms-blue-700) !important;
+}
+
+/* ---- 6. Navigator (left card) ------------------------------------------- */
+.app-navigator {
+    background-color: var(--ms-surface) !important;
+    border: 1px solid var(--ms-line) !important;
+    border-radius: var(--ms-r-card) !important;
+    box-shadow: var(--ms-sh-md) !important;
+    overflow: hidden;
+    margin: 10px 6px 10px 10px;
+}
+
+.app-navigator > .x-panel-header-default {
+    background: var(--ms-grad) !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(9, 55, 104, .28) !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .12) inset;
+    min-height: 40px;
+    padding: 0 4px;
+}
+
+.app-navigator .x-panel-header-title-default,
+.app-navigator .x-panel-header-title-default > .x-title-text-default {
+    color: #ffffff !important;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    line-height: 40px;
+}
+
+.app-navigator .x-panel-header-title-default small {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.app-navigator .x-tool-tool-el {
+    font-size: 15px !important;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    border-radius: var(--ms-r-chip);
+    background: rgba(255, 255, 255, .15);
+    border: 1px solid rgba(255, 255, 255, .18);
+    color: #ffffff;
+    text-align: center;
+    margin-top: 7px;
+}
+
+.app-navigator .x-tool:hover .x-tool-tool-el {
+    background: rgba(255, 255, 255, .30);
+}
+
+/* explicit modern glyphs for the navigator header tools */
+.app-navigator .app-collapse-icon {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round'><path d='M4 7h16M4 12h16M4 17h16'/></svg>") !important;
+    background-size: 15px 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.app-navigator .app-tasks-icon {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linejoin='round'><rect x='3.5' y='3.5' width='7' height='7' rx='1.6'/><rect x='13.5' y='3.5' width='7' height='7' rx='1.6'/><rect x='3.5' y='13.5' width='7' height='7' rx='1.6'/><rect x='13.5' y='13.5' width='7' height='7' rx='1.6'/></svg>") !important;
+    background-size: 15px 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* tree body */
+.app-navigator .x-tree-view {
+    background: var(--ms-surface);
+    padding: 8px 0 10px;
+}
+
+/* Rows are ExtJS tables, so the pill shape lives on the inner wrapper.
+   `height: auto` is deliberately NOT used: Ext's virtual scroller derives the
+   row offset from the configured row height, and letting rows resize forces a
+   full re-measure on every scroll frame. */
+.app-navigator .x-grid-cell-inner-treecolumn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px 6px 8px;
+    margin: 1px 8px;
+    border-radius: var(--ms-r-control);
+    border-left: 3px solid transparent;
+    transition: background-color .14s ease, border-color .14s ease;
+}
+
+/* elbow / expander column keeps its own rhythm inside the flex row */
+.app-navigator .x-tree-elbow-img {
+    flex: 0 0 auto;
+    margin: 0 !important;
+}
+
+.app-navigator .x-grid-row-over .x-grid-cell-inner-treecolumn,
+.app-navigator tr.x-grid-row-over .x-grid-cell-inner-treecolumn {
+    background: #eaf3fd;
+}
+
+/* ExtJS marks the selected node on the outer <table class="x-grid-item-selected">
+   as well as on the row, so both have to be covered. The legacy look was a
+   flat yellow highlight. */
+.app-navigator .x-grid-item-selected,
+.app-navigator .x-grid-item-selected tr,
+.app-navigator .x-grid-row-selected,
+.app-navigator .x-grid-cell-selected {
+    background: transparent !important;
+    background-image: none !important;
+}
+
+.app-navigator .x-grid-row-selected .x-grid-cell-inner-treecolumn,
+.app-navigator .x-grid-item-selected .x-grid-cell-inner-treecolumn {
+    /* NB: no `background-image: none` here — it would override the gradient
+       set by the `background` shorthand above it. */
+    background: var(--ms-grad) !important;
+    border-left-color: #0b3f77;
+    box-shadow: 0 4px 12px rgba(13, 79, 153, .28);
+}
+
+.app-navigator .x-tree-node-text,
+.app-navigator .x-tree-node-text-default {
+    font-size: 13px;
+    line-height: 19px;
+    color: var(--ms-ink-700);
+    font-weight: 500 !important;
+    white-space: normal;
+    word-break: break-word;
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 0;
+}
+
+/* folder/section headings read heavier than leaf items */
+.app-navigator .app-folder-item .x-tree-node-text,
+.app-navigator .app-folder-item .x-tree-node-text-default {
+    font-weight: 700 !important;
+    color: var(--ms-ink-900);
+    letter-spacing: .005em;
+}
+
+.app-navigator .x-tree-node-text em {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--ms-ink-900);
+}
+
+.app-navigator .x-grid-row-selected .x-tree-node-text,
+.app-navigator .x-grid-row-selected .x-tree-node-text-default,
+.app-navigator .x-grid-item-selected .x-tree-node-text,
+.app-navigator .x-grid-item-selected .x-tree-node-text-default {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.app-navigator .x-grid-row-selected .x-tree-node-text em,
+.app-navigator .x-grid-item-selected .x-tree-node-text em {
+    color: #ffffff;
+}
+
+.app-navigator .x-grid-row-selected .x-tree-icon,
+.app-navigator .x-grid-item-selected .x-tree-icon {
+    background: rgba(255, 255, 255, .24);
+    color: #ffffff;
+}
+
+.app-navigator .x-grid-item-selected .x-tree-icon.x-tree-icon-parent {
+    background: rgba(255, 255, 255, .30);
+    color: #ffffff;
+}
+
+.app-navigator .x-tree-icon.x-tree-icon-parent {
+    background: rgba(22, 104, 201, .16);
+    color: var(--ms-blue-800);
+}
+
+/* expander: neutral rounded "+" instead of the legacy green cross */
+.app-navigator .x-tree-elbow-plus,
+.app-navigator .x-tree-elbow-end-plus {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231668c9' stroke-width='2.4' stroke-linecap='round'><path d='M12 6v12M6 12h12'/></svg>") !important;
+    background-size: 14px 14px;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 18px;
+    height: 18px;
+    margin: 6px;
+    border-radius: 6px;
+    background-color: rgba(22, 104, 201, .10);
+    opacity: 1 !important;
+    cursor: pointer;
+}
+
+.app-navigator .x-tree-elbow-plus:hover {
+    background-color: rgba(22, 104, 201, .20);
+}
+
+/* ---- 7. Menu icon mapping ------------------------------------------------
+   `icons-letter-ru-*` fell back to raw Cyrillic letters, which read as noise.
+   Re-map every navigator entry onto a semantic FontAwesome glyph.           */
+.app-navigator .x-tree-icon.map-icons:before { content: "\f0f6" !important; }
+
+/* people / patients / staff */
+.app-navigator .map-icons-med-common-patients:before,
+.app-navigator .x-tree-icon[class*="patients"]:before,
+.app-navigator .x-tree-icon[class*="users"]:before,
+.app-navigator .x-tree-icon[class*="roles"]:before,
+.app-navigator .x-tree-icon[class*="staff"]:before { content: "\f0c0" !important; }
+
+/* medical records */
+.app-navigator .map-icons-med-card-cards:before,
+.app-navigator .x-tree-icon[class*="cards"]:before,
+.app-navigator .x-tree-icon[class*="card-"]:before { content: "\f0ea" !important; }
+
+/* examinations / journals */
+.app-navigator .x-tree-icon.icons-letter-ru-2:before { content: "\f0f1" !important; }
+.app-navigator .x-tree-icon.icons-letter-ru-4:before { content: "\f1ae" !important; }
+.app-navigator .x-tree-icon.icons-letter-ru-13:before { content: "\f1c9" !important; }
+.app-navigator .x-tree-icon.icons-letter-ru-14:before { content: "\f0c3" !important; }
+.app-navigator .x-tree-icon.icons-letter-ru-16:before { content: "\f0f6" !important; }
+
+/* journals / documents */
+.app-navigator .x-tree-icon.fa-book:before { content: "\f0c5" !important; }
+
+/* branch nodes */
+.app-navigator .x-tree-icon-parent.fa-book:before { content: "\f022" !important; }
+.app-navigator .x-tree-icon-parent.fa-file-text:before { content: "\f080" !important; }
+.app-navigator .x-tree-icon[class*="reports"]:before,
+.app-navigator .x-tree-icon[class*="report"]:before { content: "\f080" !important; }
+.app-navigator .x-tree-icon[class*="directory"]:before { content: "\f022" !important; }
+.app-navigator .x-tree-icon[class*="config"]:before,
+.app-navigator .x-tree-icon[class*="settings"]:before { content: "\f013" !important; }
+.app-navigator .x-tree-icon[class*="tables"]:before { content: "\f0ce" !important; }
+/* NB: match "map-icons-map…" only — a bare [class*="map"] would also catch
+   every map-icons-* class and collapse the whole menu to one glyph. */
+.app-navigator .x-tree-icon[class*="map-icons-map"]:before { content: "\f278" !important; }
+.app-navigator .x-tree-icon[class*="link"]:before,
+.app-navigator .x-tree-icon[class*="exchange"]:before,
+.app-navigator .x-tree-icon[class*="sync"]:before { content: "\f0ec" !important; }
+.app-navigator .x-tree-icon[class*="ambulance"]:before { content: "\f0f9" !important; }
+.app-navigator .x-tree-icon[class*="lab"]:before { content: "\f0c3" !important; }
+.app-navigator .x-tree-icon[class*="xray"]:before { content: "\f1c5" !important; }
+.app-navigator .x-tree-icon[class*="recipes"]:before { content: "\f0f6" !important; }
+.app-navigator .x-tree-icon[class*="reception"]:before { content: "\f0f0" !important; }
+.app-navigator .x-tree-icon[class*="functional"]:before { content: "\f21e" !important; }
+.app-navigator .x-tree-icon[class*="sickdays"]:before { content: "\f073" !important; }
+.app-navigator .x-tree-icon[class*="vaccinations"]:before { content: "\f0f0" !important; }
+.app-navigator .x-tree-icon[class*="qualitycontrol"]:before { content: "\f058" !important; }
+.app-navigator .x-tree-icon[class*="dayhospital"]:before { content: "\f0f8" !important; }
+.app-navigator .x-tree-icon[class*="cipher"]:before { content: "\f132" !important; }
+.app-navigator .x-tree-icon[class*="fiscal"]:before { content: "\f0f6" !important; }
+
+/* ---- 8. Navigator footer (version bar) ---------------------------------- */
+.app-navigator .x-toolbar-footer {
+    background: var(--ms-surface-2);
+    border-top: 1px solid var(--ms-line);
+    padding: 8px 12px;
+    min-height: 36px;
+    gap: 8px;
+}
+
+.app-navigator .x-toolbar-footer .x-toolbar-text,
+.app-navigator .x-toolbar-footer span {
+    font-size: 11.5px;
+    color: var(--ms-ink-400);
+    letter-spacing: .01em;
+}
+
+/* The footer holds real .x-btn elements. The generic button rules below use
+   `!important` with the same specificity, so the footer needs one extra
+   class to win regardless of source order. */
+.app-navigator .x-toolbar-footer .x-btn.x-btn-default-small,
+.app-navigator .x-toolbar-footer .x-btn.x-btn-default-medium,
+.app-navigator .x-toolbar-footer .x-toolbar-item.x-btn,
+.app-navigator .x-toolbar-footer a {
+    background: transparent !important;
+    background-image: none !important;
+    border: 1px solid transparent !important;
+    box-shadow: none !important;
+    border-radius: 999px !important;
+    height: 26px;
+    min-height: 26px;
+    padding: 0 12px;
+    transform: none;
+}
+
+.app-navigator .x-toolbar-footer .x-btn .x-btn-inner,
+.app-navigator .x-toolbar-footer .x-btn .x-btn-icon-el,
+.app-navigator .x-toolbar-footer a .x-btn-inner {
+    color: var(--ms-blue-600) !important;
+    font-size: 11.5px !important;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: .02em;
+    text-decoration: none;
+}
+
+.app-navigator .x-toolbar-footer .x-btn.x-btn-default-small:hover,
+.app-navigator .x-toolbar-footer .x-btn.x-btn-default-medium:hover,
+.app-navigator .x-toolbar-footer .x-toolbar-item.x-btn:hover {
+    background: rgba(22, 104, 201, .09) !important;
+    background-image: none !important;
+    border-color: rgba(22, 104, 201, .18) !important;
+    box-shadow: none !important;
+    transform: none;
+}
+
+.app-navigator .x-toolbar-footer .x-btn:hover .x-btn-inner {
+    color: var(--ms-blue-800) !important;
+}
+
+/* round icon-only footer buttons (info, help, …) */
+.app-navigator .x-toolbar-footer .x-btn .x-btn-icon-el {
+    margin: 0;
+}
+
+.app-navigator .x-toolbar-footer .x-fa {
+    font-size: 14px;
+    color: var(--ms-ink-300);
+    vertical-align: middle;
+}
+
+.app-navigator .x-toolbar-footer .whats-new-button .x-btn-inner {
+    color: var(--ms-blue-600) !important;
+}
+
+/* ---- 9. Splitter -------------------------------------------------------- */
+.x-splitter-vertical {
+    background-color: transparent !important;
+    background-image: none !important;
+    width: 8px !important;
+    cursor: col-resize;
+}
+
+.x-splitter-vertical:hover {
+    background-color: rgba(22, 104, 201, .16) !important;
+}
+
+/* ---- 10. Windows -------------------------------------------------------- */
+.x-window,
+.x-panel.x-window {
+    border: 1px solid var(--ms-line) !important;
+    border-radius: var(--ms-r-card) !important;
+    box-shadow: var(--ms-sh-lg) !important;
+    overflow: hidden;
+    background: var(--ms-surface);
+}
+
+.x-window .x-window-header,
+.x-window .x-panel-header-default {
+    background: var(--ms-grad) !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(9, 55, 104, .28) !important;
+    min-height: 38px;
+}
+
+.x-window .x-window-header .x-window-header-title,
+.x-window .x-panel-header-default .x-panel-header-title-default,
+.x-window .x-panel-header-default .x-title-text-default {
+    color: #ffffff !important;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: .02em;
+}
+
+.x-window .x-tool-tool-el {
+    color: rgba(255, 255, 255, .85) !important;
+    font-size: 14px !important;
+}
+
+.x-window .x-tool:hover .x-tool-tool-el {
+    color: #ffffff !important;
+}
+
+.x-window-body-default {
+    background: var(--ms-surface);
+    padding: 0;
+}
+
+/* maximized work area gets a soft canvas instead of a hard white block */
+.x-window-maximized {
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.x-window-maximized > .x-window-bodyWrap > .x-window-body {
+    background: var(--ms-canvas);
+}
+
+.x-window-maximized .x-panel-body {
+    background: transparent;
+}
+
+/* Desktop host: the empty state should read as a calm workspace, not a
+   blank white rectangle glued to the navigator. */
+.app-desktop,
+.app-desktop > .x-panel-bodyWrap,
+.app-desktop > .x-panel-bodyWrap > .x-panel-body {
+    background: transparent;
+    background-image: none;
+}
+
+.app-desktop {
+    margin: 10px 10px 6px 2px;
+    border-radius: var(--ms-r-card);
+}
+
+/* the maximized child fills the rounded desktop area */
+.app-desktop > .x-panel-bodyWrap > .x-panel-body {
+    border-radius: var(--ms-r-card);
+    overflow: hidden;
+    border: 1px solid var(--ms-line);
+    box-shadow: var(--ms-sh-md);
+}
+
+.app-desktop > .x-panel-bodyWrap > .x-panel-body > .x-window-maximized {
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+/* ---- 11. Forms ---------------------------------------------------------- */
+.x-form-item-label-inner,
+.x-form-item-label-text {
+    font-size: 12.5px !important;
+    font-weight: 600 !important;
+    color: var(--ms-ink-500) !important;
+    line-height: 20px;
+}
+
+.x-form-item-label {
+    padding-top: 7px !important;
+}
+
+.x-form-field,
+.x-form-text {
+    font-size: 13.5px !important;
+    color: var(--ms-ink-900) !important;
+}
+
+.x-form-text-wrap,
+.x-form-trigger-wrap-default {
+    height: 34px !important;
+    border-radius: var(--ms-r-control) !important;
+    border: 1px solid #c9dcee !important;
+    background-color: var(--ms-surface) !important;
+    box-shadow: var(--ms-sh-sm);
+    transition: border-color .15s ease, box-shadow .15s ease;
+    padding: 0 !important;
+    box-sizing: border-box;
+}
+
+/* Wrappers of multiline fields follow the grown body instead of the 34px
+   control height, so memo fields keep every line visible. The vendor sheet
+   sizes .x-form-text-wrap with height:100% (of the body that Ext grows via
+   autoSize) - keep that 100%, only replace the fixed 34px. */
+.x-form-textarea-body .x-form-text-wrap,
+.x-form-textarea-body .x-form-trigger-wrap-default {
+    height: 100% !important;
+    min-height: 62px !important;
+}
+
+.x-form-text-wrap:hover,
+.x-form-trigger-wrap-default:hover {
+    border-color: var(--ms-blue-400) !important;
+}
+
+.x-form-text-wrap.x-form-focus,
+.x-form-trigger-wrap-default.x-form-focus {
+    border-color: var(--ms-blue-600) !important;
+    box-shadow: 0 0 0 3px rgba(22, 104, 201, .16);
+}
+
+.x-form-text {
+    background: transparent !important;
+    border: 0 !important;
+    height: 32px !important;
+    line-height: 32px !important;
+    padding: 0 12px !important;
+    border-radius: var(--ms-r-control);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Multiline fields (memo: "Дополнительные данные", "Рекомендации" in document
+   forms, notes everywhere) share the .x-form-text class, but a fixed 32px
+   height collapses them to one visible line. Textareas fill the wrapper,
+   which follows the Ext autoSize-grown field body, so every line stays
+   visible; vendor grow rules (growMin 60) set the floor. */
+textarea.x-form-text,
+.x-form-text.x-form-textarea {
+    height: 100% !important;
+    min-height: 60px !important;
+    line-height: 1.45 !important;
+    padding: 6px 12px !important;
+    resize: vertical;
+}
+
+.x-form-text::placeholder {
+    color: var(--ms-ink-300);
+}
+
+/* combobox / spinner triggers */
+.x-form-trigger {
+    background: var(--ms-surface-3) !important;
+    border-left: 1px solid var(--ms-line) !important;
+    border-radius: 0 var(--ms-r-control) var(--ms-r-control) 0;
+    width: 32px;
+    cursor: pointer;
+}
+
+.x-form-trigger:hover {
+    background: #e2eefb !important;
+}
+
+.x-form-arrow-trigger:before {
+    border-top-color: var(--ms-ink-500) !important;
+}
+
+.x-form-spinner .x-form-spinner-up,
+.x-form-spinner .x-form-spinner-down {
+    background-color: var(--ms-surface-3);
+    border-color: var(--ms-line);
+    width: 26px;
+}
+
+.x-form-spinner .x-form-spinner-up:hover,
+.x-form-spinner .x-form-spinner-down:hover {
+    background-color: var(--ms-blue-500);
+}
+
+/* placeholders for combo / date values */
+.x-form-empty-field-default {
+    color: var(--ms-ink-300);
+}
+
+/* disabled state: keep it readable, do not fade into the background */
+.x-item-disabled .x-form-text-wrap,
+.x-item-disabled .x-form-trigger-wrap-default {
+    background-color: #f2f6fa !important;
+    border-color: #dbe6f1 !important;
+    box-shadow: none;
+}
+
+.x-item-disabled .x-form-text,
+.x-item-disabled .x-form-field {
+    color: var(--ms-ink-400) !important;
+    -webkit-text-fill-color: var(--ms-ink-400) !important;
+}
+
+.x-item-disabled .x-form-item-label-text {
+    color: var(--ms-ink-400) !important;
+}
+
+/* ---- 12. Checkboxes & radios -------------------------------------------- */
+.x-form-cb-input {
+    opacity: 1 !important;
+    width: 18px !important;
+    height: 18px !important;
+    margin: 0 !important;
+    accent-color: var(--ms-blue-600);
+    cursor: pointer;
+}
+
+.x-form-checkbox {
+    background: none !important;
+    border: 0 !important;
+}
+
+.x-form-radio .x-form-cb-input {
+    accent-color: var(--ms-blue-600);
+}
+
+/* ---- 13. Fieldsets (section cards) -------------------------------------- */
+.x-fieldset {
+    border: 1px solid var(--ms-line) !important;
+    border-radius: var(--ms-r-card) !important;
+    background: var(--ms-surface);
+    box-shadow: var(--ms-sh-sm);
+    margin: 0 0 14px 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+}
+
+.x-fieldset > legend,
+.x-fieldset .x-fieldset-header {
+    background: var(--ms-grad-soft) !important;
+    color: var(--ms-blue-800) !important;
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    width: 100%;
+    border: 0 !important;
+    border-bottom: 1px solid var(--ms-line) !important;
+    padding: 9px 14px !important;
+    line-height: 18px;
+}
+
+.x-fieldset .x-fieldset-header-text {
+    color: var(--ms-blue-800) !important;
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+}
+
+.x-fieldset-body {
+    padding: 16px 16px 6px !important;
+    background: var(--ms-surface);
+}
+
+.x-fieldset-collapsed > .x-fieldset-body {
+    display: none;
+}
+
+/* ---- 14. Buttons --------------------------------------------------------- */
+.x-btn.x-btn-default-small,
+.x-btn.x-btn-default-medium,
+.x-btn.x-btn-default-large,
+.x-btn.x-btn-default-docked-small,
+.x-toolbar .x-btn.x-btn-default-small,
+.x-toolbar .x-btn.x-btn-default-medium {
+    background: var(--ms-grad) !important;
+    border: 1px solid var(--ms-blue-700) !important;
+    border-radius: var(--ms-r-control) !important;
+    box-shadow: 0 1px 2px rgba(13, 55, 95, .14), 0 2px 8px rgba(13, 79, 153, .18) !important;
+    transition: transform .12s ease, box-shadow .15s ease, filter .15s ease;
+    min-height: 34px;
+}
+
+.x-btn.x-btn-default-small:hover,
+.x-btn.x-btn-default-medium:hover,
+.x-btn.x-btn-default-large:hover,
+.x-toolbar .x-btn.x-btn-default-small:hover,
+.x-toolbar .x-btn.x-btn-default-medium:hover {
+    background: linear-gradient(135deg, #1d76db 0%, #2a8ee6 55%, #12a6e4 100%) !important;
+    box-shadow: 0 3px 10px rgba(13, 79, 153, .30) !important;
+    transform: translateY(-1px);
+    filter: none;
+}
+
+.x-btn.x-btn-pressed,
+.x-btn.x-btn-over.x-btn-pressed {
+    background: #0f63bd !important;
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(13, 55, 95, .22) !important;
+}
+
+/* NB: the default button text is DARK, not white.
+   A blanket `color:#fff` here painted white glyphs onto every light or
+   disabled button — the page-switch arrows on page 1 and the large
+   "Карта на сегодня" / "Вставить" actions came out white-on-white at
+   ~1.26:1. Only the variants that actually receive the brand gradient opt
+   into white text, listed right below. */
+.x-btn .x-btn-inner,
+.x-btn .x-btn-icon-el {
+    color: var(--ms-ink-700) !important;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: .01em;
+    line-height: 32px;
+}
+
+/* white label only where the fill is the brand gradient */
+.x-btn.x-btn-default-small .x-btn-inner,
+.x-btn.x-btn-default-small .x-btn-icon-el,
+.x-btn.x-btn-default-medium .x-btn-inner,
+.x-btn.x-btn-default-medium .x-btn-icon-el,
+.x-btn.x-btn-default-large .x-btn-inner,
+.x-btn.x-btn-default-large .x-btn-icon-el,
+.x-btn.x-btn-default-docked-small .x-btn-inner,
+.x-btn.x-btn-default-docked-small .x-btn-icon-el,
+.x-btn.firm .x-btn-inner,
+.x-btn.firm .x-btn-icon-el,
+.x-toolbar .x-btn.firm .x-btn-inner,
+.x-toolbar .x-btn.firm .x-btn-icon-el {
+    color: #ffffff !important;
+}
+
+/* NB: no font-family override here. Icon elements carry glyphs from three
+   different fonts (FontAwesome, map_icons, Pictos) depending on the icon
+   class; forcing FontAwesome on all of them turns map_icons/Pictos codes
+   into empty boxes. `.x-fa` above already handles the FontAwesome case. */
+.x-btn .x-btn-icon-el {
+    margin-right: 8px;
+    animation: none;
+}
+
+/* the trailing "Закрыть" button reads as a secondary action */
+.x-toolbar .x-btn:last-of-type.x-btn-default-small,
+.x-toolbar .x-btn:last-of-type.x-btn-default-medium {
+    background: var(--ms-surface) !important;
+    border-color: #c9dcee !important;
+    box-shadow: var(--ms-sh-sm) !important;
+}
+
+.x-toolbar .x-btn:last-of-type .x-btn-inner,
+.x-toolbar .x-btn:last-of-type .x-btn-icon-el {
+    color: var(--ms-ink-700) !important;
+}
+
+.x-toolbar .x-btn:last-of-type:hover {
+    background: #eaf3fd !important;
+    border-color: var(--ms-blue-400) !important;
+}
+
+/* explicit class-based variants */
+.firm,
+.x-btn.firm {
+    background: var(--ms-grad) !important;
+    border-color: var(--ms-blue-700) !important;
+    border-radius: var(--ms-r-control) !important;
+}
+
+.button-cancel,
+.x-btn.button-cancel {
+    background: var(--ms-surface) !important;
+    border: 1px solid #c9dcee !important;
+    border-radius: var(--ms-r-control) !important;
+    box-shadow: var(--ms-sh-sm) !important;
+}
+
+.x-btn.button-cancel .x-btn-inner,
+.x-btn.button-cancel .x-btn-icon-el {
+    color: var(--ms-ink-700) !important;
+}
+
+/* Disabled buttons keep a light fill, so the label has to be dark — white on
+   #dbe6f1 measures 1.26:1. A muted slate reads as "off" and stays legible
+   (~3.1:1), which is what a user needs to tell "first page" from "broken". */
+.x-btn.x-btn-disabled,
+.x-btn.x-btn-disabled:hover {
+    background: #e4edf6 !important;
+    border-color: #cddff0 !important;
+    box-shadow: none !important;
+    transform: none;
+}
+
+.x-btn.x-btn-disabled .x-btn-inner,
+.x-btn.x-btn-disabled .x-btn-icon-el,
+.x-btn.x-btn-disabled:hover .x-btn-inner,
+.x-btn.x-btn-disabled:hover .x-btn-icon-el {
+    color: #6b86a3 !important;
+    font-weight: 600;
+}
+
+/* ---- 14b. Icon buttons: page switcher and window tools -------------------
+   Two groups of controls were visibly out of line:
+
+   * Pagination — the five paging buttons sat at 26x32 while the page-number
+     field next to them was 50x36, so the row had no common height. The
+     glyphs came from the bundled `ExtJS` icon font and rendered as thin
+     chevrons of uneven weight.
+   * Window tools (развернуть / свернуть / закрыть) were 16x16 on the legacy
+     teal fill #00988d, sitting on the blue title band.
+
+   Both groups are normalised to one square box with a 16px pictogram
+   centred on both axes. `font-size:0` suppresses the ExtJS-font glyph before
+   the SVG takes over, otherwise the two glyphs print on top of each other. */
+
+/* -- page switcher ------------------------------------------------------- */
+.x-toolbar .x-toolbar-item:has(.x-tbar-page-first),
+.x-toolbar .x-toolbar-item:has(.x-tbar-page-prev),
+.x-toolbar .x-toolbar-item:has(.x-tbar-page-next),
+.x-toolbar .x-toolbar-item:has(.x-tbar-page-last),
+.x-toolbar .x-toolbar-item:has(.x-tbar-loading) {
+    box-sizing: border-box;
+    width: 32px !important;
+    min-width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+    margin: 0 1px !important;
+    background: #ffffff !important;
+    background-image: none !important;
+    border: 1px solid #c9dcee !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.x-toolbar .x-toolbar-item:has(.x-tbar-page-first):hover,
+.x-toolbar .x-toolbar-item:has(.x-tbar-page-prev):hover,
+.x-toolbar .x-toolbar-item:has(.x-tbar-page-next):hover,
+.x-toolbar .x-toolbar-item:has(.x-tbar-page-last):hover,
+.x-toolbar .x-toolbar-item:has(.x-tbar-loading):hover {
+    background: #eaf3fd !important;
+    border-color: var(--ms-blue-400) !important;
+}
+
+.x-toolbar .x-toolbar-item:has(.x-tbar-page-first):disabled,
+.x-toolbar .x-toolbar-item:has(.x-tbar-page-prev):disabled,
+.x-toolbar .x-toolbar-item:has(.x-tbar-page-next):disabled,
+.x-toolbar .x-toolbar-item:has(.x-tbar-page-last):disabled {
+    background: #f4f8fc !important;
+    border-color: #dfeaf4 !important;
+}
+
+.x-tbar-page-first,
+.x-tbar-page-prev,
+.x-tbar-page-next,
+.x-tbar-page-last,
+.x-tbar-loading {
+    box-sizing: border-box;
+    width: 16px !important;
+    height: 16px !important;
+    margin: 0 !important;
+    line-height: 0 !important;
+    font-size: 0 !important;          /* hide the ExtJS-font glyph */
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: 15px 15px !important;
+}
+
+.x-tbar-page-first {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2324405e' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><path d='M11 6l-6 6 6 6'/><path d='M19 6l-6 6 6 6'/></svg>") !important;
+}
+.x-tbar-page-prev {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2324405e' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><path d='M15 5l-7 7 7 7'/></svg>") !important;
+}
+.x-tbar-page-next {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2324405e' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><path d='M9 5l7 7-7 7'/></svg>") !important;
+}
+.x-tbar-page-last {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2324405e' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><path d='M13 6l6 6-6 6'/><path d='M5 6l6 6-6 6'/></svg>") !important;
+}
+.x-tbar-loading {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2324405e' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M20 11.5A8 8 0 1 0 18.4 16'/><path d='M20 5.5v6h-6'/></svg>") !important;
+}
+
+.x-toolbar .x-toolbar-item:has(.x-tbar-page-first) .x-tbar-page-first,
+.x-toolbar .x-toolbar-item:has(.x-tbar-page-prev) .x-tbar-page-prev,
+.x-toolbar .x-toolbar-item:has(.x-tbar-page-next) .x-tbar-page-next,
+.x-toolbar .x-toolbar-item:has(.x-tbar-page-last) .x-tbar-page-last,
+.x-toolbar .x-toolbar-item:has(.x-tbar-loading) .x-tbar-loading {
+    color: var(--ms-ink-700) !important;
+}
+
+/* disabled pictograms keep the same shape, just muted */
+.x-toolbar .x-toolbar-item.x-item-disabled .x-tbar-page-first { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b3c6d8' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><path d='M11 6l-6 6 6 6'/><path d='M19 6l-6 6 6 6'/></svg>") !important; }
+.x-toolbar .x-toolbar-item.x-item-disabled .x-tbar-page-prev  { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b3c6d8' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><path d='M15 5l-7 7 7 7'/></svg>") !important; }
+.x-toolbar .x-toolbar-item.x-item-disabled .x-tbar-page-next  { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b3c6d8' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><path d='M9 5l7 7-7 7'/></svg>") !important; }
+.x-toolbar .x-toolbar-item.x-item-disabled .x-tbar-page-last  { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b3c6d8' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><path d='M13 6l6 6-6 6'/><path d='M5 6l6 6-6 6'/></svg>") !important; }
+
+/* page-number box shares the same height so the row lines up */
+.x-toolbar .x-tbar-page-number .x-form-text-wrap,
+.x-toolbar .x-tbar-page-number .x-form-field {
+    height: 32px !important;
+    box-sizing: border-box;
+}
+
+.x-toolbar .x-tbar-page-number .x-form-text-wrap {
+    border-radius: 8px !important;
+    border: 1px solid #c9dcee !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    min-width: 48px;
+}
+
+.x-toolbar .x-tbar-page-number .x-form-text {
+    height: 30px !important;
+    line-height: 30px !important;
+    text-align: center;
+    font-weight: 700;
+    color: var(--ms-ink-900) !important;
+    padding: 0 10px !important;
+}
+
+.x-toolbar .x-toolbar-separator {
+    height: 32px !important;
+    background-color: var(--ms-line) !important;
+    width: 1px;
+    margin: 0 6px;
+}
+
+/* -- window tools -------------------------------------------------------- */
+.x-window .x-panel-header-default .x-tool-tool-el,
+.x-window .x-window-header .x-tool-tool-el {
+    box-sizing: border-box;
+    width: 26px !important;
+    height: 26px !important;
+    line-height: 26px !important;
+    margin: 0 0 0 4px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, .14) !important;
+    border: 1px solid rgba(255, 255, 255, .20);
+    color: #ffffff !important;
+    font-family: 'FontAwesome' !important;
+    font-size: 13px !important;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color .15s ease, border-color .15s ease;
+}
+
+.x-window .x-panel-header-default .x-tool-tool-el:before,
+.x-window .x-window-header .x-tool-tool-el:before {
+    line-height: 26px !important;
+    display: block;
+}
+
+.x-window .x-panel-header-default .x-tool:hover .x-tool-tool-el,
+.x-window .x-window-header .x-tool:hover .x-tool-tool-el {
+    background: rgba(255, 255, 255, .32) !important;
+    border-color: rgba(255, 255, 255, .38);
+}
+
+.x-window .x-tool-close:hover .x-tool-tool-el {
+    background: #d9534f !important;
+    border-color: #d9534f !important;
+}
+
+/* clearer semantics than the legacy arrow-up / caret-square glyphs */
+.x-window .x-tool-maximize.x-tool-tool-el:before  { content: "\f078" !important; }
+.x-window .x-tool-collapse-left.x-tool-tool-el:before,
+.x-window .x-tool-collapse-right.x-tool-tool-el:before { content: "\f077" !important; }
+.x-window .x-tool-close.x-tool-tool-el:before      { content: "\f00d" !important; }
+
+/* ---- 14c. Split buttons: one chevron zone, no leftover teal ----------------
+   Buttons that own a drop-down menu (Печать, ЦИСЗ) get their chevron from
+   `.x-btn-wrap::after`. Two sheets disagree about that zone:
+
+     App-all_1  .x-btn-wrap-default-toolbar-small.x-btn-arrow-right::after
+                { width: 18px; content: "\f0d7"; font: 16px/1 FontAwesome;
+                  color: #000 }
+     App-all_2  .css-def .x-btn-default-toolbar-small .x-btn-arrow-right::after
+                { width: 12px; margin: 0 6px 0 10px }
+
+   so the later sheet quietly re-cut the zone to 12px + 16px of margin, and the
+   chevron stayed hard-coded #000 — black even on a disabled button whose label
+   is muted blue. `.x-btn-arrow-el` additionally still carried
+   `border: 1px solid #00988d`, the last teal pixel of the old theme.
+
+   The total zone width stays at 28px (14 glyph + 8 + 6 = 28, matching the old
+   12 + 10 + 6), so no button changes size. Only toolbar variants are touched:
+   default-small/medium/large keep their own chevron width. */
+
+.css-def .x-btn .x-btn-wrap.x-btn-arrow-right::after,
+.css-def .x-btn .x-btn-wrap.x-btn-split-right::after {
+    border: 0 !important;              /* was 1px solid #00988d */
+    opacity: .75;
+}
+
+/* toolbar sizes: one chevron zone (14 glyph + 8 + 6 = 28px, the same total the
+   old 12 + 10 + 6 produced), and the glyph takes the colour of the label
+   instead of the hard-coded #000 / #f0f0f0 of the two sheets. */
+.css-def .x-btn .x-btn-wrap-default-toolbar-small.x-btn-arrow-right::after,
+.css-def .x-btn .x-btn-wrap-default-toolbar-medium.x-btn-arrow-right::after,
+.css-def .x-btn .x-btn-wrap-default-toolbar-large.x-btn-arrow-right::after {
+    box-sizing: content-box;
+    width: 14px !important;
+    margin: 0 6px 0 8px !important;
+    font-family: 'FontAwesome' !important;
+    font-size: 16px !important;
+    line-height: 32px !important;
+    text-align: center;
+    align-self: center;
+    color: var(--ms-ink-700);
+}
+
+.css-def .x-btn.x-item-disabled .x-btn-wrap.x-btn-arrow-right::after {
+    /* left at --ms-ink-700 on purpose: the theme does not mute disabled
+       button labels either, so the chevron must not drift away from them */
+    opacity: .45;
+}
+
+/* the larger variants sit on the brand gradient, so their chevron is white */
+.css-def .x-btn.x-btn-default-small .x-btn-wrap.x-btn-arrow-right::after,
+.css-def .x-btn.x-btn-default-medium .x-btn-wrap.x-btn-arrow-right::after,
+.css-def .x-btn.x-btn-default-large .x-btn-wrap.x-btn-arrow-right::after {
+    color: #ffffff;
+}
+
+/* ---- 14d. Toolbar-style buttons outside .x-toolbar, and the card row -----
+   Section 15 styles .x-btn-default-toolbar-small only when it sits inside a
+   .x-toolbar. Buttons of that same ui class placed straight in a
+   .x-panel-body were therefore never touched and kept the vendor look:
+
+     App-all_1  .x-btn-default-toolbar-small
+                { border-radius: 0; padding: 7px; background: #f6f6f6 }
+     App-all_2  .css-def .x-btn-default-toolbar-small
+                { border-color: rgb(0, 152, 141) }   <- the last teal
+
+   Measured on the patient card, 13 buttons were in that state - Печать,
+   Копировать, Вставить, Создать новый документ, Сортировка and the document
+   action buttons: square corners and a teal hairline among rounded blue ones.
+   They now get the same skin as the toolbar buttons.
+
+   .x-btn.tab is excluded deliberately: the Вся карта / Пациент tabs carry the
+   same ui class and must stay flat.
+
+   Second part: on the patient card the row holds a 669x36 search field and a
+   125x48 Печать, so the button hung 12px below the field. Its height is pinned
+   to the field's. The scope is narrow - a panel body that holds a search field
+   and toolbar buttons but no date field and no combo box, which is exactly the
+   card toolbar and nothing else (verified: 1 match). A blanket
+   "sibling of a search field" rule would have shrunk the patient-list toolbar,
+   where the buttons correctly match 48px date fields. */
+
+.x-btn.x-btn-default-toolbar-small:not(.x-btn.tab):not(.firm):not([class*="primary"]):not(.x-btn-pressed),
+.x-btn.x-btn-default-toolbar-medium:not(.x-btn.tab):not(.firm):not([class*="primary"]):not(.x-btn-pressed) {
+    background: var(--ms-surface) !important;
+    background-image: none !important;
+    border: 1px solid #c9dcee !important;
+    border-radius: var(--ms-r-control) !important;
+    box-shadow: var(--ms-sh-sm) !important;
+    min-height: 34px;
+}
+
+.x-btn.x-btn-default-toolbar-small:not(.x-btn.tab):not(.firm):not([class*="primary"]):hover,
+.x-btn.x-btn-default-toolbar-medium:not(.x-btn.tab):not(.firm):not([class*="primary"]):hover {
+    background: #eaf3fd !important;
+    border-color: var(--ms-blue-400) !important;
+    box-shadow: 0 2px 8px rgba(13, 79, 153, .16) !important;
+}
+
+.x-panel-body:has(.maptheme-ux-searchfield):not(:has(.x-form-field-date)):not(:has(.maptheme-combobox)) > .x-box-inner > .x-box-target > .x-btn.x-btn-default-toolbar-small {
+    box-sizing: border-box;
+    height: 36px !important;
+    min-height: 36px !important;
+    padding: 0 7px !important;
+}
+
+.x-panel-body:has(.maptheme-ux-searchfield):not(:has(.x-form-field-date)):not(:has(.maptheme-combobox)) > .x-box-inner > .x-box-target > .x-btn.x-btn-default-toolbar-small > .x-btn-wrap,
+.x-panel-body:has(.maptheme-ux-searchfield):not(:has(.x-form-field-date)):not(:has(.maptheme-combobox)) > .x-box-inner > .x-box-target > .x-btn.x-btn-default-toolbar-small > .x-btn-wrap > .x-btn-button {
+    height: 34px !important;
+}
+
+.x-panel-body:has(.maptheme-ux-searchfield):not(:has(.x-form-field-date)):not(:has(.maptheme-combobox)) > .x-box-inner > .x-box-target > .x-btn.x-btn-default-toolbar-small .x-btn-inner {
+    height: 34px !important;
+    line-height: 34px !important;
+}
+
+/* ---- 14e. Card footer: ЦИСЗ and Выход -----------------------------------
+   The patient card form (med-card-cards) ends with a docked footer holding
+   two buttons. Measured before this block:
+
+     Печать (toolbar)  125 x 36      <- already aligned to the search field
+     ЦИСЗ              81 x 48
+     Выход             75 x 48
+
+   So the footer sat a full 12px taller than the rest of the window, and the
+   two buttons differed in width because ExtJS sizes them by their label.
+
+   Both are now 100 x 36 - the same box, the same height as Печать, and the
+   same width so the pair reads as one row. min-width needs !important:
+   ExtJS writes an inline "min-width: 75px" on the element, and an inline
+   declaration beats any stylesheet rule without it.
+
+   The ЦИСЗ label was not centred because the chevron zone sat in the flex
+   flow and pushed it 18px to the left. The chevron is taken out of the flow
+   and pinned to the right edge; at 100px the centred label (47px) ends 2px
+   before it, so nothing overlaps. Verified on the live screen: offset of the
+   label from the button centre = 0px, gap to the chevron = 2px.
+
+   Scope is .med-card-cards - the userCls of the card window - because the
+   patient-list footer carries the same two buttons at 48px, where that
+   matches its own toolbar buttons and must not shrink. */
+.med-card-cards .x-toolbar.x-toolbar-footer .x-toolbar-item.x-btn {
+    box-sizing: border-box;
+    height: 36px !important;
+    min-height: 36px !important;
+    min-width: 100px !important;
+    padding: 0 7px !important;
+}
+
+.med-card-cards .x-toolbar.x-toolbar-footer .x-toolbar-item.x-btn > .x-btn-wrap {
+    box-sizing: border-box;
+    height: 34px !important;
+    width: 100%;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.med-card-cards .x-toolbar.x-toolbar-footer .x-toolbar-item.x-btn > .x-btn-wrap > .x-btn-button,
+.med-card-cards .x-toolbar.x-toolbar-footer .x-toolbar-item.x-btn .x-btn-inner {
+    height: 34px !important;
+    line-height: 34px !important;
+}
+
+.med-card-cards .x-toolbar.x-toolbar-footer .x-btn-wrap.x-btn-arrow-right::after,
+.med-card-cards .x-toolbar.x-toolbar-footer .x-btn-wrap.x-btn-split-right::after {
+    position: absolute;
+    top: 0;
+    right: 4px;
+    box-sizing: content-box;
+    width: 12px !important;
+    margin: 0 !important;
+    line-height: 34px !important;
+    align-self: auto;
+    text-align: center;
+}
+
+/* ---- 14f. Card tabs «Вся карта» / «Пациент» ------------------------------
+   Measured before this block: both tabs were 30px tall with a transparent
+   background, no border, no radius and no shadow, and both labels were
+   #24405e at weight 600. The active one differed only by the .active class,
+   so the two were visually identical - there was nothing to tell them apart.
+
+   Now they read as pills:
+
+     активная   заливка #ffffff, рамка #56a8ee, тень,
+                надпись #16243a вес 700   -> контраст 15,58:1
+     обычная    заливка #eef4fa, рамка #dde8f4, без тени,
+                надпись #476b8f вес 600   -> контраст  5,03:1
+
+   Both are above 4,5:1 and the active one is now clearly the strongest, which
+   is the point. Height is pinned to 32px because the label box was 32px tall
+   inside a 30px button - the text overflowed its own button by 2px.
+
+   Scope is .med-card-cards, the userCls of the card window, so tab strips on
+   other screens keep their current appearance until they are looked at. */
+.med-card-cards .x-btn.tab {
+    box-sizing: border-box;
+    height: 32px !important;
+    min-height: 32px !important;
+    margin: 0 8px 0 0 !important;
+    padding: 0 14px !important;
+    border-radius: 8px !important;
+    border: 1px solid var(--ms-line) !important;
+    background: var(--ms-surface-3) !important;
+}
+
+.med-card-cards .x-btn.tab.active {
+    background: var(--ms-surface) !important;
+    border-color: var(--ms-blue-400) !important;
+    box-shadow: var(--ms-sh-sm) !important;
+}
+
+.med-card-cards .x-btn.tab .x-btn-inner {
+    height: 32px !important;
+    line-height: 32px !important;
+    font-weight: 600 !important;
+    color: var(--ms-ink-500) !important;
+}
+
+.med-card-cards .x-btn.tab.active .x-btn-inner {
+    font-weight: 700 !important;
+    color: var(--ms-ink-900) !important;
+}
+
+/* ---- 14g. Secondary text greys (accessibility) ----------------------------
+   A gradient-aware audit of the patient card found 142 failing labels that
+   collapse into a handful of colour pairs. The dominant one:
+   `.l { color: grey }` in App-all_2, i.e. #808080 on white = 3,95:1, used
+   145 times across the card document rows (labels such as "6 участок",
+   "Статус пациента:", "Архивный номер"). #808080 also carries 16 of them
+   through .document-item.l and 18 more through .maxw.l, so a single rule on
+   the shared class covers all of them.
+
+   .patient-info-label is #999 in App-all_2 and App-all_3 = 3,74:1.
+
+   Both move to --ms-ink-500 (#476b8f), which is 5,03:1 on white - still
+   visibly a secondary tone next to #24405e, but compliant. These greys are
+   vendor defaults rather than a deliberate palette, so this restores intent
+   instead of overriding it. */
+.l,
+.patient-info-label {
+    color: var(--ms-ink-500) !important;
+}
+
+/* ---- 14h. Taskbar tab close button --------------------------------------
+   The last label left failing on the patient-list screen: the "close this
+   tab" cross of an inactive taskbar tab, #919191 on #f7fbfe = 3,03:1.
+   The vendor style carries color:#fff, which was chosen for tabs sitting on
+   the blue band and leaves the cross invisible on the light ones.
+
+   So the cross takes the theme ink by default, and stays white only on the
+   selected tab where the dark tone would disappear into the gradient. */
+.x-tab-close-btn {
+    color: var(--ms-ink-500) !important;
+}
+
+/* The vendor rule carried color:#fff, chosen for tabs on the blue band;
+   every tab in this theme is light, so the ink colour applies to all of
+   them. See the audit note above. */
+
+/* ---- 14i. Visits list rows ----------------------------------------------
+   The visit row (recordType 2) is a flat flex container:
+
+     document-container  display:flex
+       ├─ document-item       "Подписан" marker, 20x19
+       ├─ document-item.h     document name, bold
+       └─ document-item.l     "Изменен: <date>, <author>", text-align:right
+
+   Measured on the patient card: the row is 54px tall while its content is
+   only 42px, because the meta line wraps to a second line and is pushed to
+   the far right edge. That is what makes the list look sparse and broken -
+   the name sits on the left, the meta floats on the right one line lower.
+
+   The row is put on a single line: the name takes the remaining space, the
+   meta keeps its own width and is pinned to the right with margin-left:auto.
+   The 20px marker stays fixed. Row height drops to ~34px.
+
+   CAUTION (bug found 30.10.2026): the vendor sheet sizes the third flex
+   child with .document-item:nth-of-type(3){width:100%}. Combined with
+   flex-wrap:nowrap that made .l (whose flex-basis is auto, i.e. its width)
+   occupy the whole row, and the document name .h collapsed to width:0 -
+   the document name ("ВОП (ЦИСЗ)(ПОВТОРНЫЙ)", "осмотр повторный (терапевт)"
+   ...) disappeared from the visits window. The fix is width:auto !important
+   on .l so its flex-basis falls back to the text width. With nowrap the row
+   stays one line: name left, meta pinned right.
+
+   Scope is .document-container only - that class is used by the visit
+   template (case 2) and by nothing else in the card, so the other document
+   types keep their own layout. */
+.med-card-data-container .document-container {
+    flex-wrap: nowrap !important;
+    align-items: center;
+}
+
+.med-card-data-container .document-item.h {
+    flex: 1 1 auto;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.med-card-data-container .document-item.l {
+    width: auto !important;   /* override vendor nth-of-type(3) width:100% */
+    flex: 0 0 auto;
+    margin-left: auto;
+    padding-left: 12px;
+    white-space: nowrap;
+}
+
+/* ---- 15. Toolbars -------------------------------------------------------- */
+.x-toolbar {
+    background: var(--ms-surface) !important;
+    border-color: var(--ms-line) !important;
+    padding: 9px 12px;
+}
+
+.x-toolbar.x-toolbar-footer {
+    background: var(--ms-surface-2) !important;
+    border-top: 1px solid var(--ms-line) !important;
+    border-bottom: 0 !important;
+}
+
+/* Toolbar buttons ship as .x-btn-default-toolbar-small with a white fill and a
+   teal hairline. Flatten them into quiet secondary actions so the primary
+   blue buttons stay distinguishable. */
+.x-toolbar .x-btn.x-btn-default-toolbar-small:not(.firm):not([class*="primary"]),
+.x-toolbar .x-btn.x-btn-default-small:not(.firm):not([class*="primary"]),
+.x-toolbar .x-btn.x-btn-default-medium:not(.firm):not([class*="primary"]) {
+    background: var(--ms-surface) !important;
+    background-image: none !important;
+    border: 1px solid #c9dcee !important;
+    border-radius: var(--ms-r-control) !important;
+    box-shadow: var(--ms-sh-sm) !important;
+    min-height: 34px;
+}
+
+.x-toolbar .x-btn.x-btn-default-toolbar-small:not(.firm):not([class*="primary"]):hover,
+.x-toolbar .x-btn.x-btn-default-small:not(.firm):not([class*="primary"]):hover,
+.x-toolbar .x-btn.x-btn-default-medium:not(.firm):not([class*="primary"]):hover {
+    background: #eaf3fd !important;
+    border-color: var(--ms-blue-400) !important;
+    box-shadow: 0 2px 8px rgba(13, 79, 153, .16) !important;
+}
+
+/* 15b. Surface buttons in toolbars keep the dark label. Section 14's
+   "white label only where the fill is the brand gradient" rule also
+   matched toolbar buttons whose fill section 15 re-flattens to
+   var(--ms-surface) (white). Result: white-on-white labels on the
+   window footer buttons ("Сохранить", "Отменить", "Добавить",
+   "Добавить занятость") and other non-firm toolbar actions.
+   Higher specificity than the section 14 white rule, same !important. */
+.x-toolbar .x-btn.x-btn-default-toolbar-small:not(.firm):not([class*="primary"]) .x-btn-inner,
+.x-toolbar .x-btn.x-btn-default-toolbar-small:not(.firm):not([class*="primary"]) .x-btn-icon-el,
+.x-toolbar .x-btn.x-btn-default-small:not(.firm):not([class*="primary"]) .x-btn-inner,
+.x-toolbar .x-btn.x-btn-default-small:not(.firm):not([class*="primary"]) .x-btn-icon-el,
+.x-toolbar .x-btn.x-btn-default-medium:not(.firm):not([class*="primary"]) .x-btn-inner,
+.x-toolbar .x-btn.x-btn-default-medium:not(.firm):not([class*="primary"]) .x-btn-icon-el {
+    color: var(--ms-ink-700) !important;
+}
+/* ---- 15a. Gradient buttons keep the gradient on hover ---------------------
+   Regression from A13, reported as: "Войти меняет цвет при наведении и
+   надпись не видна". Measured with a real pointer on the login screen:
+
+     до наведения   background-image: градиент,  текст #ffffff
+     при наведении  background: #eaf3fd, background-image: none,
+                    текст #ffffff  -> 1,06:1, то есть не видно
+
+   The button is .x-btn.firm.x-btn-default-toolbar-small. The rule added in
+   A13 flattened every button of that ui class to a white fill, hover
+   included, and .firm is exactly the primary action whose label is white.
+   Both rules now skip .firm and [class*="primary"], and the gradient
+   buttons get an explicit hover of their own: same fill, deeper border and
+   a stronger shadow, so the label keeps its contrast. Note there is no
+   background-image:none in that block - --ms-grad arrives through the
+   background shorthand, and resetting background-image after it would erase
+   the gradient and bring back the very bug this fixes. */
+
+.x-btn.x-btn-default-toolbar-small.firm:hover,
+.x-btn.x-btn-default-toolbar-medium.firm:hover,
+.x-btn.firm:hover,
+.x-toolbar .x-btn[class*="primary"]:hover,
+.x-toolbar .x-btn.firm:hover {
+    background: var(--ms-grad) !important;
+    border-color: var(--ms-blue-700) !important;
+    box-shadow: 0 7px 20px rgba(13, 79, 153, .40) !important;
+}
+
+.x-btn.x-btn-default-toolbar-small.firm .x-btn-inner,
+.x-btn.x-btn-default-toolbar-medium.firm .x-btn-inner,
+.x-toolbar .x-btn[class*="primary"] .x-btn-inner {
+    color: #ffffff !important;
+}
+
+
+.x-toolbar .x-btn.x-btn-default-toolbar-small .x-btn-inner,
+.x-toolbar .x-btn.x-btn-default-toolbar-small .x-btn-icon-el,
+.x-toolbar .x-btn.x-btn-default-small .x-btn-inner,
+.x-toolbar .x-btn.x-btn-default-small .x-btn-icon-el,
+.x-toolbar .x-btn.x-btn-default-medium .x-btn-inner,
+.x-toolbar .x-btn.x-btn-default-medium .x-btn-icon-el {
+    color: var(--ms-ink-700) !important;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: .01em;
+}
+
+/* see the note on .x-btn .x-btn-icon-el: do not force a font family here */
+.x-toolbar .x-btn .x-btn-icon-el {
+    animation: none;
+}
+
+/* primary emphasis for the first real action of a form toolbar */
+.x-toolbar .x-btn.firm,
+.x-toolbar .x-btn[class*="primary"] {
+    background: var(--ms-grad) !important;
+    background-image: var(--ms-grad) !important;
+    border-color: var(--ms-blue-700) !important;
+}
+
+.x-toolbar .x-btn.firm .x-btn-inner,
+.x-toolbar .x-btn.firm .x-btn-icon-el,
+.x-toolbar .x-btn[class*="primary"] .x-btn-inner,
+.x-toolbar .x-btn[class*="primary"] .x-btn-icon-el {
+    color: #ffffff !important;
+}
+
+.x-toolbar .x-toolbar-text,
+.x-toolbar .x-btn-inner-default-toolbar-small {
+    color: var(--ms-ink-700);
+    font-size: 13px;
+}
+
+.x-toolbar .x-component {
+    min-width: 12px;
+}
+
+/* ---- 16. Grids ------------------------------------------------------------ */
+.x-grid-header-ct,
+.x-column-header {
+    background: var(--ms-surface-2) !important;
+}
+
+.x-column-header {
+    border-bottom: 1px solid var(--ms-line) !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .9) inset;
+}
+
+.x-column-header-inner,
+.x-column-header-text,
+.x-column-header-text-inner {
+    color: var(--ms-ink-500) !important;
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    line-height: 26px;
+}
+
+.x-grid-body,
+.x-grid-cell-default {
+    background-color: var(--ms-surface) !important;
+}
+
+.x-grid-cell-default {
+    border-color: var(--ms-line-2) !important;
+    font-size: 13px;
+    line-height: 24px;
+}
+
+.x-grid-cell-inner-default {
+    color: var(--ms-ink-700);
+}
+
+.x-grid-row {
+    height: 34px;
+}
+
+.x-grid-row-over .x-grid-cell-default {
+    background-color: #eef6fd !important;
+}
+
+.x-grid-row-selected .x-grid-cell-default {
+    background-color: #dcebfb !important;
+}
+
+.x-grid-row-selected .x-grid-cell-inner-default {
+    color: var(--ms-blue-900, #0b3f77);
+    font-weight: 600;
+}
+
+.x-grid-cell .x-fa {
+    color: var(--ms-blue-500);
+    font-size: 14px;
+}
+
+.x-grid-row-selected .x-grid-cell .x-fa {
+    color: var(--ms-blue-700);
+}
+
+/* ExtJS paints the selected row on the outer <table class="x-grid-item-selected">
+   — it kept a flat yellow highlight that the .x-grid-cell rules never reach. */
+.x-grid .x-grid-item-selected,
+.x-grid .x-grid-item-selected tr,
+.x-grid .x-grid-item-selected td,
+.x-grid .x-grid-cell-selected {
+    background: #dcebfb !important;
+    background-image: none !important;
+}
+
+.x-grid .x-grid-item-selected .x-grid-cell-inner {
+    background: transparent;
+}
+
+.x-grid .x-grid-item-selected .x-grid-cell-inner-default {
+    color: var(--ms-blue-900);
+    font-weight: 600;
+}
+
+/* row action buttons (edit / delete) — the legacy set is teal-on-white */
+.x-grid-cell-inner-action-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.x-action-col-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 7px;
+    background-color: #eaf3fd;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    opacity: .9;
+    transition: background-color .15s ease, opacity .15s ease, transform .15s ease;
+}
+
+.x-action-col-icon:hover {
+    background-color: #d6e9fb;
+    opacity: 1;
+    transform: translateY(-1px);
+}
+
+.x-grid-row-over .x-action-col-icon {
+    background-color: #dcebfb;
+}
+
+/* keep the legacy glyph artwork but recolour it to the blue family:
+   the sprites are teal/green bitmaps, so tint them via a filter chain. */
+.x-action-col-icon[class*="action-edit"] {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231668c9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 20h9'/><path d='M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z'/></svg>") !important;
+    background-size: 14px 14px;
+}
+
+.x-action-col-icon[class*="action-delete"],
+.x-action-col-icon[class*="action-remove"],
+.x-action-col-icon[class*="action-del"] {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d9534f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 6h18'/><path d='M8 6V4h8v2'/><path d='M19 6l-1 14H6L5 6'/><path d='M10 11v6M14 11v6'/></svg>") !important;
+    background-size: 14px 14px;
+}
+
+.x-action-col-icon[class*="action-delete"]:hover,
+.x-action-col-icon[class*="action-remove"]:hover,
+.x-action-col-icon[class*="action-del"]:hover {
+    background-color: #fdecec;
+}
+
+.x-grid-checkcolumn .x-grid-cell-inner {
+    background: var(--ms-surface);
+}
+
+/* ---- 17. Tab strips ------------------------------------------------------ */
+/* segmented control inside forms */
+.x-tab-bar-default {
+    background: var(--ms-surface-3) !important;
+    border: 1px solid var(--ms-line) !important;
+    border-radius: var(--ms-r-control) !important;
+    box-shadow: none !important;
+    padding: 3px;
+}
+
+.x-tab-bar-default .x-tab-bar-body {
+    background: transparent !important;
+}
+
+.x-tab-bar-default .x-tab {
+    border: 0 !important;
+    border-radius: var(--ms-r-chip) !important;
+    background: transparent !important;
+    margin: 0 2px;
+    min-height: 28px;
+    box-shadow: none !important;
+    transition: background .14s ease, color .14s ease;
+}
+
+.x-tab-bar-default .x-tab-inner-default {
+    color: var(--ms-ink-500);
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 26px;
+    letter-spacing: .01em;
+}
+
+.x-tab-bar-default .x-tab .x-tab-icon-el {
+    color: var(--ms-ink-400);
+    animation: none;
+}
+
+.x-tab-bar-default .x-tab.x-tab-over {
+    background: rgba(22, 104, 201, .09) !important;
+}
+
+.x-tab-bar-default .x-tab.x-tab-active {
+    background: var(--ms-surface) !important;
+    box-shadow: var(--ms-sh-sm) !important;
+}
+
+.x-tab-bar-default .x-tab.x-tab-active .x-tab-inner-default {
+    color: var(--ms-blue-700) !important;
+    font-weight: 700;
+}
+
+.x-tab-bar-default .x-tab.x-tab-active .x-tab-icon-el {
+    color: var(--ms-blue-600);
+}
+
+/* bottom taskbar */
+.app-taskbar {
+    background: var(--ms-surface-2) !important;
+    border-top: 1px solid var(--ms-line) !important;
+    box-shadow: 0 -2px 10px rgba(13, 55, 95, .06);
+    padding: 0 6px;
+}
+
+.app-taskbar .x-tab-bar-body,
+.app-taskbar .x-tab-bar-strip {
+    background: transparent !important;
+}
+
+.app-taskbar .x-tab {
+    border: 0 !important;
+    background: transparent !important;
+    border-radius: 9px 9px 0 0 !important;
+    margin: 3px 3px 0;
+    min-height: 30px;
+}
+
+.app-taskbar .x-tab-inner-default {
+    color: var(--ms-ink-500);
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 30px;
+}
+
+.app-taskbar .x-tab .x-tab-icon-el {
+    color: var(--ms-ink-400);
+    animation: none;
+}
+
+.app-taskbar .x-tab.x-tab-over {
+    background: #eaf3fd !important;
+}
+
+.app-taskbar .x-tab.x-tab-active {
+    background: var(--ms-surface) !important;
+    box-shadow: 0 -2px 0 var(--ms-blue-600) inset, var(--ms-sh-sm);
+}
+
+.app-taskbar .x-tab.x-tab-active .x-tab-inner-default {
+    color: var(--ms-blue-800) !important;
+    font-weight: 700;
+}
+
+.app-taskbar .x-tab-close {
+    background: transparent;
+    border-radius: 4px;
+    opacity: .45;
+}
+
+.app-taskbar .x-tab-close:hover {
+    background: #e05b5b;
+    opacity: 1;
+}
+
+/* ---- 18. Scrollbars ------------------------------------------------------ */
+.x-scroller-default .x-scroller-thumb-default,
+.x-scrollbar-default .x-scrollbar-thumb {
+    background-color: #c3d5e6;
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    min-height: 34px;
+}
+
+.x-scroller-default .x-scroller-thumb-default:hover,
+.x-scrollbar-default .x-scrollbar-thumb:hover {
+    background-color: #a6c1d8;
+}
+
+/* ---- 19. Login / config / app picker ------------------------------------
+   The window is the first thing a user sees, so it gets the strongest
+   contrast in the whole product: a solid brand band on top, near-black
+   headline, uppercase labels, and one full-width call to action.
+
+   Field geometry matters here too. ExtJS lays the password field out as a
+   370px container holding a 332px trigger-wrap plus a 38px toggle button,
+   while the login field is a single 370px wrap. Left unstyled the two
+   controls end up visibly different widths. The rules below make the
+   button read as the right-hand cap of the password field, so both inputs
+   occupy exactly the same box.                                            */
+.common-login .x-panel-default-framed,
+.common-config .x-panel-default-framed,
+.css-def .common-login .x-panel-default-framed,
+.css-def .common-config .x-panel-default-framed {
+    border: 1px solid #cfe0ef !important;
+    border-radius: 18px !important;
+    box-shadow: 0 26px 64px rgba(8, 40, 76, .30), 0 4px 14px rgba(8, 40, 76, .12) !important;
+    background: var(--ms-surface);
+    overflow: hidden;
+}
+
+/* -- brand band -----------------------------------------------------------
+   NB `:has(.logoImage)` is required — the app-picker screen has THREE
+   sibling .x-container.x-docked rows (brand, body, "Запомнить выбор"), and
+   a plain `.x-docked` selector paints the gradient across all of them.
+
+   Only the login window gets the band. ExtJS pins the logo, the title and
+   the close button with inline top:0px / left:NNpx inside a .x-box-inner
+   that is only 24px tall, so a min-height band leaves them glued to the top
+   edge with 36px of empty blue underneath. Padding grows the band around
+   the untouched row instead — no fighting with inline positioning.
+
+   Two dead ends were tried first and are noted so nobody repeats them:
+   `height:100%` collapses to 0 (the band has a min-height, not a height),
+   and a flex rebuild squeezes the app-picker title to 20px because its
+   sibling is a nested container rather than a flex item.
+
+   The app-picker brand block deliberately keeps the plain light look: it
+   stacks two rows, so any band colour there inflates it to ~150px. */
+.common-login .x-panel-bodyWrap > .x-container.x-docked:has(.logoImage) {
+    background: var(--ms-grad) !important;
+    min-height: 0 !important;
+    padding: 15px 20px !important;
+    border-bottom: 1px solid rgba(9, 55, 104, .30) !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .16) inset;
+}
+
+/* NB: `:has(.logoImage)` is required. The app-picker screen has THREE
+   sibling .x-container.x-docked rows — the brand row, the body and the
+   "Запомнить выбор" row — and a plain `.x-docked` selector paints the
+   gradient across all of them. */
+.common-login .x-container.x-docked .closeImage,
+.common-config .x-container.x-docked .closeImage,
+.css-def .common-login .x-container.x-docked .closeImage,
+.css-def .common-config .x-container.x-docked .closeImage {
+    color: rgba(255, 255, 255, .88) !important;
+    font-size: 16px;
+    opacity: 1 !important;
+    border-radius: 8px;
+    transition: background-color .15s ease, color .15s ease;
+}
+
+/* title fills the gap, close button is pushed to the far right */
+.common-login .x-container.x-docked .H6,
+.common-config .x-container.x-docked .H6 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* the H6 inside the band is the application name */
+.common-login .x-container.x-docked .H6,
+.css-def .common-login .x-container.x-docked .H6 {
+    color: #ffffff !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    letter-spacing: .015em;
+}
+
+/* the app-picker brand row stays light — see the note above */
+.common-config .x-container.x-docked .H6,
+.css-def .common-config .x-container.x-docked .H6 {
+    color: #0b2545 !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    letter-spacing: .015em;
+}
+
+.common-login .logoImage,
+.css-def .common-login .logoImage {
+    color: #ffffff !important;
+    font-size: 21px;
+    opacity: 1 !important;
+}
+
+.common-config .logoImage,
+.css-def .common-config .logoImage {
+    color: var(--ms-blue-600) !important;
+    font-size: 21px;
+    opacity: 1 !important;
+}
+
+.common-login .closeImage,
+.common-config .closeImage,
+.css-def .common-login .closeImage,
+.css-def .common-config .closeImage {
+    color: rgba(255, 255, 255, .88) !important;
+    font-size: 16px;
+    opacity: 1 !important;
+    border-radius: 8px;
+    transition: background-color .15s ease, color .15s ease;
+}
+
+.common-login .closeImage:hover,
+.common-config .closeImage:hover {
+    background: rgba(255, 255, 255, .22);
+    color: #ffffff !important;
+}
+
+/* -- headline ------------------------------------------------------------- */
+/* the H6 in the body is the window title and must read as a headline */
+.common-login .x-panel-body-default-framed .H6,
+.common-config .x-panel-body-default-framed .H6,
+.css-def .common-login .x-panel-body-default-framed .H6,
+.css-def .common-config .x-panel-body-default-framed .H6 {
+    color: #0b2545 !important;
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    letter-spacing: -.02em;
+    line-height: 28px;
+}
+
+.css-def .common-login .x-panel-body-default-framed,
+.css-def .common-config .x-panel-body-default-framed {
+    background: var(--ms-surface);
+    padding: 22px 28px 26px;
+}
+
+/* -- labels --------------------------------------------------------------- */
+.common-login .x-form-item-label-text,
+.common-config .x-form-item-label-text,
+.css-def .common-login .x-form-item-label-text,
+.css-def .common-config .x-form-item-label-text {
+    color: #24405e !important;
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    line-height: 16px;
+}
+
+.common-login .x-form-item-label-inner,
+.common-config .x-form-item-label-inner {
+    padding-bottom: 7px !important;
+}
+
+/* -- controls: same box for every field ---------------------------------- */
+/* The trigger-wrap is only a positioning shell — it must not draw a border,
+   otherwise the login field ends up with a double frame and ends up 1px
+   narrower than the password field (370 vs 369). The visible frame lives on
+   .x-form-text-wrap alone. */
+.common-login .x-form-trigger-wrap-default {
+    box-sizing: border-box;
+    height: 40px !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+.common-login .x-form-text-wrap {
+    box-sizing: border-box;
+    height: 40px !important;
+    border-radius: var(--ms-r-control) !important;
+    border: 1px solid #bfd5e8 !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 1px 2px rgba(13, 55, 95, .05);
+}
+
+.common-login .x-form-text {
+    height: 38px !important;
+    line-height: 38px !important;
+    font-size: 14px !important;
+    color: #0b2545 !important;
+    padding: 0 14px !important;
+}
+
+.common-login .x-form-trigger-wrap-default:hover,
+.common-login .x-form-text-wrap:hover {
+    border-color: var(--ms-blue-400) !important;
+}
+
+.common-login .x-form-trigger-wrap-default.x-form-focus,
+.common-login .x-form-text-wrap.x-form-focus {
+    border-color: var(--ms-blue-600) !important;
+    box-shadow: 0 0 0 4px rgba(22, 104, 201, .18);
+}
+
+/* Field pictograms. Wrapped in :has() so an engine without it simply drops
+   the icons instead of breaking the layout. */
+.common-login .x-form-item:has(input[type="text"]) .x-form-text-wrap {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231668c9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='8' r='4'/><path d='M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5'/></svg>");
+    background-repeat: no-repeat;
+    background-position: 13px center;
+    background-size: 17px 17px;
+}
+
+.common-login .x-form-item:has(input[type="text"]) .x-form-text {
+    padding-left: 42px !important;
+}
+
+.common-login .x-form-item:has(input[type="password"]) .x-form-text-wrap {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231668c9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='4' y='10.5' width='16' height='10.5' rx='2.2'/><path d='M8 10.5V7a4 4 0 0 1 8 0v3.5'/></svg>");
+    background-repeat: no-repeat;
+    background-position: 13px center;
+    background-size: 17px 17px;
+}
+
+.common-login .x-form-item:has(input[type="password"]) .x-form-text {
+    padding-left: 42px !important;
+    padding-right: 44px !important;
+}
+
+/* -- password field: cap the control so both widths match ----------------- */
+/* the text-wrap holds the visible left half; the button becomes its right cap */
+.common-login .x-field-container-body-vertical .x-form-text-wrap {
+    border-radius: var(--ms-r-control) 0 0 var(--ms-r-control) !important;
+    border-right: 0 !important;
+}
+
+.common-login .x-field-container-body-vertical .x-box-target > .x-btn {
+    top: 0 !important;
+    left: auto !important;
+    right: 0 !important;
+    box-sizing: border-box;
+    width: 42px !important;
+    height: 40px !important;
+    background: #f4f9fe !important;
+    background-image: none !important;
+    border: 1px solid #bfd5e8 !important;
+    border-left: 0 !important;
+    border-radius: 0 var(--ms-r-control) var(--ms-r-control) 0 !important;
+    box-shadow: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.common-login .x-field-container-body-vertical .x-box-target > .x-btn:hover {
+    background: #e6f1fb !important;
+    border-color: var(--ms-blue-400) !important;
+}
+
+.common-login .x-field-container-body-vertical .x-box-target > .x-btn .x-btn-icon-el,
+.common-login .x-field-container-body-vertical .x-box-target > .x-btn .x-btn-icon-el:before {
+    color: #356a9a !important;
+    font-size: 15px !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    font-family: 'FontAwesome' !important;
+}
+
+/* -- call to action ------------------------------------------------------- */
+.common-login .x-btn.firm,
+.css-def .common-login .x-btn.firm {
+    width: 100% !important;
+    align-self: stretch;
+    box-sizing: border-box;
+    height: 48px !important;
+    min-height: 48px !important;
+    padding: 0 !important;
+    margin-top: 4px;
+    border-radius: var(--ms-r-control) !important;
+    background: var(--ms-grad) !important;
+    border: 1px solid var(--ms-blue-700) !important;
+    box-shadow: 0 4px 14px rgba(13, 79, 153, .34) !important;
+}
+
+.common-login .x-btn.firm .x-btn-wrap,
+.common-login .x-btn.firm .x-btn-button,
+.css-def .common-login .x-btn.firm .x-btn-wrap,
+.css-def .common-login .x-btn.firm .x-btn-button {
+    height: 46px !important;
+    line-height: 46px !important;
+    padding: 0 !important;
+}
+
+.common-login .x-btn.firm .x-btn-inner,
+.css-def .common-login .x-btn.firm .x-btn-inner {
+    color: #ffffff !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    line-height: 46px !important;
+}
+
+.common-login .x-btn.firm:hover {
+    box-shadow: 0 7px 20px rgba(13, 79, 153, .40) !important;
+}
+
+/* Disabled state: white on #dbe6f1 is unreadable (~1.6:1), so the muted look
+   is kept with dark text on a light surface instead. */
+.common-login .x-btn.firm.x-btn-disabled,
+.common-login .x-btn.x-btn-disabled {
+    background: #dce9f5 !important;
+    border-color: #c2d7ea !important;
+    box-shadow: none !important;
+}
+
+.common-login .x-btn.firm.x-btn-disabled .x-btn-inner,
+.common-login .x-btn.x-btn-disabled .x-btn-inner {
+    color: #2c4a68 !important;
+}
+
+/* -- app picker checkboxes ----------------------------------------------- */
+.common-config .x-form-cb-input {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.common-config .x-form-cb-label {
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    color: #24405e !important;
+}
+
+.common-config .x-btn.x-btn-default-medium {
+    min-height: 46px !important;
+    border-radius: var(--ms-r-control) !important;
+    font-size: 16px !important;
+}
+
+/* The two application cards are the main action on this screen, yet they
+   inherited the 13px base size and read as small captions inside a 402x50
+   button. 16px fits without touching the box: measured labels are 126px and
+   137px wide against 402px, and the 32px line box is unchanged.
+   Hierarchy now reads title 17/700, buttons 16/600, checkbox 13.5/600. */
+.common-config .x-btn.x-btn-default-medium .x-btn-inner {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    line-height: 32px !important;
+}
+
+/* ---- 20. Misc ------------------------------------------------------------ */
+.x-mask-msg {
+    background: rgba(255, 255, 255, .94);
+    border-radius: var(--ms-r-control);
+    box-shadow: var(--ms-sh-lg);
+    border: 1px solid var(--ms-line);
+}
+
+.x-mask-msg-inner {
+    color: var(--ms-blue-700);
+    font-weight: 600;
+}
+
+.x-tip {
+    border-radius: var(--ms-r-chip);
+    border: 1px solid var(--ms-line);
+    box-shadow: var(--ms-sh-md);
+    background: var(--ms-surface);
+}
+
+.x-tip .x-tip-text {
+    color: var(--ms-ink-700);
+    font-size: 12.5px;
+}
+/* tip body inherits the vendor light-on-dark text while the theme paints
+   the tip surface white - restore dark ink so tooltips stay readable */
+.x-tip .x-tip-body,
+.x-tip .x-tip-body-default {
+    color: var(--ms-ink-900) !important;
+}
+.x-tip .x-tip-body a {
+    color: var(--ms-blue-700) !important;
+}
+
+.x-menu {
+    border: 1px solid var(--ms-line);
+    border-radius: var(--ms-r-control);
+    box-shadow: var(--ms-sh-lg);
+}
+
+.x-menu-item {
+    color: var(--ms-ink-700);
+    font-size: 13px;
+    border-radius: var(--ms-r-chip);
+    margin: 1px 4px;
+}
+
+.x-menu-item.x-menu-item-over {
+    background: var(--ms-grad);
+    color: #ffffff;
+}
+
+.x-menu-item.x-menu-item-over .x-menu-icon {
+    color: #ffffff;
+}
+
+.x-menu-icon {
+    color: var(--ms-blue-600);
+}
+
+.x-btn-focus,
+.x-tab-focus,
+.x-btn:focus-visible,
+.x-form-field:focus-visible {
+    outline: 2px solid var(--ms-blue-500) !important;
+    outline-offset: 2px;
+}
+
+.x-css-shadow {
+    display: none;
+}
+
+/* Honour the OS "reduce motion" setting: every hover transition in this theme
+   becomes instant. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* theme-comfort shipped grey buttons with !important — reassert the palette */
+.css-def .theme-comfort .x-btn.x-btn-default-small,
+.css-def .theme-comfort .x-btn.x-btn-default-medium,
+.css-def .theme-comfort .x-btn.x-btn-default-large,
+.css-def .theme-comfort .x-btn.x-btn-default-docked-small {
+    background: var(--ms-grad) !important;
+    border: 1px solid var(--ms-blue-700) !important;
+    border-radius: var(--ms-r-control) !important;
+    color: #ffffff !important;
+}
+
+.css-def .theme-comfort .x-btn .x-btn-inner,
+.css-def .theme-comfort .x-btn .x-btn-icon-el,
+body.x-body.css-def .theme-comfort .x-btn .x-btn-inner,
+body.x-body.css-def .theme-comfort .x-btn .x-btn-icon-el {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+/* ---- 21. Visit completion checkmark ---
+   (see section end) */
+
+/* ---- 22. Datepicker (appointment calendar) ------------------------------
+   The registrar's "Запись на прием" embeds the calendar in a panel whose
+   body shares space with the Сегодня/Завтра toolbar. The vendor calendar
+   uses large fonts AND shrinks itself with transform:scale(0.7) - but a
+   transform does not change layout, so the scaled-down picture is clipped
+   by its box: the bottom week disappears. The theme fonts made it worse.
+
+   Fix: drop the scale and size the calendar as real layout: 24px header +
+   16px weekday row + 6x17px week rows = 142px. Weekday cells are 17px tall
+   (vs ~11px visually with the old scale) so the registrar can hit the right
+   day. It fits the panel body above the Сегодня/Завтра toolbar. Visually it follows the
+   2026 language: white surface, 1px line border, 10px radius, soft shadow,
+   blue selected day, ringed today, muted other-month days. */
+.x-datepicker.small,
+.x-datepicker.small.couponPicker {
+    transform: none !important;
+    /* Ext sizes the picker for the old scale(0.7) layout and centers it in
+       the wrapper, which pushes the header above the clip box. */
+    top: 0 !important;
+    left: 0 !important;
+}
+
+/* hbox wrapper of the embedded coupon picker: Ext still reserves the old
+   scaled height; set the real one so nothing clips. Only the DIRECT parent
+   chain of the picker - a plain :has(.couponPicker) would also match every
+   ancestor up to the desktop and collapse the whole UI. */
+.x-box-layout-ct:has(> .x-box-inner > .x-box-target > .x-datepicker.small.couponPicker) {
+    height: 145px !important;
+}
+
+/* Ext keeps the inner box at the old scaled height and clips the bottom
+   weeks with its overflow:hidden - stretch it too. */
+.x-box-layout-ct:has(> .x-box-inner > .x-box-target > .x-datepicker.small.couponPicker) > .x-box-inner {
+    height: 145px !important;
+}
+
+.x-datepicker {
+    height: auto !important;
+    background: var(--ms-surface) !important;
+    border: 1px solid var(--ms-line) !important;
+    border-radius: 10px !important;
+    box-shadow: var(--ms-sh-md) !important;
+    overflow: hidden;
+}
+
+.x-datepicker-header {
+    height: 24px !important;
+    padding: 0 2px !important;
+    background: var(--ms-surface-2) !important;
+    border-bottom: 1px solid var(--ms-line) !important;
+}
+
+/* month title (vendor renders it as a splitbutton). NOTE: keep it compact -
+   the header is 24px; the global "blue gradient" rule for x-btn-default-small
+   (sections 22-23) used to override this transparent style, swelling the
+   button to 34px so it spilled over the weekday row. Pinned to 20px with a
+   turquoise fill (vendor teal) as requested. */
+.x-datepicker-month,
+.x-datepicker-month a.x-btn,
+.x-datepicker .x-datepicker-month a.x-btn.x-btn-default-small,
+.x-datepicker .x-datepicker-header .x-btn.x-btn-default-small {
+    height: 20px !important;
+    min-height: 20px !important;
+    background: #00988d !important;
+    background-image: linear-gradient(135deg, #0aa89b 0%, #00988d 100%) !important;
+    border: 0 !important;
+    border-radius: 5px !important;
+    box-shadow: none !important;
+    padding: 0 6px !important;
+    box-sizing: border-box !important;
+    overflow: hidden;
+}
+
+.x-datepicker-month .x-btn-wrap,
+.x-datepicker-month .x-btn-button {
+    height: 20px !important;
+    padding: 0 !important;
+}
+
+.x-datepicker-month .x-btn-inner,
+.x-datepicker-month-text {
+    font-size: 12.5px !important;
+    font-weight: 700 !important;
+    line-height: 20px !important;
+    color: #ffffff !important;
+    height: 20px !important;
+}
+
+.x-datepicker-month .x-btn-split-el,
+.x-datepicker-month .x-btn-split-arrow {
+    height: 20px !important;
+    color: #ffffff !important;
+}
+
+.x-datepicker-month a.x-btn:hover,
+.x-datepicker-month a.x-btn.x-btn-over {
+    background-image: linear-gradient(135deg, #0cb7a9 0%, #04a89b 100%) !important;
+}
+
+/* prev / next arrows: vendor draws them as FontAwesome ::before glyphs in
+   muted grey #919191 - barely visible on the pale header. Theme blue, 18px,
+   centered in the 24x20 hit area. */
+.x-datepicker-arrow {
+    width: 24px !important;
+    height: 20px !important;
+    border-radius: 6px !important;
+    background-color: transparent !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+}
+
+.x-datepicker-prev::before,
+.x-datepicker-next::before {
+    font-size: 18px !important;
+    line-height: 20px !important;
+    color: var(--ms-blue-700) !important;
+}
+
+.x-datepicker-arrow:hover::before {
+    color: var(--ms-blue-500) !important;
+}
+
+.x-datepicker-arrow:hover {
+    background-color: var(--ms-surface-3) !important;
+}
+
+/* weekday names row */
+.x-datepicker-column-header {
+    height: 16px !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border-bottom: 1px solid var(--ms-line-2) !important;
+}
+
+.x-datepicker-column-header-inner {
+    height: 15px !important;
+    line-height: 15px !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: var(--ms-ink-500) !important;
+    background: transparent !important;
+}
+
+/* day cells: 6 fixed week rows, compact */
+.x-datepicker-cell {
+    height: 17px !important;
+    padding: 0 !important;
+}
+
+.x-datepicker-date {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    height: 100% !important;
+    margin: 0 3px !important;
+    border-radius: 5px !important;
+    font-size: 12.5px !important;
+    line-height: 15px !important;
+    text-align: center;
+    color: var(--ms-ink-900);
+    background: transparent !important;
+    text-decoration: none !important;
+}
+
+td.x-datepicker-cell:hover .x-datepicker-date {
+    background: var(--ms-surface-3) !important;
+}
+
+td.x-datepicker-prevday .x-datepicker-date,
+td.x-datepicker-nextday .x-datepicker-date {
+    color: var(--ms-ink-300) !important;
+}
+
+td.x-datepicker-today .x-datepicker-date {
+    color: var(--ms-blue-700) !important;
+    font-weight: 700 !important;
+    box-shadow: inset 0 0 0 1px var(--ms-blue-400) !important;
+}
+
+td.x-datepicker-selected .x-datepicker-date,
+.x-datepicker .x-datepicker-selected .x-datepicker-date,
+.x-datepicker .x-datepicker-selected div.x-datepicker-date,
+.x-datepicker-table .x-datepicker-selected .x-datepicker-date {
+    /* rounded frame + a fill slightly lighter than the old solid blue.
+       The last two selectors out-specify the vendor white-text rules in
+       App-all_2.css (.x-datepicker .x-datepicker-selected .x-datepicker-date,
+       specificity (0,3,1)) - white text on the light fill was invisible. */
+    background: #dbeafe !important;
+    color: var(--ms-ink-900) !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    box-shadow: inset 0 0 0 1.5px var(--ms-blue-600) !important;
+    border-radius: 999px !important;
+}
+
+td.x-datepicker-disabled .x-datepicker-date {
+    color: var(--ms-ink-300) !important;
+    background: transparent !important;
+    text-decoration: line-through !important;
+}
+
+/* ---- 21b. Visit completion checkmark (colors) ---------------------------
+   The "visit finished" mark on documents (.fa-check.card-mark-ready) and on
+   the day sheet (.card-result). Vendor renders both silver (#c0c0c0) -
+   barely visible on white (1.6:1). A completed visit is a positive result,
+   so it gets a confident green: #12813c bold on white is 4.96:1 (WCAG AA),
+   plus a subtle drop shadow to lift it off the row. Verified live. */
+.fa-check.card-mark-ready,
+.card-mark-ready {
+    color: #12813c !important;
+    font-weight: 700;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .25);
+}
+
+.med-card-cards .card-container .card-result {
+    color: #12813c !important;
+    font-weight: 700 !important;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25) !important;
+}
+
+
+/* 23b. App header: brand glyph before the application name. The header band
+   had no brand mark at all; the real logo-mapsoft.svg is not wired in, so
+   the logo glyph (e962) anchors every screen. */
+.x-panel-header-title table td:first-child::before {
+    content: "\e962";
+    font-family: 'map_icons' !important;
+    font-size: 20px;
+    color: rgba(255, 255, 255, .9);
+    margin-right: 10px;
+    display: inline-block;
+    transform: translateY(2px);
+}
+
+/* 23c. Header tools (user / help / sign-out): uniform hover affordance -
+   vendor leaves them flat on the blue band. */
+.x-panel-header .x-tool {
+    border-radius: 6px;
+    transition: background-color .15s ease;
+}
+
+.x-panel-header .x-tool:hover {
+    background-color: rgba(255, 255, 255, .18) !important;
+}
+
+/* 23d. Segmented talon filters "Все/C/З/В/О": one-letter buttons only made
+   sense with a tooltip. Colour-coding makes the states scannable:
+   green = free, amber = ordered, blue = issued, red = cancelled. */
+.x-segmented-button .x-btn:nth-child(1) .x-btn-inner { color: var(--ms-ink-900) !important; font-weight: 700 !important; }
+.x-segmented-button .x-btn:nth-child(2) .x-btn-inner { color: #12813c !important; font-weight: 700 !important; }
+.x-segmented-button .x-btn:nth-child(3) .x-btn-inner { color: #b7791f !important; font-weight: 700 !important; }
+.x-segmented-button .x-btn:nth-child(4) .x-btn-inner { color: var(--ms-blue-700) !important; font-weight: 700 !important; }
+.x-segmented-button .x-btn:nth-child(5) .x-btn-inner { color: #d92d5b !important; font-weight: 700 !important; }
+
+/* pressed state: fill with the letter colour, white text. Specificity is raised above the toolbar-button surface rule. */
+.x-segmented-button .x-btn:nth-child(1).x-btn-default-toolbar-small.x-btn-pressed { background: var(--ms-ink-900) !important; }
+.x-segmented-button .x-btn:nth-child(2).x-btn-default-toolbar-small.x-btn-pressed { background: #12813c !important; }
+.x-segmented-button .x-btn:nth-child(3).x-btn-default-toolbar-small.x-btn-pressed { background: #b7791f !important; }
+.x-segmented-button .x-btn:nth-child(4).x-btn-default-toolbar-small.x-btn-pressed { background: var(--ms-blue-700) !important; }
+.x-segmented-button .x-btn:nth-child(5).x-btn-default-toolbar-small.x-btn-pressed { background: #d92d5b !important; }
+
+/* pressed state stays white-on-blue */
+.x-segmented-button .x-btn.x-btn-pressed .x-btn-inner {
+    color: #ffffff !important;
+}
+
+/* 23e. Docked bottom toolbars: the Сегодня/Завтра pair rendered 48px tall
+   (vendor inner line-height 32px) next to 34px controls everywhere else.
+   Normalise every docked-bottom toolbar to the standard control height. */
+.x-toolbar.x-docked-bottom { padding: 5px 12px !important; }
+.x-toolbar.x-docked-bottom .x-btn { height: 34px !important; min-height: 34px !important; }
+.x-toolbar.x-docked-bottom .x-btn-inner { line-height: 30px !important; }
+.x-toolbar.x-docked-bottom .x-toolbar-inner { height: 34px !important; }
+
+/* 23e3. Registrar view-switch buttons (table/list/map): keep them aligned
+   with the 34px row and give them the standard control look - white surface,
+   blue glyph, soft hover. NOTE: only *toolbar-style* buttons are re-skinned;
+   regular x-btn-default-small buttons (e.g. primary "Добавить вызов") keep
+   their blue gradient - painting them white left white-on-white text. */
+.x-panel:has(.x-segmented-button) .x-btn .x-btn-icon-el {
+    color: var(--ms-blue-700) !important;
+    background-image: none !important;
+    font-size: 15px !important;
+}
+
+.x-panel:has(.x-segmented-button) .x-btn.x-btn-default-toolbar-small,
+.x-panel:has(.x-segmented-button) .x-btn.x-btn-default-toolbar-medium {
+    background: var(--ms-surface) !important;
+    border: 1px solid var(--ms-line) !important;
+    border-radius: var(--ms-r-control) !important;
+    box-shadow: none !important;
+    transition: border-color .15s ease, background-color .15s ease;
+}
+
+.x-panel:has(.x-segmented-button) .x-btn.x-btn-default-toolbar-small:hover,
+.x-panel:has(.x-segmented-button) .x-btn.x-btn-default-toolbar-medium:hover,
+.x-panel:has(.x-segmented-button) .x-btn.x-btn-default-toolbar-small.x-btn-pressed,
+.x-panel:has(.x-segmented-button) .x-btn.x-btn-default-toolbar-medium.x-btn-pressed {
+    background: #eaf3fd !important;
+    border-color: var(--ms-blue-400) !important;
+}
+
+.x-panel:has(.x-segmented-button) .x-btn.x-btn-default-toolbar-small.x-btn-pressed,
+.x-panel:has(.x-segmented-button) .x-btn.x-btn-default-toolbar-medium.x-btn-pressed {
+    background: var(--ms-blue-600) !important;
+}
+
+.x-panel:has(.x-segmented-button) .x-btn.x-btn-pressed .x-btn-icon-el {
+    color: #ffffff !important;
+}''
+
+/* 23e4. Registrar filter bar height: the panel with segmented buttons is
+   vendor-58px; slim to 44px and pin all buttons to 34px. The segmented
+   table stretches its cells, so table, cells and buttons are pinned;
+   Ext frame min-height zeroed (padding is zeroed to fit 34px). */
+.x-panel:has(.x-segmented-button) {
+    height: 44px !important;
+}
+
+.x-segmented-button {
+    display: table;
+    table-layout: fixed;
+    height: 34px !important;
+}
+
+.x-segmented-button .x-segmented-button-item { height: 34px !important; }
+
+.x-segmented-button .x-btn {
+    height: 34px !important;
+    min-height: 0 !important;
+    box-sizing: border-box !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.x-segmented-button .x-btn .x-btn-inner { line-height: 30px !important; }
+''
+
+''
+
+/* 23e6. Registrar view-switch icon buttons: vendor iconCls carries
+   icon-padding-top (icon shifted down in the 34px button). Neutralise the
+   padding and center the glyph; slightly larger, theme blue. */
+.x-panel:has(.x-segmented-button) .x-btn .icon-padding-top {
+    padding-top: 0 !important;
+}
+
+/* 23e7. Buttons in segmented-row panels: regular primary buttons
+   ("Добавить вызов" in the calls journal) render 48px tall next to the
+   34px segmented row. Pin them to the standard 34px control height and
+   keep them blue with white text (23d surface rules above no longer
+   touch them). */
+.x-panel:has(.x-segmented-button) .x-btn.x-btn-default-small,
+.x-panel:has(.x-segmented-button) .x-btn.x-btn-default-medium {
+    height: 34px !important;
+    min-height: 34px !important;
+    box-sizing: border-box !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    background: var(--ms-grad) !important;
+    border: none !important;
+    box-shadow: var(--ms-shadow-1) !important;
+}
+
+.x-panel:has(.x-segmented-button) .x-btn.x-btn-default-small .x-btn-inner,
+.x-panel:has(.x-segmented-button) .x-btn.x-btn-default-medium .x-btn-inner {
+    color: #ffffff !important;
+    line-height: 30px !important;
+    font-weight: 600 !important;
+}
+
+.x-panel:has(.x-segmented-button) .x-btn.x-btn-default-small:hover,
+.x-panel:has(.x-segmented-button) .x-btn.x-btn-default-medium:hover {
+    filter: brightness(1.08) !important;
+}
+
+.x-panel:has(.x-segmented-button) .x-btn .fa {
+    font-size: 16px !important;
+    color: var(--ms-blue-700) !important;
+}
+
+.x-panel:has(.x-segmented-button) .x-btn:hover .fa {
+    color: var(--ms-blue-500) !important;
+}'
+
+
+/* 23e5. Registrar city button panel (Город + правая часть строки) is also
+   vendor-58px; slim to 44px and pin buttons to 34px. 6.00.58 replaced the
+   old fa-map-marker glyph with city-icon (fa-plus-square toggled to
+   fa-minus-square by vendor JS), so the panel is keyed on .city-icon now. */
+.x-panel:has(.city-icon) {
+    height: 44px !important;
+}
+
+.x-panel:has(.city-icon) .x-btn {
+    height: 34px !important;
+    min-height: 34px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    box-sizing: border-box !important;
+}
+
+.x-panel:has(.city-icon) .x-btn-inner { line-height: 30px !important; }
+
+/* 23e5b. Colored glyphs for the registrar filter bar (6.00.58):
+   - view switches: table=blue, list=green, blocks=purple;
+   - Город (city-icon plus/minus): amber - an address/place cue; vendor JS
+     toggles plus/minus classes, so the glyph itself is kept;
+   - Ещё (doAddCoupon, extra coupon order): green glyph. */
+.x-panel:has(.city-icon) .x-btn .fa.fa-table    { color: var(--ms-blue-700) !important; }
+.x-panel:has(.city-icon) .x-btn .fa.fa-bars     { color: #12813c !important; }
+.x-panel:has(.city-icon) .x-btn .fa.fa-th-large { color: #7a3fc0 !important; }
+
+.x-panel:has(.city-icon) .x-btn .city-icon {
+    color: #b7791f !important;
+    font-size: 15px !important;
+}
+
+.x-panel:has(.city-icon) .x-btn .fa.fa-plus-square:not(.city-icon) {
+    /* Ещё (доп.талон): зелёный глиф вместо вендорского */
+    color: #12813c !important;
+}
+
+
+/* 24a. Editor toolbar buttons (map-icons): colored glyphs, centered.
+   Buttons are 46x38 icon-only (.x-btn-icon) with a 20px map_icons glyph that
+   used to sit 9px from the left edge (9px left vs 17px right) - visibly
+   off-center. They were also monochrome ink/slate. Give each action its own
+   accent color on a soft tinted chip, center the glyph, and add hover. */
+.x-btn .x-btn-icon-el.map-icons {
+    margin: 0 auto !important;
+    font-size: 17px !important;
+    transition: color .15s ease, background-color .15s ease, box-shadow .15s ease;
+    border-radius: 8px;
+}
+
+/* center: the icon element is a flex child; give the wrap symmetric padding */
+.x-btn.x-btn-icon .x-btn-button-center {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+/* per-action colors (soft chip + accent glyph) */
+.x-btn .x-btn-icon-el.map-icons.btn-save      { color: #12813c !important; background-color: #e7f6ec; }
+.x-btn .x-btn-icon-el.map-icons.btn-print     { color: #0f63bd !important; background-color: #e8f1fc; }
+.x-btn .x-btn-icon-el.map-icons.btn-options   { color: #7a3fc0 !important; background-color: #f1eafc; }
+.x-btn .x-btn-icon-el.map-icons.btn-newrow    { color: #0aa89b !important; background-color: #e6f8f6; }
+.x-btn .x-btn-icon-el.map-icons.btn-delrow    { color: #d64545 !important; background-color: #fdecec; }
+.x-btn .x-btn-icon-el.map-icons.btn-pagebreak { color: #b7791f !important; background-color: #fbf2e2; }
+.x-btn .x-btn-icon-el.map-icons.btn-sign      { color: #3b5bdb !important; background-color: #eaeffc; }
+.x-btn .x-btn-icon-el.map-icons.btn-signinfo  { color: #0b8f8f !important; background-color: #e5f6f6; }
+
+/* disabled/new-row muted variants keep chip but fade glyph */
+.x-btn .x-btn-icon-el.map-icons.btn-newrow,
+.x-btn .x-btn-icon-el.map-icons.btn-delrow,
+.x-btn .x-btn-icon-el.map-icons.btn-signinfo  { opacity: .85; }
+
+/* hover: lift the chip slightly */
+.x-btn:hover .x-btn-icon-el.map-icons { box-shadow: 0 2px 6px rgba(13, 55, 95, .18); }
+
+/* ЦИСЗ: подсветка строк результата массовой отправки (окно "Отправить в ЦИСЗ за день") */
+.x-grid-row.cisz-row-sent .x-grid-cell { background-color: #e8f5e9 !important; }
+.x-grid-row.cisz-row-sent.x-grid-row-selected .x-grid-cell { background-color: #c8e6c9 !important; }
+.x-grid-row.cisz-row-error .x-grid-cell { background-color: #fdecea !important; }
+.x-grid-row.cisz-row-error.x-grid-row-selected .x-grid-cell { background-color: #f5c6c0 !important; }
+
+/* ---- 21c. Calendar month picker: full height, no clipping ---------------
+   The vendor month picker (opened by the month/year button on any date
+   picker) is rendered inside .x-datepicker, which this theme sets to
+   overflow:hidden - the picker panel (12 months + 10 years + buttons,
+   ~344px tall) was clipped to the calendar's own height, hiding rows.
+   Let the panel size itself and let the datepicker stop clipping while
+   its month picker is open. */
+.x-monthpicker,
+.x-monthpicker-body,
+.x-monthpicker-months,
+.x-monthpicker-years {
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+/* :has() not supported in older Chrome - apply unconditionally:
+   the calendar body itself has no edge-to-edge content, so visible
+   overflow is safe and the month picker panel is never clipped. */
+.x-datepicker {
+    overflow: visible !important;
+}
+
+/* ---- 21d. Calendar month picker: compact items -------------------------
+   The picker lists 6 rows of months / 5 rows of years + nav; in small
+   windows the last row (Июнь|Дек) still fell below the fold. Compact
+   font and row height shrink the whole panel so it always fits. */
+.x-monthpicker-item {
+    height: 26px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.x-monthpicker-item-inner {
+    height: 24px !important;
+    line-height: 24px !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+}
+.x-monthpicker-yearnav {
+    height: 30px !important;
+}
+.x-monthpicker-yearnav-button-ct {
+    height: 30px !important;
+}
+
+/* ---- 21e. Calendar month picker: buttons reserve + compact buttons -----
+   Vendor positions the OK/Cancel strip absolutely over the panel bottom
+   (60px tall). With the panel now sized to its content (21c/21d) the
+   strip overlapped the last month rows - reserve padding for it and
+   make the buttons themselves smaller. */
+.x-monthpicker-months,
+.x-monthpicker-years {
+    padding-bottom: 56px !important;
+    box-sizing: content-box !important;
+}
+.x-monthpicker-buttons {
+    height: 48px !important;
+}
+.x-monthpicker-buttons .x-btn {
+    height: 28px !important;
+    min-height: 28px !important;
+    margin: 0 4px !important;
+}
+.x-monthpicker-buttons .x-btn-wrap,
+.x-monthpicker-buttons .x-btn-button {
+    height: 28px !important;
+    padding: 0 !important;
+}
+.x-monthpicker-buttons .x-btn-inner {
+    height: 28px !important;
+    line-height: 28px !important;
+    font-size: 12px !important;
+}
+
+/* ---- 21f. Calendar month picker buttons: centered, contrast colors ------
+   OK gets the vendor teal (matches the month button in the header),
+   Cancel gets a neutral grey fill; labels are white and vertically/horizontally
+   centered. */
+.x-monthpicker-buttons .x-btn {
+    border-radius: 6px !important;
+    box-shadow: none !important;
+    background-image: none !important;
+}
+.x-monthpicker-buttons .x-btn .x-btn-wrap,
+.x-monthpicker-buttons .x-btn .x-btn-button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.x-monthpicker-buttons .x-btn .x-btn-inner {
+    display: block !important;
+    text-align: center !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+/* OK - accent teal */
+.x-monthpicker-buttons .x-btn:first-child,
+.x-monthpicker-buttons .x-btn-default-small:first-child {
+    background-color: #00988d !important;
+    border: 0 !important;
+}
+/* Cancel - neutral grey */
+.x-monthpicker-buttons .x-btn:last-child,
+.x-monthpicker-buttons .x-btn-default-small:last-child {
+    background-color: #6f7476 !important;
+    border: 0 !important;
+}
+.x-monthpicker-buttons .x-btn:hover {
+    filter: brightness(1.08);
+}
+
+/* ---- 21g. Month picker buttons: contrast colors (fixed selectors) -------
+   Both buttons share UI class x-btn-default-toolbar-small; vendor paints
+   the background on the <a> itself via that UI class. Target them by
+   position among the direct <a> children of .x-monthpicker-buttons. */
+.x-monthpicker-buttons > a.x-btn {
+    background-image: none !important;
+    border: 0 !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+}
+/* OK (first <a>) - accent teal; hover/press/focus variants too */
+.x-monthpicker-buttons > a.x-btn:first-of-type,
+.x-monthpicker-buttons > a.x-btn:first-of-type.x-btn-over,
+.x-monthpicker-buttons > a.x-btn:first-of-type.x-btn-pressed,
+.x-monthpicker-buttons > a.x-btn:first-of-type.x-btn-focus {
+    background-color: #00988d !important;
+}
+/* Cancel (last <a>) - neutral grey */
+.x-monthpicker-buttons > a.x-btn:last-of-type,
+.x-monthpicker-buttons > a.x-btn:last-of-type.x-btn-over,
+.x-monthpicker-buttons > a.x-btn:last-of-type.x-btn-pressed,
+.x-monthpicker-buttons > a.x-btn:last-of-type.x-btn-focus {
+    background-color: #6f7476 !important;
+}
+/* vertical centering of the label inside 28px button */
+.x-monthpicker-buttons > a.x-btn .x-btn-wrap {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 28px !important;
+}
+.x-monthpicker-buttons > a.x-btn .x-btn-button {
+    height: auto !important;
+    min-height: 0 !important;
+}
+.x-monthpicker-buttons > a.x-btn .x-btn-inner {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    line-height: 28px !important;
+    height: 28px !important;
+    text-align: center !important;
+    overflow: visible !important;
+}
+
+/* ---- 21h. Month picker buttons: specificity fix -------------------------
+   The theme paints toolbar buttons white via a highly specific
+   .x-btn.x-btn-default-toolbar-small:not(...):not(...)... rule with
+   !important. Prefixing html body raises our specificity above it. */
+html body .x-monthpicker-buttons > a.x-btn {
+    background-image: none !important;
+    border: 0 !important;
+}
+html body .x-monthpicker-buttons > a.x-btn:first-of-type,
+html body .x-monthpicker-buttons > a.x-btn:first-of-type.x-btn-over,
+html body .x-monthpicker-buttons > a.x-btn:first-of-type.x-btn-pressed,
+html body .x-monthpicker-buttons > a.x-btn:first-of-type.x-btn-focus {
+    background-color: #00988d !important;
+}
+html body .x-monthpicker-buttons > a.x-btn:last-of-type,
+html body .x-monthpicker-buttons > a.x-btn:last-of-type.x-btn-over,
+html body .x-monthpicker-buttons > a.x-btn:last-of-type.x-btn-pressed,
+html body .x-monthpicker-buttons > a.x-btn:last-of-type.x-btn-focus {
+    background-color: #6f7476 !important;
+}
+
+/* ---- 21i. Month picker buttons: exact label centering -------------------
+   The btn-wrap flex box inflated the panel (430px) and the inner label
+   hung 8px low. Center the label inside the fixed 28px button strictly:
+   wrap/button heights are pinned, inner is absolutely centered. */
+.x-monthpicker-buttons > a.x-btn .x-btn-wrap {
+    display: block !important;
+    position: relative !important;
+    height: 28px !important;
+    line-height: 0 !important;
+}
+.x-monthpicker-buttons > a.x-btn .x-btn-button {
+    display: block !important;
+    height: 28px !important;
+    position: static !important;
+}
+.x-monthpicker-buttons > a.x-btn .x-btn-inner {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    height: auto !important;
+    line-height: normal !important;
+    white-space: nowrap !important;
+}
+
+/* ---- 21j. Month picker buttons: pin sizes -------------------------------
+   With the label absolutely centered (21i) the buttons collapsed to the
+   padding box. Pin explicit sizes; buttons sit in a flex row. */
+.x-monthpicker-buttons {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    height: 48px !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+}
+.x-monthpicker-buttons > a.x-btn {
+    display: inline-block !important;
+    width: 84px !important;
+    height: 28px !important;
+    position: relative !important;
+    margin: 0 !important;
+}
+.x-monthpicker-buttons > a.x-btn .x-btn-wrap {
+    width: 100% !important;
+}
+.x-monthpicker-buttons > a.x-btn .x-btn-inner {
+    width: auto !important;
+    max-width: 100% !important;
+}
+
+/* ---- 21k. Toolbar fields: match button height ---------------------------
+   In toolbars (e.g. "Выбор пациента": search field + Печать/Фильтр/
+   Сортировка/Таблица/ЦИСЗ/Добавить) buttons are 48px tall while the
+   field inputs are 32/36px and hug the top. Stretch toolbar fields to
+   the same 48px so the whole row reads as one line. */
+.x-toolbar .x-form-trigger-wrap {
+    height: 48px !important;
+}
+.x-toolbar input.x-form-field {
+    height: 44px !important;
+    line-height: 44px !important;
+}
+.x-toolbar .x-form-trigger {
+    height: 48px !important;
+    background-position: center !important;
+}
+.x-toolbar .x-form-trigger::before {
+    line-height: 48px !important;
+}

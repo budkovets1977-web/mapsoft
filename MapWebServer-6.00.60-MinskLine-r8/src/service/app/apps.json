@@ -1,0 +1,379 @@
+{
+    "macros": {
+        "$help": "help",
+        "$video": "video",
+        "$desktop": "src/desktop",
+        "$modern": "src/modern",
+        "$service": "src/service",
+        "$app": "$service/app"
+    },
+    "defaults": {
+        "access": [
+            "$app/common"
+        ]
+    },
+    "apps": {
+        "*": {
+            "access": [
+                "$desktop",
+                "$modern",
+                "$service",
+                "$help",
+                "$video"
+            ]
+        },
+        "bgu": {
+            "title": "БГУ",
+            "loginService": "bgu",
+            "mainService": "bgu",
+            "service": true,
+            "access": [
+                "$app/map/bgu"
+            ]
+        },
+        "crm": {
+            "title": "МАПСОФТ ЦРМ",
+            "loginService": "crm",
+            "mainService": "crm",
+            "theme": "comfort",
+            "access": [
+                "$app/map/crm"
+            ]
+        },
+        "map": {
+            "title": "Задачи МАП",
+            "loginService": "map",
+            "rolesService": "map",
+            "mainService": "map",
+            "userProfile": true,
+            "access": [
+                "$app/map/common",
+                "$app/map/reports",
+                "$app/map/docs"
+            ],
+            "apps": {
+                "buh": {
+                    "title": "Бухгалтерия",
+                    "access": [
+                        "$app/buh",
+                        "$help/buh"
+                    ],
+                    "apps": {
+                        "buh_desktop": {
+                            "title": "Настольные задачи бухгалтерии",
+                            "apps": {
+                                "buhadmin": {
+                                    "title": "Администрирование (бухгалтерия)"
+                                },
+                                "buhservices": {
+                                    "title": "Учёт платных услуг"
+                                }
+                            }
+                        }
+                    }
+                },
+                "equeue": {
+                    "title": "Группа задач электронной очереди",
+                    "mainService": "med",
+                    "access": [
+                        "$app/equeue",
+                        "$help/equeue",
+                        "$video/equeue"
+                    ],
+                    "apps": {
+                        "equeueapp": {
+                            "title": "Электронная очередь"
+                        },
+                        "equeuedisplay": {
+                            "title": "Вызывное табло электронной очереди",
+                            "fullscreen": true,
+                            "theme": "maptouch",
+                            "widget": "equeue-display-main",
+                            "serverConfig": "equeue-display-ipsettings"
+                        },
+                        "equeueinfobox": {
+                            "title": "Инфокиоск электронной очереди",
+                            "fullscreen": true,
+                            "widget": "equeue-infobox-main"
+                        },
+                        "equeueorc": {
+                            "title": "Пульт оператора электронной очереди",
+                            "mobile": true,
+                            "fullscreen": true,
+                            "theme": "maptouch",
+                            "widget": "equeue-orc-remotecontrol",
+                            "serverConfig": "common-serverconfig"
+                        },
+                        "equeue_api": {
+                            "title": "Сервис для предоставления данных из МАП в сторонние программы электронной очереди (поиск пациентов)",
+                            "access": [
+                                "$app/equeue/infobox/api.php"
+                            ]
+                        }
+                    }
+                },
+                "infopanel": {
+                    "title": "Информационная панель",
+                    "fullscreen": true,
+                    "widget": "map-infopanel-main",
+                    "serverConfig": "map-infopanel-ipsettings",
+                    "access": [
+                        "$app/map/infopanel",
+                        "$help/map/infopanel"
+                    ]
+                },
+                "med": {
+                    "mainService": "med",
+                    "access": [
+                        "$app/med"
+                    ],
+                    "apps": {
+                        "ambulance": {
+                            "title": "Скорая помощь",
+                            "theme": "comfort",
+                            "mainService": "med",
+                            /*"mainToolbar": "pmed-common-maintoolbar",*/
+                            "access": [
+                                "$app/pmed"
+                            ],
+                            "scripts": [
+                                "ux/ol/ol.js",
+                                "ux/ol/ol-geocoder/ol-geocoder.js"
+                            ]
+                        },
+                        "ambulancemobile": {
+                            "mobile": true,
+                            "title": "Скорая помощь (мобильное)",
+                            "theme": "maptouch",
+                            "widget": "med-ambulancemobile-calls",
+                            "serverConfig": "common-serverconfig",
+                            "access": [
+                                "$app/pmed"
+                            ]
+                        },
+                        "clinic": {
+                            "access": [
+                                "$help/med"
+                            ],
+                            "apps": {
+                                "clinic_desktop": {
+                                    "title": "Поликлиника",
+                                    "apps": {
+                                        "medadmin": {
+                                            "title": "Администрирование (медицина)",
+                                            "access": [
+                                                "$app/talonby"
+                                            ]
+                                        },
+                                        "medboss": {
+                                            "title": "Рабочее место руководителя"
+                                        },
+                                        "medcard": {
+                                            "title": "Амбулаторная карта"
+                                        },
+                                        "medclinicstats": {
+                                            "title": "Статистика поликлиники"
+                                        },
+                                        "meddayhospital": {
+                                            "title": "Дневной стационар"
+                                        },
+                                        "medexaminations": {
+                                            "title": "Диспансеризация, медосмотры"
+                                        },
+                                        "medfluorography": {
+                                            "title": "Флюорокартотека"
+                                        },
+                                        "medfunctional": {
+                                            "title": "Функциональная диагностика"
+                                        },
+                                        "medlab": {
+                                            "title": "Лабораторная диагностика"
+                                        },
+                                        "medreception": {
+                                            "title": "Регистратура"
+                                        },
+                                        "medrecipes": {
+                                            "title": "Льготные рецепты"
+                                        },
+                                        "medsickdays": {
+                                            "title": "Учёт временной нетрудоспособности"
+                                        },
+                                        "medstomatology": {
+                                            "title": "Стоматология",
+                                            "access": [
+                                                "$app/buh/common",
+                                                "$app/buh/services"
+                                            ]
+                                        },
+                                        "medvaccinations": {
+                                            "title": "Иммунопрофилактика"
+                                        },
+                                        "medxray": {
+                                            "title": "Лучевая диагностика"
+                                        },
+                                        "medqualitycontrol": {
+                                            "title": "Контроль качества медицинской помощи"
+                                        },
+                                        "medinspectrw_api": {
+                                            "title": "Сервис приема медосмотров работников ЖД из поликлиник в базу МАП ЦВЭК",
+                                            "access": [
+                                                "$app/map/med/inspectRW.php",
+                                                "$app/med/common/inspectRW.php"
+                                            ]
+                                        }
+                                    }
+                                },
+                                "clinic_mobile": {
+                                    "mobile": true,
+                                    "apps": {
+                                        "homevisit": {
+                                            "title": "Визиты врача на дом",
+                                            "theme": "maptouch",
+                                            "widget": "homevisit-visits",
+                                            "serverConfig": "common-serverconfig",
+                                            "access": [
+                                                "$app/homevisit",
+                                                "$help/homevisit"
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "hospital": {
+                            "title": "Стационар",
+                            "mainService": "hospital",
+                            "access": [
+                                "$app/hospital",
+                                "$help/hospital"
+                            ],
+                            "apps": {
+                                "hospital_desktop": {
+                                    "title": "Настольные задачи стационара",
+                                    "apps": {
+                                        "hospitalhistory": {
+                                            "title": "История болезни"
+                                        },
+                                        "hospitalreception": {
+                                            "title": "Приёмный покой"
+                                        }
+                                    }
+                                },
+                                "hospital_mobile": {
+                                    "title": "Мобильные задачи стационара",
+                                    "mobile": true,
+                                    "modern": true,
+                                    "apps": {
+                                        "mobilehospitaldoctor": {
+                                            "title": "Врач стационара (мобильное приложение)",
+                                            "widget": "hospital-doctor-main"
+                                        },
+                                        "mobilehospitalnurse": {
+                                            "title": "Медсестра стационара (мобильное приложение)",
+                                            "widget": "hospital-nurse-main"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "pmed": {
+                    "title": "Платная медицина (медцентры)",
+                    "caption": "МИС",
+                    "theme": "comfort",
+                    "mainService": "med",
+                    "mainToolbar": "pmed-common-maintoolbar",
+                    "access": [
+                        "$app/med/common",
+                        "$app/pmed"
+                    ],
+                    "apps": {
+                        "pmeddoctor": {
+                            "title": "Врач"
+                        },
+                        "pmedeconomist": {
+                            "title": "Экономист"
+                        },
+                        "pmedreception": {
+                            "title": "Ресепшен"
+                        },
+                        "pmedinsurance": {
+                            "title": "Страховые услуги",
+                            "loginService": "pmed/insurance",
+                            "mainService": "pmed/insurance",
+                            "mainToolbar": null
+                        }
+                    }
+                },
+                "svodbuh": {
+                    "title": "Сводная бухгалтерская отчётность",
+                    "mainService": "map/tables",
+                    "tableSet": "Сводная бухотчетность (web)",
+                    "access": [
+                        "$app/map/tables",
+                        "$help/svodbuh"
+                    ]
+                },
+                "synevo": {
+                     "title": "МИС",
+                     "mainService": "med",
+                     "access": [
+                         "$app/map/synevo",
+                         "$help/synevo"
+                     ]
+                },
+                "talonbox": {
+                    "title": "Инфокиоск записи к врачу",
+                    "fullscreen": true,
+                    "widget": "talonbox-main",
+                    "access": [
+                        "$app/talonbox"
+                    ],
+                    "scripts": [
+                        "ux/leaflet/leaflet.js"
+                    ]
+                },
+                "talonboxadmin": {
+                    "title": "Интерактивная карта",
+                    "access": [
+                        "$app/talonboxadmin"
+                    ],
+                    "scripts": "ux/leaflet/leaflet.js"
+                },
+                "talonby": {
+                    "title": "Сервис сайта talon.by",
+                    "access": [
+                        "$app/med/reception/linkTalon.php"
+                    ]
+                }
+            }
+        },
+        "patientident": {
+            "title": "Сервис регистрация диапазонов номеров карточек пациентов",
+            "loginService": "patientident",
+            "mainService": "patientident",
+            "access": [
+                "$app/patientident",
+                "$help/patientident"
+            ]
+        },
+        "service131": {
+            "title": "Служба 131",
+            "loginService": "service131",
+            "mainService": "service131",
+            "access": [
+                "$app/service131",
+                "$help/service131"
+            ],
+            "apps": {
+                "service131_api": {
+                    "title": "Сервис службы 131 для клиентов с комплексом МАП, обеспечивает заказ и отмену талонов",
+                    "access": [
+                        "$app/service131/map.php"
+                    ]
+                }
+            }
+        }
+    }
+}

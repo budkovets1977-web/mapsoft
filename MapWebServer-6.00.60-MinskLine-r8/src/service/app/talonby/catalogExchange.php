@@ -1,0 +1,13 @@
+<?php
+ require_once(__DIR__ . '/../init.php'); class med_talonby_catalogExchange { const TASK_NAME = 'talonbyLinkTalon'; const DEBUG_HTTP = true; private $db; public function getCatalog() { suspendJsonRpc(); require_once (__DIR__ . '/linkTalon.php'); resumeJsonRpc(); $linkTalon = new med_talonby_linkTalon; $params = $linkTalon->setupConnect(); $params->request_method = 'catalog/get'; $this->log("Попытка получения каталога"); $result = httpGET($params); if (empty($result)) { $this->log("Ошибка подключения к сервису Talon.by", 2); return false; } switch ($result['status'][1]) { case "200": $answer = safe_json_decode(stristr($result['body'], '{')); $this->log("Каталог получен успешно"); $this->log("Попытка записи каталога в БД"); $created = $this->updateCatalog($answer->data); if ($created === true) { $this->log("Запись каталога прошла успешно"); return true; } break; case "403": $answer = safe_json_decode(stristr($result['body'], '{')); $this->log("Ошибка получения каталога $answer->message"); return false; case "401": $this->log("Проблема с авторизацией"); throw new Exception('Проблема с авторизацией'); default: $this->log("Что-то пошло не так"); } } private function updateCatalog($records) { $db = $this->db ?: $this->db = connectDb(); $sql = <<<"EOT"
+INSERT INTO TalonService
+    (TalonServiceCode, Code, Name, Active, TalonServiceCodeParent)
+VALUES (?,?,?,?,?)
+ON CONFLICT (TalonServiceCode) DO UPDATE SET
+    Code = case when ? = 1 then EXCLUDED.Code else TalonService.Code end,
+    Name = case when ? = 1 then EXCLUDED.Name else TalonService.Name end,
+    Active = case when ? = 1 then EXCLUDED.Active else TalonService.Active end,
+    TalonServiceCodeParent = case when ? = 1 then EXCLUDED.TalonServiceCodeParent else TalonService.TalonServiceCodeParent end
+WHERE TalonService.TalonServiceCode = EXCLUDED.TalonServiceCode
+EOT;
+$stmt = $db->prepare($sql); if (is_object($records)) { $records = [$records]; } $db->beginTransaction(); try { foreach ($records as $row) { $stmt->execute([ isUndefinedProperty($row, 'id'), isUndefinedProperty($row, 'cipher'), isUndefinedProperty($row, 'name'), isUndefinedProperty($row, 'active'), isUndefinedProperty($row, 'parent'), propertyExistsSQL($row, 'cipher'), propertyExistsSQL($row, 'name'), propertyExistsSQL($row, 'active'), propertyExistsSQL($row, 'parent') ]); } $db->commit(); } catch (Throwable $e) { $db->rollback(); $this->log("ошибка $e"); throw $e; } return true; } private function log($message, $type = 0) { app_log($message, $type, self::TASK_NAME); } } handleJsonRpc('med_talonby_catalogExchange'); 

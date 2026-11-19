@@ -1,0 +1,30 @@
+<?php
+ require_once(__DIR__ . '/../../init.php'); class map_synevo_resultExchange { private $db; public $enterpriseCode; const TASK_NAME = 'synevo'; public function startExchange($configs = null) { $this->log("Старт " . __METHOD__); if (empty($configs)) { $configs = getSessionValue('config', ''); } $configList = array_filter(safe_explode(',', preg_replace('/[\s,;]+/', ',', $configs))); if (empty($configList)) { $this->log("Не указаны конфигурации", 2); return false; } foreach ($configList as $cfg) { $this->log("Конфигурация \"$cfg\""); try { $this->db = connectDb($cfg, null, true); } catch (Throwable $e) { $this->log($e->getMessage(), 2); continue; } try { $userList = $this->getUserList(); if (empty($userList)) { $this->log("Отсутствует список контрактов", 1); continue; } for ($i = 0; $i < count($userList); $i++) { $user = $userList[$i]; $this->log("Организация \"$user->enterpriseName\""); $username = isEmptyProperty($user, 'username'); $password = isEmptyProperty($user, 'password'); $contractId = isEmptyProperty($user, 'id'); $this->enterpriseCode = $user->enterpriseCode; if (!$username || !$password || !$contractId) { $this->log("Ошибка получения списка контрактов", 2); continue; } $authToken = $this->getAuthToken($username, $password); if (!$authToken) { $this->log("Ошибка авторизации по контракту " . $contractId, 2); continue; } $ongoingAnalyzes = $this->getOngoingAnalyzes(); if (empty($ongoingAnalyzes)) { $this->log("Не найдено неполученных анализов для контракта " . $contractId); continue; } else { $barcodes = ""; foreach ($ongoingAnalyzes as $row) { $barcodes = empty($barcodes) ? $row->barcode : $barcodes . "," . $row->barcode; } $analyzesStatus = $this->getAnalyzesStatus($authToken, $barcodes); if (empty($analyzesStatus)) { $this->log("Ошибка получения статуса анализов", 2); continue; } else { foreach ($analyzesStatus as $row) { if ($row->State === "Готов") { $pdf = $this->getPdf($authToken, $row->Barcode); if (empty($pdf)) { $this->log("Ошибка получения PDF с результатом", 2); continue; } $this->savePdf($pdf, $row->Barcode); } } } } } } catch (Throwable $e) { $this->log($e->getMessage(), 2); continue; } } return true; } private function getUserList() { $db = $this->db; $sql = <<<"EOT"
+SELECT
+    e.EnterpriseCode "enterpriseCode",
+    e.Name "enterpriseName",
+    sc.Id "id",
+    sc.username "username",
+    sc.password "password"
+FROM SynevoContract sc
+    JOIN Enterprise e ON e.EnterpriseCode = sc.EnterpriseCode
+WHERE sc.StartDate <= DATE( (LOCALTIMESTAMP)) and sc.FinishDate >= DATE((LOCALTIMESTAMP))
+EOT;
+$stmt = $db->prepare($sql); $stmt->execute(); return $stmt->fetchAll(PDO::FETCH_OBJ); } private function getAuthToken($userName, $password) { $request = new stdClass(); $request->url = "https://client.synevo.by/api/AuthService.svc/Token?username=" . $userName . "&password=" . $password; $result = httpGET($request); if (empty($result)) { $this->log("Нет ответа от " . $request->url, 2); return false; } switch ($result['status'][1]) { case "200": $result = safe_json_decode($result['body']); $authToken = $result->AuthToken; return $authToken; case "400": $this->log($request->url . " HTTP 400 Bad Request"); return false; } return false; } private function getOngoingAnalyzes() { $db = $this->db; $sql = <<<"EOT"
+SELECT
+    BarCode "barcode",
+    SynevoLogServiceCode "sourcecode"
+FROM SynevoLogService
+WHERE EnterpriseCode = $this->enterpriseCode and state = 1
+EOT;
+$stmt = $db->prepare($sql); $stmt->execute(); return $stmt->fetchAll(PDO::FETCH_OBJ); } private function getAnalyzesStatus($authToken, $barcodes) { $request = new stdClass(); $request->headers['AuthToken'] = $authToken; $request->headers['Content-Type'] = "application/json"; $request->url = "https://client.synevo.by/api/OrderService.svc/GetOrdersByBarcodes?barcodes=" . $barcodes; $result = httpGET($request); if (empty($result)) { $this->log("Нет ответа от " . $request->url, 2); return false; } switch ($result['status'][1]) { case "200": $result = safe_json_decode($result['body']); return $result; case "400": $this->log($request->url . " HTTP 400 Bad Request"); return false; } return false; } private function getPdf($authToken, $barcode) { $request = new stdClass(); $request->headers['AuthToken'] = $authToken; $request->headers['Content-Type'] = "application/json"; $request->url = "https://client.synevo.by/api/ResultsService.svc/Result?barcode=" . $barcode; $result = httpGET($request); if (empty($result)) { $this->log("Нет ответа от " . $request->url, 2); return false; } switch ($result['status'][1]) { case "200": $result = safe_json_decode($result['body']); if ($result->IsSuccess) { $pdf = base64_decode($result->FileName); return $pdf; } case "400": $this->log($request->url . " HTTP 400 Bad Request"); return false; } return false; } private function savePdf($pdf, $barcode) { $db = $this->db; $fileName = 'Result' . $barcode; $sql = <<<"EOT"
+INSERT INTO MedExternalFileT
+    (Source, FileName, SourceCode, Data)
+    VALUES (51, '$fileName',  (SELECT SynevoLogServiceCode FROM SynevoLogService WHERE EnterpriseCode = {$this->enterpriseCode} and barcode = $barcode and state = 1 limit 1), :PDF)
+EOT;
+$sql2 = <<<"EOT"
+UPDATE  synevologservice
+    SET state = 2
+WHERE synevologservicecode = (SELECT SynevoLogServiceCode FROM SynevoLogService WHERE EnterpriseCode = {$this->enterpriseCode} and barcode = $barcode and state = 1 limit 1)
+EOT;
+$stmt = $db->prepare($sql); $stmt2 = $db->prepare($sql2); $db->beginTransaction(); $stmt->bindParam(':PDF', $pdf, PDO::PARAM_LOB); try { $stmt->execute(); $stmt2->execute(); $db->commit(); return true; } catch (Throwable $e) { $this->log("Во время сохранения PDF-файла произошла ошибка:" . $e->getMessage(), 2); return false; } } private function log($message, $type = 0) { app_log($message, $type, self::TASK_NAME); } } handleJsonRpc('map_synevo_resultExchange'); 

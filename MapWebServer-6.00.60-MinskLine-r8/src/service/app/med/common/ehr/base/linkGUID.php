@@ -1,0 +1,2 @@
+<?php
+ namespace ehr; require_once(__DIR__ . '/../../../../init.php'); require_once(__DIR__ . '/../autoload.php'); class LinkGUID { private $items; public function __construct() { $this->items = []; } public function __destruct() { unset($this->items); } public function setGuid(int $key, string $guid): void { $this->items[$key] = $guid; } public function getGuid(int $key): string { return $this->items[$key] ?? ''; } public function getCount(): int { return count($this->items); } } 

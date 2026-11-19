@@ -1,0 +1,2 @@
+<?php
+ require_once(__DIR__.'/../init.php'); class common_test { public function ping () { return true; } public function connectDb ($cfg = null, $alias = null) { connectDb($cfg, $alias); return true; } } handleJsonRpc('common_test');
